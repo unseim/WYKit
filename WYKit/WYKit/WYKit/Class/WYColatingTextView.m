@@ -1,9 +1,9 @@
 //
 //  WYColatingTextView.m
 //  WYKit
-//
-//  Created by 汪年成 on 17/1/19.
-//  Copyright © 2017年 之静之初. All rights reserved.
+//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  GitHub地址：https://github.com/unseim
+//  QQ：9137279
 //
 
 #import "WYColatingTextView.h"
