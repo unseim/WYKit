@@ -19,7 +19,7 @@
  *  @param currentController   要显示的controller
  *  @param isShowReleaseNotes  是否显示版本更新日志
  */
-+ (void)updateVersionWithAppStoreID:(NSString *)appStoreID
++ (void)getVersionWithAppStoreID:(NSString *)appStoreID
             showInCurrentController:(UIViewController *)currentController
                  isShowReleaseNotes:(BOOL)isShowReleaseNotes;
 

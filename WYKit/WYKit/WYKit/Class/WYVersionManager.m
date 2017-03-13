@@ -15,9 +15,10 @@
  * itunes.apple.com/cn/lookup?id=你的appid
  *  一定要先配置自己项目在iTunes Connect的Apple ID
  */
-+ (void)updateVersionWithAppStoreID:(NSString *)appStoreID
-                   showInCurrentController:(UIViewController *)currentController
-                        isShowReleaseNotes:(BOOL)isShowReleaseNotes {
++ (void)getVersionWithAppStoreID:(NSString *)appStoreID
+         showInCurrentController:(UIViewController *)currentController
+              isShowReleaseNotes:(BOOL)isShowReleaseNotes
+{
     //确定请求路径
     NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/cn/lookup?id=%@", appStoreID]];
     

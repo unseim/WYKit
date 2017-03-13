@@ -268,7 +268,6 @@
 				9D7EDF321E741C7B0041F645 /* WYAlertTools.m */,
 				9D7EDF331E741C7B0041F645 /* WYAuthorizationTool.h */,
 				9D7EDF341E741C7B0041F645 /* WYAuthorizationTool.m */,
-				9D7EDF351E741C7B0041F645 /* WYClass.h */,
 				9D7EDF361E741C7B0041F645 /* WYCodeButton.h */,
 				9D7EDF371E741C7B0041F645 /* WYCodeButton.m */,
 				9D7EDF381E741C7B0041F645 /* WYColatingTextFeild.h */,
@@ -281,6 +280,7 @@
 				9D7EDF3F1E741C7B0041F645 /* WYPhotoBrowser.m */,
 				9D7EDF401E741C7B0041F645 /* WYVersionManager.h */,
 				9D7EDF411E741C7B0041F645 /* WYVersionManager.m */,
+				9D7EDF351E741C7B0041F645 /* WYClass.h */,
 			);
 			path = Class;
 			sourceTree = "<group>";
