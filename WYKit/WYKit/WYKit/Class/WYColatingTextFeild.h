@@ -25,49 +25,31 @@ typedef NS_ENUM(NSUInteger, WYColatingTextfeildType) {
 
 @interface WYColatingTextFeild : NSObject <UITextFieldDelegate>
 
-/**
- *  格式类型
- */
+/** 格式类型 */
 @property (assign, nonatomic) WYColatingTextfeildType textFeildType;
 
-/**
- *  限制长度
- */
+/** 限制长度 */
 @property (assign, nonatomic) NSUInteger limitedLength;
 
-/**
- *  允许的字符集
- */
+/** 允许的字符集 */
 @property (copy, nonatomic) NSString *characterSet;
 
-/**
- *  小数位
- */
+/** 小数位 */
 @property (assign, nonatomic) NSUInteger decimalPlace;
 
-/**
- *  字数限制  中文2个字节   英文1个字节
- */
+/** 字数限制  中文2个字节   英文1个字节 */
 @property (nonatomic ,assign) BOOL isWordLimit;
 
-/**
- *  中文cnInt默认16个字
- */
+/** 中文cnInt默认16个字 */
 @property (nonatomic ,assign) NSInteger cnInt;
 
-/**
- *  英文enInt默认24个字
- */
+/** 英文enInt默认24个字 */
 @property (nonatomic ,assign) NSInteger enInt;
 
-/**
- *  初始化方法
- */
+/** 初始化方法 */
 - (instancetype)initWithTextField:(UITextField *)textField controller:(UIViewController *)viewController;
 
-/**
- *  判断是否为手机号
- */
+/** 判断是否为手机号 */
 - (BOOL)isValidPhone;
 
 @end

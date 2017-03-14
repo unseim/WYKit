@@ -10,23 +10,17 @@
 #define WYThirdClass_h
 
 
-/**
- *  AFNetWorking 3.0 二次封装
- */
+/** AFNetWorking 3.0 二次封装 */
 #import "WYNetManager.h"
 #import "WYNetWorkingTool.h"
 
 
-/**
- *  FMDB 二次封装
- */
+/** FMDB 二次封装 */
 #import "WYDBModel.h"
 #import "WYDBHelper.h"
 
 
-/**
- *  YYWebImage 添加的显示 Base64 格式的图片分类
- */
+/** YYWebImage 添加的显示 Base64 格式的图片分类 */
 #import "UIImageView+Base64Image.h"
 
 

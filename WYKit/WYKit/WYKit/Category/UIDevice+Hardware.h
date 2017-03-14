@@ -23,9 +23,7 @@ typedef NS_ENUM(NSUInteger, UIDeviceFamily) {
  */
 - (NSString *)modelIdentifier;
 
-/**
- *  设备机型
- */
+/** 设备机型 */
 - (NSString *)modelName;
 
 

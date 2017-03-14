@@ -11,45 +11,28 @@
 
 #import "WYAlertTools.h"
 
-/**
- *  限制输入框封装
- */
+/** 限制输入框封装 */
 #import "WYColatingTextFeild.h"
 
-/**
- *  验证码封装
- */
+/** 验证码封装 */
 #import "WYCodeButton.h"
 
-/**
- *  原生弹窗控件封装
- */
+/** 原生弹窗控件封装 */
 #import "WYAlertTools.h"
 
-/**
- *  自定义提示框
- */
+/** 自定义提示框 */
 #import "WYHiddenAlertView.h"
 
-/**
- *  限制TextView
- */
+/** 限制TextView */
 #import "WYColatingTextView.h"
 
-
-/**
- *  获取相册、相机、通讯录授权
- */
+/** 获取相册、相机、通讯录授权 */
 #import "WYAuthorizationTool.h"
 
-/**
- *  版本检测更新
- */
+/** 版本检测更新 */
 #import "WYVersionManager.h"
 
-/**
- *  图象浏览器
- */
+/** 图象浏览器 */
 #import "WYPhotoBrowser.h"
 
 

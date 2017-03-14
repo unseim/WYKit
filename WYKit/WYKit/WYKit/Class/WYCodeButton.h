@@ -22,24 +22,19 @@
 
 #pragma mark ========================代理协议========================
 @class WYCodeButton;
-/**
- *  验证码按键代理
- */
+
+/** 验证码按键代理 */
 @protocol WYCodeButtonDelegate <NSObject>
 /**
  *  发送验证码的方法
  */
 //- (void)securityCodeButtonDidClicked:(WYCodeButton *)securityCodeButton;
 
-/**
- *  发送验证码倒计时完成以后的方法
- */
+/** 发送验证码倒计时完成以后的方法 */
 - (void)securityCodeButtonTimingEnded:(WYCodeButton *)securityCodeButton;
 
 
-/**
- *  按键按下以后
- */
+/** 按键按下以后 */
 - (void)securityCodeButtonUpInSide:(WYCodeButton *)securityCodeButton;
 
 
@@ -49,19 +44,13 @@
 #pragma mark ========================类定义========================
 @interface WYCodeButton : UIButton
 
-/**
- *  正常状态下的文字
- */
+/** 正常状态下的文字 */
 @property (nonatomic, copy) NSString *normalTitle;
 
-/**
- *  禁用状态下的文字
- */
+/** 禁用状态下的文字 */
 @property (nonatomic, copy) NSString *disabledTitle;
 
-/**
- *  计时时间（秒单位）
- */
+/** 计时时间（秒单位） */
 @property (nonatomic, assign) int time;
 
 @property (nonatomic, weak) id<WYCodeButtonDelegate> delegate;
@@ -75,9 +64,8 @@
  */
 - (instancetype)initWithColor:(UIColor *)buttonColor;
 
-/**
- *  发送验证码
- */
+
+/** 发送验证码 */
 - (void)securityCode;
 
 @end

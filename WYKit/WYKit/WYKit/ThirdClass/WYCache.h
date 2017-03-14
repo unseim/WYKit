@@ -16,30 +16,18 @@
  @param data 网络数据
  @param key key
  */
-+ (void)saveDataCache: (id)data forKey:(NSString *)key;
++ (void)saveDataCache:(id)data forKey:(NSString *)key;
 
-/**
- 读取缓存
- 
- @param key key
- */
+/** 读取缓存 */
 + (id)readCache:(NSString *)key ;
 
-/**
- 获取缓存总大小
- */
+/** 获取缓存总大小 */
 + (void)getAllCacheSize;
 
-/**
- 删除指定缓存
- 
- @param key key
- */
+/** 删除指定缓存 */
 + (void)removeChache:(NSString *)key;
 
-/**
- 删除全部缓存
- */
+/** 删除全部缓存 */
 + (void)removeAllCache;
 
 

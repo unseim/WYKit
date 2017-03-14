@@ -10,9 +10,7 @@
 
 @interface UITextView (Uitls)
 
-/**
- *  设置行距及字体大小
- */
+/** 设置行距及字体大小 */
 - (void)setText:(NSString*)text fontSize:(CGFloat)size lineSpacing:(CGFloat)lineSpacing;
 
 

@@ -9,36 +9,25 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-/**
- *  弹框显示的时间，默认1秒
- */
+/** 弹框显示的时间，默认1秒 */
 #define AlertViewShowTime 1.0
 
-/**
- *  检测系统版本
- */
+/** 检测系统版本 */
 #define iOS_Version [[[UIDevice currentDevice] systemVersion] floatValue]
 
-/**
- *  空白标题，如果title直接设置为nil，那么message设置的内容直接被上移为title，message无效，字体就是加粗的样式
- */
+/** 空白标题，如果title直接设置为nil，那么message设置的内容直接被上移为title，message无效，字体就是加粗的样式 */
 #define EmptyTitle iOS_Version >= 7.0 ? @"" : @" "
 
-/**
- *  回调block
- */
+/** 回调block */
 typedef void (^CallWYckBlock)(NSInteger btnIndex);
 
-/**
- *  按钮样式，不用系统的是为了版本适配
- */
-typedef enum {
+/** 按钮样式，不用系统的是为了版本适配 */
+typedef NS_ENUM(NSInteger, WYAlertActionStyle)
+{
     WYAlertActionStyleDefault = 0,
     WYAlertActionStyleCancel,
     WYAlertActionStyleDestructive
-}WYAlertActionStyle;
-
-
+};
 
 
 @interface WYAlertTools : NSObject

@@ -62,11 +62,5 @@ typedef NS_ENUM(NSUInteger, WYColatingTextViewType) {
 
 
 
-/**
- *  初始化方法
- */
-- (instancetype)initWithTextView:(UITextView *)textview controller:(UIViewController *)viewController;
-
-
 
 @end

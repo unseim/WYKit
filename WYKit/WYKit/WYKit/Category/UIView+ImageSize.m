@@ -140,5 +140,15 @@
     }
 }
 
+//  获取屏幕截图
++ (UIImage *)screenShotWithView:(UIView *)view
+{
+    UIGraphicsBeginImageContext(view.frame.size);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
 
 @end

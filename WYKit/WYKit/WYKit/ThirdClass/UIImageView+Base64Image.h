@@ -18,10 +18,8 @@
 - (void)setImageWithURLString:(NSString *)url
              placeholderImage:(UIImage *)image;
 
-/**
- *  UIImage -> Base64图片
- *
- */
+
+/** UIImage -> Base64图片 */
 - (NSString *)stringWithimageBase64URL:(UIImage *)image;
 
 

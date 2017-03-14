@@ -10,9 +10,7 @@
 
 @interface UICollectionView (EmptyPlaceHolder)
 
-/**
- *  没有数据的时候CollectionView显示的View
- */
+/** 没有数据的时候CollectionView显示的View */
 - (void)collectionViewDisplayView:(UIView *)displayView ifNecessaryForRowCount:(NSUInteger)rowCount;
 
 @end

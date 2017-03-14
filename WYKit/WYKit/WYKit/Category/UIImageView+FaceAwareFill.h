@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImageView (FaceAwareFill)
-/**
- *  图片当人脸被检测到时，它会就以脸部中心替代图片的集合中心
- */
+/** 图片当人脸被检测到时，它会就以脸部中心替代图片的集合中心 */
 - (void)faceAwareFill;
 
 @end
