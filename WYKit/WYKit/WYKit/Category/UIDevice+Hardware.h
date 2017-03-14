@@ -26,5 +26,19 @@ typedef NS_ENUM(NSUInteger, UIDeviceFamily) {
 /** 设备机型 */
 - (NSString *)modelName;
 
+/** 判断当前设备是否有摄像头 */
++ (BOOL)isValidCamera;
+
+/** 获取手机内存总量, 返回的是字节数 */
++ (NSUInteger)getTotalMemoryBytes;
+
+/** 获取手机可用内存, 返回的是字节数 */
++ (NSUInteger)getFreeMemoryBytes;
+
+/** 获取手机硬盘空闲空间, 返回的是字节数 */
++ (long long)getFreeDiskSpaceBytes;
+
+/** 获取手机硬盘总空间, 返回的是字节数 */
++ (long long)getTotalDiskSpaceBytes;
 
 @end

@@ -9,7 +9,7 @@
 
 /****   小提示   *****/
 //      WYThirdClass 含有AF、FMDB二次封装开发者可根据自得需求更改
-#import "WYKit/WYKit.h"
+#import "WYKit.h"
 
 #import <FMDB/FMDB.h>
 #import <YYKit/YYKit.h>

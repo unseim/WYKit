@@ -7,6 +7,7 @@
 //
 
 #import "WYPhotoBrowser.h"
+#import "WYHiddenAlertView.h"
 
 static CGRect avatarFrame;
 static UIImageView *newAvatarImageView;

@@ -54,6 +54,9 @@
 /** 是否邮政编码 */
 - (BOOL)isValidPostalcode;
 
+/** 是否是银行卡 */
+- (BOOL)isValidBankCard;
+
 /** 是否纯汉字 */
 - (BOOL)isValidChinese;
 

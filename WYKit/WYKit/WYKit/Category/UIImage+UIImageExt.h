@@ -64,10 +64,44 @@
 - (UIImage *)cropImageWithSize:(CGSize)size;
 
 
-/**
- *  图像模糊处理
- */
+/** 图像模糊处理 */
 + (UIImage *)boxblurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
+
+
+/**
+ *  返回一张加水印的图片
+ *
+ *  @param bg   被加水印的图片
+ *  @param logo 即将添加的图片
+ *
+ *  @return 制作完毕的水印图片
+ */
+
++ (instancetype)waterImageWithBackground:(NSString *)bg
+                                    logo:(NSString *)logo;
+
+
+/**
+ *  返回带边框的圆环形图
+ *
+ *  @param name        图片的名字
+ *  @param borderWidth 圆环的线宽
+ *  @param borderColor 圆环的颜色
+ *
+ *  @return 带边框的圆形图
+ */
++ (instancetype)circleImageWithName:(NSString *)name
+                        borderWidth:(CGFloat)borderWidth
+                        borderColor:(UIColor *)borderColor;
+
+
+/** 根据当前图像，和指定的尺寸，异步生成圆角图像并且返回 */
+- (void)cornerImageWithSize:(CGSize)size
+                     fillColor:(UIColor *)fillColor
+                    completion:(void (^)(UIImage *image))completion;
+
+/** 合并两个图片 */
++ (UIImage*)mergeImage:(UIImage*)firstImage withImage:(UIImage*)secondImage;
 
 
 @end

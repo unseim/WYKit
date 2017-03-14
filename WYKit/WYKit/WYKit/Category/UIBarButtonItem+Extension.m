@@ -7,6 +7,7 @@
 //
 
 #import "UIBarButtonItem+Extension.h"
+#import "CommonMacros.h"
 
 @implementation UIBarButtonItem (Extension)
 //  设置NavigationItem的自定义文字图片按钮

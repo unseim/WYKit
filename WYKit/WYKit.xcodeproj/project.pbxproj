@@ -51,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		275C0163F1A9165D286C7AED /* libPods-WYKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D5F72CA1E77B9FB00260824 /* WYLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYLog.h; sourceTree = "<group>"; };
 		9D7EDEEF1E741C0A0041F645 /* WYKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D7EDEF31E741C0A0041F645 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9D7EDEF51E741C0A0041F645 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -290,6 +291,7 @@
 			children = (
 				9D7EDF431E741C7B0041F645 /* CommonAppKey.h */,
 				9D7EDF441E741C7B0041F645 /* CommonMacros.h */,
+				9D5F72CA1E77B9FB00260824 /* WYLog.h */,
 				9D7EDF451E741C7B0041F645 /* WYMacros.h */,
 			);
 			path = Macros;

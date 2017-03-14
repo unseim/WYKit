@@ -7,6 +7,8 @@
 //
 
 #include <sys/sysctl.h>
+#import <sys/mount.h>
+#import <mach/mach.h>
 #import "UIDevice+Hardware.h"
 
 @interface UIDevice (Hardward)
@@ -16,6 +18,15 @@
 @end
 
 @implementation UIDevice (Hardware)
+
++ (NSUInteger)getSysInfo:(uint)typeSpecifier
+{
+    size_t size = sizeof(int);
+    int result;
+    int mib[2] = {CTL_HW, typeSpecifier};
+    sysctl(mib, 2, &result, &size, NULL, 0);
+    return (NSUInteger)result;
+}
 
 - (NSString *)getSysInfoByName:(char *)typeSpecifier {
     size_t size;
@@ -117,6 +128,58 @@
     }
     
     return @"iPhone+";
+}
+
+//  判断当前设备是否有摄像头
++ (BOOL)isValidCamera
+{
+    return [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera];
+}
+
+//  获取手机内存总量, 返回的是字节数
++ (NSUInteger)getTotalMemoryBytes
+{
+    return [self getSysInfo:HW_PHYSMEM];
+}
+
+//  获取手机可用内存, 返回的是字节数
++ (NSUInteger)getFreeMemoryBytes
+{
+    mach_port_t host_port = mach_host_self();
+    mach_msg_type_number_t host_size = sizeof(vm_statistics_data_t) / sizeof(integer_t);
+    vm_size_t pagesize;
+    vm_statistics_data_t vm_stat;
+    
+    host_page_size(host_port, &pagesize);
+    if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS) {
+        return 0;
+    }
+    unsigned long mem_free = vm_stat.free_count * pagesize;
+    return mem_free;
+}
+
+//  获取手机硬盘空闲空间, 返回的是字节数
++ (long long)getFreeDiskSpaceBytes
+{
+    struct statfs buf;
+    long long freespace;
+    freespace = 0;
+    if ( statfs("/private/var", &buf) >= 0 ) {
+        freespace = (long long)buf.f_bsize * buf.f_bfree;
+    }
+    return freespace;
+}
+
+//  获取手机硬盘总空间, 返回的是字节数
++ (long long)getTotalDiskSpaceBytes
+{
+    struct statfs buf;
+    long long totalspace;
+    totalspace = 0;
+    if ( statfs("/private/var", &buf) >= 0 ) {
+        totalspace = (long long)buf.f_bsize * buf.f_blocks;
+    }
+    return totalspace;
 }
 
 @end

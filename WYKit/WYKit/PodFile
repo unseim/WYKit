@@ -1,7 +1,7 @@
 platform :ios, ‘8.0’
 target ‘WYKit’ do
 
-# WYKit 中所用到的第三方库
+# WYKit 组建 WYThirdClass中所用到的第三方库
 
 pod ‘AFNetworking’
 

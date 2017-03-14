@@ -11,7 +11,7 @@
 
 #ifdef TARGET_IPHONE_SIMULATOR
 /** 是否模拟器 */
-#define isSimulator TARGET_IPHONE_SIMULATOR
+#define isSimulatorEquipment TARGET_IPHONE_SIMULATOR
 #endif
 
 

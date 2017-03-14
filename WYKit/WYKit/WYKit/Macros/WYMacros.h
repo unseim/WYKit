@@ -14,4 +14,6 @@
 
 #import "CommonAppKey.h"
 
+#import "WYLog.h"
+
 #endif /* WYMacros_h */
