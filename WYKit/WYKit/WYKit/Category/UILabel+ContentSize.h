@@ -16,4 +16,11 @@
 
 - (BOOL)isTruncated;
 
+/** 设置行距 */
+- (void)setText:(NSString*)text lineSpacing:(CGFloat)lineSpacing;
+
+/** 计算行高 */
++ (CGFloat)text:(NSString*)text heightWithFontSize:(CGFloat)fontSize width:(CGFloat)width lineSpacing:(CGFloat)lineSpacing;
+
+
 @end
