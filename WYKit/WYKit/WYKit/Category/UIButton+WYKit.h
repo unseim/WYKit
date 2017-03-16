@@ -1,5 +1,5 @@
 //
-//  UIButton+ImageAlignment.h
+//  UIButton+WYKit.h
 //  WYKit
 //  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
 //  GitHub地址：https://github.com/unseim
@@ -8,26 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, WYImageAlignment) {
-    /**
-     *  图片在左，默认
-     */
-    WYImageAlignmentLeft = 0,
-    /**
-     *  图片在上
-     */
-    WYImageAlignmentTop,
-    /**
-     *  图片在下
-     */
-    WYImageAlignmentBottom,
-    /**
-     *  图片在右
-     */
-    WYImageAlignmentRight,
+typedef NS_ENUM(NSUInteger, WYImageAlignment)
+{
+    WYImageAlignmentLeft = 0,   //  图片在左，默认
+    WYImageAlignmentTop,        //  图片在上
+    WYImageAlignmentBottom,     //  图片在下
+    WYImageAlignmentRight,      //  图片在右
 };
 
-@interface UIButton (ImageAlignment)
+@interface UIButton (WYKit)
+
 
 /**
  *  设置Button文字和图片的方向和距离

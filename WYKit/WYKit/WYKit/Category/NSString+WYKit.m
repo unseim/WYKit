@@ -8,11 +8,13 @@
 
 #import "NSString+WYKit.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "WYCategoryMacro.h"
 
+WY_RUNTIME_CLASS(NSString_WYKit)
 @implementation NSString (WYKit)
 
 /* 搜索两个字符之间的字符串 */
-+ (NSString *)searchInString:(NSString *)string
++ (nullable NSString *)searchInString:(nullable NSString *)string
                    charStart:(char)start
                      charEnd:(char)end
 {
@@ -39,7 +41,7 @@
 }
 
 /* 搜索两个字符之间的字符串 */
-- (NSString *)searchCharStart:(char)start
+- (nullable NSString *)searchCharStart:(char)start
                       charEnd:(char)end
 {
     int inizio = 0, stop = 0;
@@ -63,7 +65,7 @@
 }
 
 /* 创建一个MD5字符串 */
-- (NSString *)MD5
+- (nullable NSString *)MD5
 {
     if(self == nil || [self length] == 0)
         return nil;
@@ -79,7 +81,7 @@
 }
 
 /* 创建一个SHA1字符串 */
-- (NSString *)SHA1
+- (nullable NSString *)SHA1
 {
     if(self == nil || [self length] == 0)
         return nil;
@@ -95,7 +97,7 @@
 }
 
 /* 创建一个SHA256字符串 */
-- (NSString *)SHA256
+- (nullable NSString *)SHA256
 {
     if(self == nil || [self length] == 0)
         return nil;
@@ -111,7 +113,7 @@
 }
 
 /* 创建一个SHA512字符串 */
-- (NSString *)SHA512
+- (nullable NSString *)SHA512
 {
     if(self == nil || [self length] == 0)
         return nil;
@@ -127,7 +129,7 @@
 }
 
 /* 检查自身是否追加字符串 */
-- (BOOL)hasString:(NSString *)substring
+- (BOOL)hasString:(nullable NSString *)substring
 {
     return !([self rangeOfString:substring].location == NSNotFound);
 }
@@ -150,7 +152,7 @@
 }
 
 /* 检查给定的字符串是否是一个email */
-+ (BOOL)isEmail:(NSString *)email
++ (BOOL)isEmail:(nullable NSString *)email
 {
     NSString *emailRegEx =
     @"(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
@@ -166,7 +168,7 @@
 }
 
 /* 字符串转换为UTF8 */
-+ (NSString *)convertToUTF8Entities:(NSString *)string
++ (nullable NSString *)convertToUTF8Entities:(nullable NSString *)string
 {
     NSString *isoEncodedString = [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
                                                                   [string stringByReplacingOccurrencesOfString:@"%27" withString:@"'"]
@@ -208,35 +210,35 @@
 }
 
 /* 编码给定的字符串成Base64 */
-+ (NSString *)encodeToBase64:(NSString *)string
++ (nullable NSString *)encodeToBase64:(nullable NSString *)string
 {
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     return [data base64EncodedStringWithOptions:0];
 }
 
 /* 编码自身成Base64 */
-- (NSString *)encodeToBase64
+- (nullable NSString *)encodeToBase64
 {
     NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
     return [data base64EncodedStringWithOptions:0];
 }
 
 /* 解码给定的字符串成Base64 */
-+ (NSString *)decodeBase64:(NSString *)string
++ (nullable NSString *)decodeBase64:(nullable NSString *)string
 {
     NSData *data = [[NSData alloc] initWithBase64EncodedString:string options:0];
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 /* 解码自身成Base64 */
-- (NSString *)decodeBase64
+- (nullable NSString *)decodeBase64
 {
     NSData *data = [[NSData alloc] initWithBase64EncodedString:self options:0];
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 /* 转换自身为开头大写字符串 */
-- (NSString *)sentenceCapitalizedString
+- (nullable NSString *)sentenceCapitalizedString
 {
     if(![self length])
     {
@@ -249,7 +251,7 @@
 }
 
 /* 返回一个从时间戳人类易读的字符串 */
-- (NSString *)dateFromTimestamp
+- (nullable NSString *)dateFromTimestamp
 {
     NSString *year = [self substringToIndex:4];
     NSString *month = [[self substringFromIndex:5] substringToIndex:2];
@@ -261,7 +263,7 @@
 }
 
 /* 自编码成编码的URL字符串 */
-- (NSString *)urlEncode
+- (nullable NSString *)urlEncode
 {
     NSMutableString *output = [NSMutableString string];
     const unsigned char *source = (const unsigned char *)[self UTF8String];
@@ -288,7 +290,7 @@
 }
 
 #pragma mark - 获得系统当前日期和时间
-+ (nullable NSString *)WY_time_getCurrentDateAndTime
++ (nullable NSString *)time_getCurrentDateAndTime
 {
     //获得系统日期
     NSDate *senddate = [NSDate date];
@@ -301,7 +303,7 @@
 
 #pragma mark - 时间戳转换
 #pragma mark 时间戳转换【YYYY-MM-dd HH:mm:ss】
-+ (nullable NSString *)WY_time_getCurrentDateAndTimeWithTimeString:(nullable NSString *)string
++ (nullable NSString *)time_getCurrentDateAndTimeWithTimeString:(nullable NSString *)string
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -315,7 +317,7 @@
 }
 
 #pragma mark 时间戳转换【YYYY-MM-dd】
-+ (nullable NSString *)WY_time_getDateWithTimeString:(nullable NSString *)string
++ (nullable NSString *)time_getDateWithTimeString:(nullable NSString *)string
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -328,7 +330,7 @@
 }
 
 #pragma mark 时间戳转换【HH:mm】
-+ (nullable NSString *)WY_time_getTimeWithTimeString:(nullable NSString *)string
++ (nullable NSString *)time_getTimeWithTimeString:(nullable NSString *)string
 {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
@@ -343,7 +345,7 @@
 }
 
 #pragma mark 时间转换时间戳
-+ (nullable NSString *)WY_time_getTimeStamp
++ (nullable NSString *)time_getTimeStamp
 {
     NSDate *datenow = [NSDate date];//现在时间,你可以输出来看下是什么格式
     // 时间转时间戳的方法:
@@ -351,6 +353,197 @@
     
     return timeSp;
 }
+
+// 判断字符串是否为空
+- (BOOL)empty
+{
+    return [self length] > 0 ? NO : YES;
+}
+
+//  判断是否为整型
+- (BOOL)isInteger
+{
+    NSScanner *scan = [NSScanner scannerWithString:self];
+    int val;
+    return [scan scanInt:&val] && [scan isAtEnd];
+}
+
+//  判断是否为浮点型
+- (BOOL)isFloat
+{
+    NSScanner *scan = [NSScanner scannerWithString:self];
+    float val;
+    return [scan scanFloat:&val] && [scan isAtEnd];
+}
+
+//  判断是否含有数字
+- (BOOL)isHasNumder
+{
+    NSString *englishNameRule = @"[A-Za-z]{2,}|[\u4e00-\u9fa5]{1,}[A-Za-z]+$";
+    NSString *chineseNameRule = @"^[\u4e00-\u9fa5]{2,}$";
+    
+    NSPredicate *englishpredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", englishNameRule];
+    NSPredicate *chinesepredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", chineseNameRule];
+    
+    if ([englishpredicate evaluateWithObject:self] == YES||[chinesepredicate evaluateWithObject:self] == YES) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+//  判断是否url
+- (BOOL)isUrl
+{
+    NSString *regex = @"http(s)?:\\/\\/([\\w-]+\\.)+[\\w-]+(\\/[\\w- .\\/?%&=]*)?";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [pred evaluateWithObject:self];
+}
+
+//  匹配数字
+- (BOOL)isNumbers
+{
+    NSString *regEx = @"^-?\\d+.?\\d?";
+    NSPredicate *pred= [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
+    return [pred evaluateWithObject:self];
+}
+
+//  匹配英文字母
+- (BOOL)isLetter
+{
+    NSString *regEx = @"^[A-Za-z]+$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
+    return [pred evaluateWithObject:self];
+}
+
+//  匹配大写英文字母
+- (BOOL)isCapitalLetter
+{
+    NSString *regEx = @"^[A-Z]+$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
+    return [pred evaluateWithObject:self];
+}
+
+//  匹配小写英文字母
+- (BOOL)isSmallLetter
+{
+    NSString *regEx = @"^[a-z]+$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
+    return [pred evaluateWithObject:self];
+}
+
+//  匹配数字+英文字母
+- (BOOL)isLetterAndNumbers
+{
+    NSString *regEx = @"^[A-Za-z0-9]+$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
+    return [pred evaluateWithObject:self];
+}
+
+//  匹配中文，英文字母和数字及_
+- (BOOL)isChineseAndLetterAndNumberAndBelowLine
+{
+    NSString *regEx = @"^[\u4e00-\u9fa5_a-zA-Z0-9]+$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
+    return [pred evaluateWithObject:self];
+}
+
+//  匹配中文，英文字母和数字及_ 并限制字数
+- (BOOL)isChineseAndLetterAndNumberAndBelowLine4to10
+{
+    NSString *regEx = @"[\u4e00-\u9fa5_a-zA-Z0-9_]{4,10}";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
+    return [pred evaluateWithObject:self];
+}
+
+//   匹配含有汉字、数字、字母、下划线不能以下划线开头和结尾
+- (BOOL)isChineseAndLetterAndNumberAndBelowLineNotFirstOrLast
+{
+    NSString *regEx = @"^(?!_)(?!.*?_$)[a-zA-Z0-9_\u4e00-\u9fa5]+$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
+    return [pred evaluateWithObject:self];
+}
+
+#pragma mark - 检测是否含有某个字符
+//   检测是否含有某个字符
+- (BOOL)containString:( NSString * _Nonnull )string
+{
+    return ([self rangeOfString:string].location == NSNotFound) ? NO : YES;
+}
+
+//  是否含有汉字
+- (BOOL)containsChineseCharacter
+{
+    for (NSInteger i = 0; i < self.length; i++) {
+        unichar c = [self characterAtIndex:i];
+        if (c >=0x4E00 && c <=0x9FFF) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+//  计算String中英混合字数
+- (NSInteger)stringLength {
+    NSInteger strlength = 0;
+    NSInteger elength = 0;
+    for (NSInteger i = 0; i < self.length; i++) {
+        unichar c = [self characterAtIndex:i];
+        if (c >=0x4E00 && c <=0x9FFF) {
+            // 汉字
+            strlength++;
+        } else {
+            // 英文
+            elength++;
+        }
+    }
+    return strlength+elength;
+}
+
+//  email 转换为 913******@qq.com 形式
+- ( NSString * _Nonnull )emailChangeToPrivacy {
+    
+    if (![self isEmail]) {
+        return @"";
+    }
+    
+    NSRange range = [self rangeOfString:@"@"];
+    
+    NSMutableString *changeStr = [NSMutableString stringWithString:self];
+    if (range.location > 2) {
+        NSRange changeRange;
+        changeRange.location = 3;
+        changeRange.length = range.location - 3;
+        
+        NSMutableString *needChanegeToStr = [NSMutableString string];
+        for (NSInteger i = 0; i < changeRange.length ; i ++) {
+            
+            [needChanegeToStr appendString:@"*"];
+        }
+        
+        [changeStr replaceCharactersInRange:changeRange withString:needChanegeToStr];
+    }
+    
+    return changeStr;
+}
+
+#pragma mark - 计算字符串尺寸
+//  计算字符串宽度
+- (CGSize)heightWithWidth:(CGFloat)width andFont:(CGFloat)font
+{
+    NSDictionary *attribute = @{NSFontAttributeName: [UIFont systemFontOfSize:font]};
+    CGSize  size = [self boundingRectWithSize:CGSizeMake(width, MAXFLOAT)  options:NSStringDrawingUsesLineFragmentOrigin  |NSStringDrawingUsesFontLeading |NSStringDrawingTruncatesLastVisibleLine attributes:attribute context:nil].size;
+    return size;
+}
+
+//  计算字符串高度
+- (CGSize)widthWithHeight:(CGFloat)height andFont:(CGFloat)font
+{
+    NSDictionary *attribute = @{NSFontAttributeName:[UIFont systemFontOfSize:font]};
+    CGSize  size = [self boundingRectWithSize:CGSizeMake(MAXFLOAT, height)  options:NSStringDrawingUsesLineFragmentOrigin  |NSStringDrawingUsesFontLeading |NSStringDrawingTruncatesLastVisibleLine  attributes:attribute context:nil].size;
+    return size;
+}
+
 
 
 @end

@@ -34,7 +34,6 @@
  */
 +(void)showMessage3:(NSString *)message time:(NSTimeInterval)time;
 
-
 /**
  *  自定义提示框
  *
@@ -42,7 +41,9 @@
  *  @param time     时间
  *  @param distance 距离
  */
-+ (void)showMessage:(NSString *)message time:(NSTimeInterval)time WithDistance:(CGFloat)distance;
++ (void)showMessage:(NSString *)message
+               time:(NSTimeInterval)time
+       WithDistance:(CGFloat)distance;
 
 
 @end

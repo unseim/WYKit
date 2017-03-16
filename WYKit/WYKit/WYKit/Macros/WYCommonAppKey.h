@@ -1,13 +1,13 @@
 //
-//  CommonAppKey.h
+//  WYCommonAppKey.h
 //  WYKit
 //  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
 
-#ifndef CommonAppKey_h
-#define CommonAppKey_h
+#ifndef WYCommonAppKey_h
+#define WYCommonAppKey_h
 
 /** 百度地图    API KEY */
 const static NSString *BaiDuAPIKey = @"";
@@ -44,4 +44,4 @@ static NSString *const QQAppSecret = @"";
 
 
 
-#endif /* CommonAppKey_h */
+#endif /* WYCommonAppKey_h */

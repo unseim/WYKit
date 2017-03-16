@@ -108,9 +108,9 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if ([_viewController respondsToSelector:@selector(formatter:didEnterCharacter:)]) {
-        [_viewController performSelector:@selector(formatter:didEnterCharacter:) withObject:self withObject:string];
-    }
+//    if ([_viewController respondsToSelector:@selector(formatter:didEnterCharacter:)]) {
+//        [_viewController performSelector:@selector(formatter:didEnterCharacter:) withObject:self withObject:string];
+//    }
     
     NSString *regexString;
     switch (_textFeildType) {

@@ -28,9 +28,7 @@
 /** 列类型 */
 @property (retain, readonly, nonatomic) NSMutableArray         *columeTypes;
 
-/**
- *  获取该类的所有属性
- */
+/** 获取该类的所有属性 */
 + (NSDictionary *)getPropertys;
 
 /** 获取所有属性，包括主键 */
@@ -94,9 +92,7 @@
 
 + (NSArray *)findWithFormat:(NSString *)format, ...;
 
-/** 通过条件查找数据
- * 这样可以进行分页查询 @" WHERE pk > 5 limit 10"
- */
+/** 通过条件查找数据   这样可以进行分页查询 @" WHERE pk > 5 limit 10"  */
 + (NSArray *)findByCriteria:(NSString *)criteria;
 
 /**

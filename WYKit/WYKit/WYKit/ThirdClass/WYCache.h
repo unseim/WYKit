@@ -10,12 +10,7 @@
 
 @interface WYCache : NSObject
 
-/**
- 存储缓存
- 
- @param data 网络数据
- @param key key
- */
+/** 存储网络数据缓存 */
 + (void)saveDataCache:(id)data forKey:(NSString *)key;
 
 /** 读取缓存 */

@@ -74,7 +74,7 @@
             return;
         }
         
-        NSDictionary *appStoreDictionary = [resultsArray firstObject];
+        NSDictionary *appStoreDictionary = (NSDictionary *)[resultsArray firstObject];
         
         NSString *appStoreVersion = appStoreDictionary[@"version"];//App Store版本号
         NSString *releaseNotes = [appStoreDictionary objectForKey:@"releaseNotes"];//更新日志

@@ -1,5 +1,5 @@
 //
-//  UIBarButtonItem+Extension.h
+//  UIBarButtonItem+WYKit.h
 //  WYKit
 //  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
 //  GitHub地址：https://github.com/unseim
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIBarButtonItem (Extension)
+@interface UIBarButtonItem (WYKit)
 
 /**
  *  设置NavigationItem的自定义文字图片按钮
@@ -78,6 +78,15 @@
                             action:(SEL)action;
 
 
+/**
+ *  自定义文字按钮 带文字属性
+ *
+ *  @param title        文字
+ *  @param nomal        默认颜色
+ *  @param heightcolor  高亮颜色
+ *  @param target       代理
+ *  @param action       方法名
+ */
 + (instancetype)ItemWithNomalTitle:(NSString *)title
                    TitleNomalColor:(UIColor *)nomal
                        HeightColor:(UIColor *)heightcolor

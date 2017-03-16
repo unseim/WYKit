@@ -1,14 +1,15 @@
 //
-//  UIButton+ImageAlignment.m
+//  UIButton+WYKit.m
 //  WYKit
 //  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
 
-#import "UIButton+ImageAlignment.h"
+#import "UIButton+WYKit.h"
 
-@implementation UIButton (ImageAlignment)
+@implementation UIButton (WYKit)
+
 // 设置Button文字和图片的方向和距离
 - (void)setWithtype:(WYImageAlignment)type titleAndimageRange:(CGFloat)range {
     CGFloat space = range;
@@ -57,7 +58,7 @@
 
 
 //  设置带图片的button （带方法）
-+ (instancetype)setButtonWithTitletext:(NSString *)title
++ (instancetype)setButtonWithTitletext:title
                        nomaltitleColor:(UIColor *)nomalColor
                  HighlightedtitleColor:(UIColor *)hiehlightedColor
                             nomalImage:(NSString *)nomalImg

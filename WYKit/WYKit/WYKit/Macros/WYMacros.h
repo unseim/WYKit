@@ -10,10 +10,12 @@
 #ifndef WYMacros_h
 #define WYMacros_h
 
-#import "CommonMacros.h"
+#import "WYCommonMacros.h"
 
-#import "CommonAppKey.h"
+#import "WYCommonAppKey.h"
 
 #import "WYLog.h"
+
+#import "WYCategoryMacro.h"
 
 #endif /* WYMacros_h */

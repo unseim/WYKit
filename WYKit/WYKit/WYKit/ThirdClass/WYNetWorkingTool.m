@@ -225,7 +225,8 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
 }
 
 //  文件下载结束时的代理方法 (必须实现的)
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
+- (void)URLSession:(NSURLSession *)session
+      downloadTask:(NSURLSessionDownloadTask *)downloadTask
 didFinishDownloadingToURL:(NSURL *)location
 {
     // location : 文件下载结束之后的缓存路径

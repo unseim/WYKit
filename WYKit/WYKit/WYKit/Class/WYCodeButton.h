@@ -55,13 +55,7 @@
 
 @property (nonatomic, weak) id<WYCodeButtonDelegate> delegate;
 
-/**
- *  通过主题色创建WYCodeButton
- *
- *  @param buttonColor 主题色
- *
- *  @return WYCodeButton对象
- */
+/** 通过主题色创建WYCodeButton */
 - (instancetype)initWithColor:(UIColor *)buttonColor;
 
 

@@ -1,5 +1,5 @@
 //
-//  UIDevice+Hardware.m
+//  UIDevice+WYHardward.m
 //  WYKit
 //  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
 //  GitHub地址：https://github.com/unseim
@@ -9,15 +9,9 @@
 #include <sys/sysctl.h>
 #import <sys/mount.h>
 #import <mach/mach.h>
-#import "UIDevice+Hardware.h"
+#import "UIDevice+WYHardward.h"
 
-@interface UIDevice (Hardward)
-
-- (NSString *)modelNameForModelIdentifier:(NSString *)modelIdentifier;
-
-@end
-
-@implementation UIDevice (Hardware)
+@implementation UIDevice (WYHardward)
 
 + (NSUInteger)getSysInfo:(uint)typeSpecifier
 {
@@ -54,7 +48,7 @@
 }
 
 - (NSString *)modelNameForModelIdentifier:(NSString *)modelIdentifier {
-//    iPhone http://theiphonewiki.com/wiki/IPhone
+    //    iPhone http://theiphonewiki.com/wiki/IPhone
     
     if ([modelIdentifier isEqualToString:@"iPhone1,1"])    return @"iPhone 1G";
     if ([modelIdentifier isEqualToString:@"iPhone1,2"])    return @"iPhone 3G";
@@ -79,7 +73,7 @@
     if ([modelIdentifier isEqualToString:@"iPhone9,2"])    return @"iPhone 7 Plus";
     if ([modelIdentifier isEqualToString:@"iPhone9,4"])    return @"iPhone 7 Plus";
     
-//    iPad http://theiphonewiki.com/wiki/IPad
+    //    iPad http://theiphonewiki.com/wiki/IPad
     if ([modelIdentifier isEqualToString:@"iPad1,1"])      return @"iPad 1G";
     if ([modelIdentifier isEqualToString:@"iPad2,1"])      return @"iPad 2 (WiFi)";
     if ([modelIdentifier isEqualToString:@"iPad2,2"])      return @"iPad 2 (GSM)";
@@ -95,7 +89,7 @@
     if ([modelIdentifier isEqualToString:@"iPad4,1"])      return @"iPad Air (WiFi)";
     if ([modelIdentifier isEqualToString:@"iPad4,2"])      return @"iPad Air (Cellular)";
     
-//    iPad Mini http://theiphonewiki.com/wiki/IPad_mini
+    //    iPad Mini http://theiphonewiki.com/wiki/IPad_mini
     if ([modelIdentifier isEqualToString:@"iPad2,5"])      return @"iPad mini 1G (WiFi)";
     if ([modelIdentifier isEqualToString:@"iPad2,6"])      return @"iPad mini 1G (GSM)";
     if ([modelIdentifier isEqualToString:@"iPad2,7"])      return @"iPad mini 1G (Global)";
@@ -112,7 +106,7 @@
     if ([modelIdentifier isEqualToString:@"iPad6,3"])      return @"iPad Pro (9.7 inch)";
     if ([modelIdentifier isEqualToString:@"iPad6,4"])      return @"iPad Pro (9.7 inch)";
     
-//    iPod http://theiphonewiki.com/wiki/IPod
+    //    iPod http://theiphonewiki.com/wiki/IPod
     if ([modelIdentifier isEqualToString:@"iPod1,1"])      return @"iPod touch 1G";
     if ([modelIdentifier isEqualToString:@"iPod2,1"])      return @"iPod touch 2G";
     if ([modelIdentifier isEqualToString:@"iPod3,1"])      return @"iPod touch 3G";
@@ -120,7 +114,7 @@
     if ([modelIdentifier isEqualToString:@"iPod5,1"])      return @"iPod touch 5G";
     if ([modelIdentifier isEqualToString:@"iPod7,1"])      return @"iPod touch 6G";
     
-//    Simulator
+    //    Simulator
     if ([modelIdentifier hasSuffix:@"86"] || [modelIdentifier isEqual:@"x86_64"])
     {
         BOOL smallerScreen = ([[UIScreen mainScreen] bounds].size.width < 768.0);

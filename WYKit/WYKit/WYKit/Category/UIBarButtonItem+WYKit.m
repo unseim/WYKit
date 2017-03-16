@@ -1,15 +1,16 @@
 //
-//  UIBarButtonItem+Extension.m
+//  UIBarButtonItem+WYKit.m
 //  WYKit
 //  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
 
-#import "UIBarButtonItem+Extension.h"
-#import "CommonMacros.h"
+#import "UIBarButtonItem+WYKit.h"
+#import "WYCommonMacros.h"
 
-@implementation UIBarButtonItem (Extension)
+@implementation UIBarButtonItem (WYKit)
+
 //  设置NavigationItem的自定义文字图片按钮
 + (instancetype)itemWithNomalTitle:(NSString *)title
                         TitleColor:(UIColor *)nomal
@@ -71,7 +72,7 @@
     //    [back setImage:[UIImage imageNamed:@"back-night"] forState:UIControlStateHighlighted];
     [back setTitleColor:kRGB(22, 22, 22) forState:UIControlStateNormal];
     [back setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
-//    [back setFrame:CGRectMake(0, 0, 60, 20)];
+    //    [back setFrame:CGRectMake(0, 0, 60, 20)];
     [back sizeToFit];
     back.titleLabel.font = [UIFont systemFontOfSize:17.0f];
     [back setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
@@ -112,6 +113,5 @@
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     return [[self alloc] initWithCustomView:button];
 }
-
 
 @end

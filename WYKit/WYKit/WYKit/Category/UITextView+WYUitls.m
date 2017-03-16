@@ -1,14 +1,15 @@
 //
-//  UITextView+Uitls.m
+//  UITextView+WYUitls.m
 //  WYKit
 //  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
 
-#import "UITextView+Uitls.h"
+#import "UITextView+WYUitls.h"
 
-@implementation UITextView (Uitls)
+@implementation UITextView (WYUitls)
+
 // 设置行距及字体大小
 - (void)setText:(NSString*)text fontSize:(CGFloat)size lineSpacing:(CGFloat)lineSpacing {
     if (lineSpacing < 0.01 || !text) {
@@ -25,7 +26,5 @@
     
     self.attributedText = attributedString;
 }
-
-
 
 @end

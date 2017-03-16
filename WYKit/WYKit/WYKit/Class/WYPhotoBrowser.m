@@ -154,7 +154,7 @@ static BOOL isClick;
 {
     if (panGesture.state == UIGestureRecognizerStateBegan || panGesture.state == UIGestureRecognizerStateChanged) {
         CGPoint translation = [panGesture translationInView:newAvatarImageView.superview];
-        CGPoint point = [panGesture velocityInView:newAvatarImageView];
+//        CGPoint point = [panGesture velocityInView:newAvatarImageView];
         
 //        NSLog(@"point1 = %@,   point2 = %@",NSStringFromCGPoint(translation), NSStringFromCGPoint(point));
         

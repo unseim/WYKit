@@ -433,7 +433,7 @@
 
 //  判断字符串中是否含有非法字符
 + (BOOL)isContainErrorCharacter:(NSString *)content {
-    NSString *str =@"^[A-Za-z0-9\\u4e00-\u9fa5]+$";
+    NSString *str = @"^[A-Za-z0-9\\u4e00-\u9fa5]+$";
     NSPredicate* emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", str];
     if (![emailTest evaluateWithObject:content]) {
         return YES;

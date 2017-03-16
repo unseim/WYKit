@@ -1,19 +1,19 @@
 //
-//  UIImageView+FaceAwareFill.m
+//  UIImageView+WYFaceAwareFill.m
 //  WYKit
 //  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
 
-#import "UIImageView+FaceAwareFill.h"
+#import "UIImageView+WYFaceAwareFill.h"
 #import <CoreImage/CoreImage.h>
 #import <QuartzCore/QuartzCore.h>
 
 static CIDetector* _faceDetector;
 
+@implementation UIImageView (WYFaceAwareFill)
 
-@implementation UIImageView (FaceAwareFill)
 
 + (void)initialize
 {
@@ -123,8 +123,6 @@ static CIDetector* _faceDetector;
 #endif
     
 }
-
-
 
 
 @end

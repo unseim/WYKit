@@ -9,41 +9,43 @@
 #ifndef WYCategory_h
 #define WYCategory_h
 
-#import "UITextView+Uitls.h"
+#import "UITextView+WYUitls.h"
 
 #import "NSString+CommonString.h"
 
-#import "UIButton+ImageAlignment.h"
+#import "UIButton+WYKit.h"
 
-#import "UIView+Extension.h"
+#import "UIView+WYKit.h"
 
-#import "UIDevice+Hardware.h"
+#import "UIBarButtonItem+WYKit.h"
 
-#import "UIBarButtonItem+Extension.h"
+#import "UIImage+WYKit.h"
 
-#import "UIImage+UIImageExt.h"
+#import "UILabel+WYContentSize.h"
 
-#import "UIView+ImageSize.h"
-
-#import "UILabel+ContentSize.h"
-
-#import "UIImageView+FaceAwareFill.h"
+#import "UIImageView+WYFaceAwareFill.h"
 
 #import "NSString+WYKit.h"
 
-#import "UIDevice+Hardware.h"
+#import "UIDevice+WYHardward.h"
 
 #import "NSString+Hash.h"
-
-#import "UILabel+ContentSize.h"
 
 #import "UITableView+EmptyPlaceHolder.h"
 
 #import "UICollectionView+EmptyPlaceHolder.h"
 
-#import "UIImageView+BlurredImage.h"
+#import "NSData+WYEncryption.h"
 
-#import "NSData+Encryption.h"
+#import "NSMutableArray+WYKit.h"
+
+#import "NSDate+WYKit.h"
+
+#import "NSMutableString+WYKit.h"
+
+#import "NSArray+WYKit.h"
+
+#import "NSFileManager+WYKit.h"
 
 
 #endif /* WYCategory_h */

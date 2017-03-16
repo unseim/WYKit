@@ -1,5 +1,5 @@
 //
-//  UILabel+ContentSize.h
+//  UILabel+WYContentSize.h
 //  WYKit
 //  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
 //  GitHub地址：https://github.com/unseim
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UILabel (ContentSize)
+@interface UILabel (WYContentSize)
 
 - (CGSize)contentSizeForWidth:(CGFloat)width;
 
@@ -21,6 +21,5 @@
 
 /** 计算行高 */
 + (CGFloat)text:(NSString*)text heightWithFontSize:(CGFloat)fontSize width:(CGFloat)width lineSpacing:(CGFloat)lineSpacing;
-
 
 @end

@@ -1,22 +1,25 @@
 //
-//  NSData+Encryption.m
+//  NSData+WYEncryption.m
 //  WYKit
 //  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
 
-#import "NSData+Encryption.h"
-#import <CommonCrypto/CommonCrypto.h>
+#import "NSData+WYEncryption.h"
+#import <CommonCrypto/CommonDigest.h>
+#import <CommonCrypto/CommonCryptor.h>
+
 static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-@implementation NSData (Encryption)
+@implementation NSData (WYEncryption)
 
 // AES加密
-- (NSData *)AES256EncryptWithKey:(NSData *)key {
+- (NSData *)AES256EncryptWithKey:(NSData *)key
+{
     //AES256加密，密钥应该是32位的
     const void * keyPtr2 = [key bytes];
-    char (*keyPtr)[32] = keyPtr2;
+    const char (*keyPtr)[32] = keyPtr2;
     //对于块加密算法，输出大小总是等于或小于输入大小加上一个块的大小
     //所以在下边需要再加上一个块的大小
     NSUInteger dataLength = [self length];
@@ -42,10 +45,11 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 }
 
 // AES解密
-- (NSData *)AES256DecryptWithKey:(NSData *)key {
+- (NSData *)AES256DecryptWithKey:(NSData *)key
+{
     //同理，解密中，密钥也是32位的
     const void * keyPtr2 = [key bytes];
-    char (*keyPtr)[32] = keyPtr2;
+    const char (*keyPtr)[32] = keyPtr2;
     NSUInteger dataLength = [self length];
     size_t bufferSize = dataLength + kCCBlockSizeAES128;
     void *buffer = malloc(bufferSize);
@@ -68,8 +72,9 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     return nil;
 }
 
-// base64加密
-- (NSString *)base64EncodedStringFrom:(NSData *)data {
+// Base64加密
+- (NSString *)base64EncodedStringFrom:(NSData *)data
+{
     if ([data length] == 0)
         return @"";
     char *characters = malloc((([data length] + 2) / 3) * 4);
@@ -94,8 +99,9 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     return [[NSString alloc] initWithBytesNoCopy:characters length:length encoding:NSASCIIStringEncoding freeWhenDone:YES];
 }
 
-// base64解密
-- (NSData *)dataWithBase64EncodedString:(NSString *)string {
+// Base64解密
+- (NSData *)dataWithBase64EncodedString:(NSString *)string
+{
     if (string == nil)
         [NSException raise:NSInvalidArgumentException format:nil];
     if ([string length] == 0)
@@ -151,7 +157,7 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     return bbdata;
 }
 
-// 先进行base64解密 后进行AES解密
+// 先进行Base64解密 后进行AES解密
 - (NSString *)dataBase64AndAESWithEncodedString:(NSString *)string keyData:(NSData *)keyData {
     if (string == nil)
         [NSException raise:NSInvalidArgumentException format:nil];
@@ -205,16 +211,22 @@ static const char encodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     }
     bytes = realloc(bytes, length);
     NSData* baseData = [NSData dataWithBytesNoCopy:bytes length:length];
+    
     //再AES解密
     NSData *cipherTextData = [baseData AES256DecryptWithKey:keyData];
     NSString *result2  =[[NSString alloc] initWithData:cipherTextData encoding:NSUTF8StringEncoding];
     return result2;
 }
 
+
+
+
 // 创建密匙
-- (NSData *)ctreatAKeyData {
+- (NSData *)ctreatAKeyData
+{
     Byte keyByte[] = {0x30,0x31,0x31,0x32,0x33,0x34,0x31,0x35,0x36,0x37,0x38,0x39,0x30,0x31,0x31,0x32};
     return [[NSData alloc] initWithBytes:keyByte length:32];
 }
+
 
 @end

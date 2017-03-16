@@ -33,9 +33,7 @@
 }
 
 #pragma mark - base method
-/**
- *  获取该类的所有属性
- */
+/** 获取该类的所有属性 */
 + (NSDictionary *)getPropertys
 {
     NSMutableArray *proNames = [NSMutableArray array];
@@ -129,10 +127,7 @@
     return [columns copy];
 }
 
-/**
- * 创建表
- * 如果已经创建，返回YES
- */
+/** 创建表  如果已经创建，返回YES */
 + (BOOL)createTable
 {
     __block BOOL res = YES;
@@ -236,7 +231,7 @@
         if ([primaryValue intValue] <= 0) {
             return [self save];
         }else{
-            self.pk = [primaryValue integerValue];
+            self.pk = (int)[primaryValue integerValue];
             return [self update];
         }
     }else{
@@ -555,7 +550,7 @@
         return nil;
     }
     
-    return [results firstObject];
+    return (WYDBModel *)[results firstObject];
 }
 
 + (instancetype)findByPK:(int)inPk
