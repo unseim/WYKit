@@ -26,7 +26,7 @@
 /** 限制TextView */
 #import "WYColatingTextView.h"
 
-/** 获取相册、相机、通讯录授权 */
+/** 获取授权 */
 #import "WYAuthorizationTool.h"
 
 /** 版本检测更新 */
@@ -34,6 +34,12 @@
 
 /** 图象浏览器 */
 #import "WYPhotoBrowser.h"
+
+/** 蓝牙相关 */
+#import "WYBluetoothManager.h"
+
+/** 文件下载 */
+#import "WYDownloadManager.h"
 
 
 #endif /* WYClass_h */

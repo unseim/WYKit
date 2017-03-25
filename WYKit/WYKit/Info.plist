@@ -2,6 +2,42 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>Privacy - Microphone Usage Description</key>
+    <string>访问麦克风权限</string>
+    <key>Privacy - Camera Usage Description</key>
+    <string>访问相机权限</string>
+    <key>Privacy - Photo Library Usage Description</key>
+    <string>访问相册权限</string>
+    <key>Privacy - Contacts Usage Description</key>
+    <string>访问通讯录权限</string>
+    <key>Privacy - Bluetooth Peripheral Usage Description</key>
+    <string>访问蓝牙权限</string>
+    <key>Privacy - Speech Recognition Usage Description</key>
+    <string>访问语音转文字权限</string>
+    <key>Privacy - Calendars Usage Description</key>
+    <string>访问音乐权限</string>
+    <key>Privacy - Location When In Use Usage Description</key>
+    <string>访问定位权限</string>
+    <key>Privacy - Location Always Usage Description</key>
+    <string>访问一直定位权限</string>
+    <key>Privacy - Location Usage Description</key>
+    <string>访问位置权限</string>
+    <key>Privacy - Media Library Usage Description</key>
+    <string>访问媒体库权限</string>
+    <key>Privacy - Health Share Usage Description</key>
+    <string>访问健康分享权限</string>
+    <key>Privacy - Health Update Usage Description</key>
+    <string>访问健康更新权限</string>
+    <key>Privacy - Motion Usage Description</key>
+    <string>访问运动使用权限</string>
+    <key>NSRemindersUsageDescription</key>
+    <string>访问提醒权限</string>
+    <key>Privacy - Siri Usage Description</key>
+    <string>访问Siri权限</string>
+    <key>Privacy - TV Provider Usage Description</key>
+    <string>访问电视供应商权限</string>
+    <key>Privacy - Video Subscriber Account Usage Description</key>
+    <string>视频用户账号使用权限</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

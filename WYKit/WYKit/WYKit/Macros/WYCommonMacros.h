@@ -94,6 +94,9 @@
 /** RGB颜色带透明度 */
 #define kRGB_alpha(R,G,B,A)     [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
 
+/** 随机色 */
+#define KRamdomColor            [UIColor colorWithRed:arc4random_uniform(256)/255.0f green:arc4random_uniform(256)/255.0f blue:arc4random_uniform(256)/255.0f alpha:1.0f]
+
 
 /** 数字 */
 #define KNumber                 @"0123456789"
@@ -105,20 +108,20 @@
 #define KUserDefaults           [NSUserDefaults standardUserDefaults]
 
 /** NotificationCenter */
-#define KNotificationCenter  [NSNotificationCenter defaultCenter]
+#define KNotificationCenter     [NSNotificationCenter defaultCenter]
 
 /** NSFileManager */
-#define KFileManager         [NSFileManager defaultManager]
+#define KFileManager            [NSFileManager defaultManager]
 
 /** UIApplication */
-#define KApplicationDelegate [[UIApplication sharedApplication] delegate]
+#define KApplicationDelegate    [[UIApplication sharedApplication] delegate]
 
 
 /** 加载 Bundle 里面的图片 */
-#define UIImageLoad(name, type)     [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:name ofType:type]]
+#define UIImageLoad(name, type)  [UIImage imageWithContentsOfFile:[[NSBundle mainBundle]pathForResource:name ofType:type]]
 
 /** 加载资源文件夹的图片 */
-#define UIImageNamed( name )    [UIImage imageNamed: name]
+#define UIImageNamed( name )     [UIImage imageNamed: name]
 
 
 

@@ -11,7 +11,7 @@
 
 #import "UITextView+WYUitls.h"
 
-#import "NSString+CommonString.h"
+#import "NSString+WYCommonString.h"
 
 #import "UIButton+WYKit.h"
 
@@ -47,5 +47,12 @@
 
 #import "NSFileManager+WYKit.h"
 
+#import "UIWebView+WYJavaScript.h"
+
+#import "UIColor+WYWeb.h"
+
+#import "UIViewController+WYKit.h"
+
+#import "NSAttributedString+WYKit.h"
 
 #endif /* WYCategory_h */

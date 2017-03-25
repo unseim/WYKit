@@ -16,37 +16,40 @@ static NSString *const Cache = @"Cache";
 
 static YYCache *_dataCache;
 
-+ (void)initialize  {
++ (void)initialize
+{
     [super initialize];
     _dataCache = [[YYCache alloc] initWithName:Cache];
 }
 
 //  存储
-+ (void)saveDataCache: (id)data forKey:(NSString *)key {
++ (void)saveDataCache: (id)data forKey:(NSString *)key
+{
     [_dataCache setObject:data forKey:key];
-    
 }
 
 //  读取缓存
-+ (id)readCache:(NSString *)key {
++ (id)readCache:(NSString *)key
+{
     return  [_dataCache objectForKey:key];
 }
 
 //  获取缓存总大小
-+ (void)getAllCacheSize {
++ (void)getAllCacheSize
+{
     unsigned long long diskCache = [_dataCache.diskCache totalCost];
     NSLog(@"%llu",diskCache);
 }
 
 //  删除指定缓存
-+ (void)removeChache:(NSString *)key {
-    
++ (void)removeChache:(NSString *)key
+{
     [_dataCache removeObjectForKey:key withBlock:nil];
 }
 
 //  删除全部缓存
-+ (void)removeAllCache {
-    
++ (void)removeAllCache
+{
     [_dataCache removeAllObjects];
 }
 

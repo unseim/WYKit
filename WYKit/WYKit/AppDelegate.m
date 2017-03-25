@@ -3,7 +3,7 @@
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
-
+#import "HomeViewController.h"
 #import "AppDelegate.h"
 @interface AppDelegate ()
 @end
@@ -24,6 +24,9 @@
      部分类还存在一些Bug，需要广大 iOS 开发者提出宝贵意见， 一起完善这个作品 ...
      
 */
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen] .bounds];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[HomeViewController alloc] init]];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

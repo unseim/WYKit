@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D1C8C711E84CE8400A2DD90 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C8C701E84CE8400A2DD90 /* HomeViewController.m */; };
+		9D1C8C741E84CFD100A2DD90 /* NSString+WYCommonString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C8C731E84CFD100A2DD90 /* NSString+WYCommonString.m */; };
+		9D1C8C771E84F0FF00A2DD90 /* UIWebView+WYJavaScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C8C761E84F0FF00A2DD90 /* UIWebView+WYJavaScript.m */; };
+		9D1C8C7A1E84F28D00A2DD90 /* UIColor+WYWeb.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C8C791E84F28D00A2DD90 /* UIColor+WYWeb.m */; };
+		9D1C8C7D1E84FA4900A2DD90 /* UIViewController+WYKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C8C7C1E84FA4900A2DD90 /* UIViewController+WYKit.m */; };
+		9D1C8C801E850DC900A2DD90 /* NSAttributedString+WYKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C8C7F1E850DC900A2DD90 /* NSAttributedString+WYKit.m */; };
+		9D1C8C831E851B6A00A2DD90 /* WYBluetoothManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C8C821E851B6A00A2DD90 /* WYBluetoothManager.m */; };
+		9D1C8C861E851FD800A2DD90 /* WYDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1C8C851E851FD800A2DD90 /* WYDownloadManager.m */; };
 		9D7EDEF41E741C0A0041F645 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7EDEF31E741C0A0041F645 /* main.m */; };
 		9D7EDEF71E741C0A0041F645 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7EDEF61E741C0A0041F645 /* AppDelegate.m */; };
 		9D7EDEFA1E741C0A0041F645 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7EDEF91E741C0A0041F645 /* ViewController.m */; };
 		9D7EDEFD1E741C0A0041F645 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D7EDEFB1E741C0A0041F645 /* Main.storyboard */; };
 		9D7EDEFF1E741C0A0041F645 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D7EDEFE1E741C0A0041F645 /* Assets.xcassets */; };
 		9D7EDF021E741C0B0041F645 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D7EDF001E741C0B0041F645 /* LaunchScreen.storyboard */; };
-		9D7EDF581E741C7B0041F645 /* NSString+CommonString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7EDF0E1E741C7B0041F645 /* NSString+CommonString.m */; };
 		9D7EDF591E741C7B0041F645 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7EDF101E741C7B0041F645 /* NSString+Hash.m */; };
 		9D7EDF5A1E741C7B0041F645 /* NSString+WYKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7EDF121E741C7B0041F645 /* NSString+WYKit.m */; };
 		9D7EDF5D1E741C7B0041F645 /* UICollectionView+EmptyPlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7EDF181E741C7B0041F645 /* UICollectionView+EmptyPlaceHolder.m */; };
@@ -53,6 +60,22 @@
 
 /* Begin PBXFileReference section */
 		275C0163F1A9165D286C7AED /* libPods-WYKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D1C8C6F1E84CE8400A2DD90 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		9D1C8C701E84CE8400A2DD90 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		9D1C8C721E84CFD100A2DD90 /* NSString+WYCommonString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WYCommonString.h"; sourceTree = "<group>"; };
+		9D1C8C731E84CFD100A2DD90 /* NSString+WYCommonString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WYCommonString.m"; sourceTree = "<group>"; };
+		9D1C8C751E84F0FF00A2DD90 /* UIWebView+WYJavaScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+WYJavaScript.h"; sourceTree = "<group>"; };
+		9D1C8C761E84F0FF00A2DD90 /* UIWebView+WYJavaScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+WYJavaScript.m"; sourceTree = "<group>"; };
+		9D1C8C781E84F28D00A2DD90 /* UIColor+WYWeb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WYWeb.h"; sourceTree = "<group>"; };
+		9D1C8C791E84F28D00A2DD90 /* UIColor+WYWeb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WYWeb.m"; sourceTree = "<group>"; };
+		9D1C8C7B1E84FA4900A2DD90 /* UIViewController+WYKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+WYKit.h"; sourceTree = "<group>"; };
+		9D1C8C7C1E84FA4900A2DD90 /* UIViewController+WYKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+WYKit.m"; sourceTree = "<group>"; };
+		9D1C8C7E1E850DC900A2DD90 /* NSAttributedString+WYKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+WYKit.h"; sourceTree = "<group>"; };
+		9D1C8C7F1E850DC900A2DD90 /* NSAttributedString+WYKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+WYKit.m"; sourceTree = "<group>"; };
+		9D1C8C811E851B6A00A2DD90 /* WYBluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYBluetoothManager.h; sourceTree = "<group>"; };
+		9D1C8C821E851B6A00A2DD90 /* WYBluetoothManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYBluetoothManager.m; sourceTree = "<group>"; };
+		9D1C8C841E851FD800A2DD90 /* WYDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYDownloadManager.h; sourceTree = "<group>"; };
+		9D1C8C851E851FD800A2DD90 /* WYDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYDownloadManager.m; sourceTree = "<group>"; };
 		9D5F72CA1E77B9FB00260824 /* WYLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WYLog.h; sourceTree = "<group>"; };
 		9D7EDEEF1E741C0A0041F645 /* WYKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D7EDEF31E741C0A0041F645 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -64,8 +87,6 @@
 		9D7EDEFE1E741C0A0041F645 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D7EDF011E741C0B0041F645 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D7EDF031E741C0B0041F645 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9D7EDF0D1E741C7B0041F645 /* NSString+CommonString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CommonString.h"; sourceTree = "<group>"; };
-		9D7EDF0E1E741C7B0041F645 /* NSString+CommonString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CommonString.m"; sourceTree = "<group>"; };
 		9D7EDF0F1E741C7B0041F645 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		9D7EDF101E741C7B0041F645 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		9D7EDF111E741C7B0041F645 /* NSString+WYKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WYKit.h"; sourceTree = "<group>"; };
@@ -193,6 +214,8 @@
 				9D7EDEF61E741C0A0041F645 /* AppDelegate.m */,
 				9D7EDEF81E741C0A0041F645 /* ViewController.h */,
 				9D7EDEF91E741C0A0041F645 /* ViewController.m */,
+				9D1C8C6F1E84CE8400A2DD90 /* HomeViewController.h */,
+				9D1C8C701E84CE8400A2DD90 /* HomeViewController.m */,
 				9D7EDEF21E741C0A0041F645 /* Supporting Files */,
 			);
 			path = WYKit;
@@ -230,8 +253,8 @@
 			children = (
 				9D8067161E7A83F900157730 /* NSData+WYEncryption.h */,
 				9D8067171E7A83F900157730 /* NSData+WYEncryption.m */,
-				9D7EDF0D1E741C7B0041F645 /* NSString+CommonString.h */,
-				9D7EDF0E1E741C7B0041F645 /* NSString+CommonString.m */,
+				9D1C8C721E84CFD100A2DD90 /* NSString+WYCommonString.h */,
+				9D1C8C731E84CFD100A2DD90 /* NSString+WYCommonString.m */,
 				9D7EDF0F1E741C7B0041F645 /* NSString+Hash.h */,
 				9D7EDF101E741C7B0041F645 /* NSString+Hash.m */,
 				9D7EDF111E741C7B0041F645 /* NSString+WYKit.h */,
@@ -268,6 +291,14 @@
 				9D8067231E7A877D00157730 /* UITextView+WYUitls.m */,
 				9D80672A1E7A961A00157730 /* UIView+WYKit.h */,
 				9D80672B1E7A961A00157730 /* UIView+WYKit.m */,
+				9D1C8C781E84F28D00A2DD90 /* UIColor+WYWeb.h */,
+				9D1C8C791E84F28D00A2DD90 /* UIColor+WYWeb.m */,
+				9D1C8C751E84F0FF00A2DD90 /* UIWebView+WYJavaScript.h */,
+				9D1C8C761E84F0FF00A2DD90 /* UIWebView+WYJavaScript.m */,
+				9D1C8C7B1E84FA4900A2DD90 /* UIViewController+WYKit.h */,
+				9D1C8C7C1E84FA4900A2DD90 /* UIViewController+WYKit.m */,
+				9D1C8C7E1E850DC900A2DD90 /* NSAttributedString+WYKit.h */,
+				9D1C8C7F1E850DC900A2DD90 /* NSAttributedString+WYKit.m */,
 				9D7EDF2F1E741C7B0041F645 /* WYCategory.h */,
 			);
 			path = Category;
@@ -280,6 +311,10 @@
 				9D7EDF321E741C7B0041F645 /* WYAlertTools.m */,
 				9D7EDF331E741C7B0041F645 /* WYAuthorizationTool.h */,
 				9D7EDF341E741C7B0041F645 /* WYAuthorizationTool.m */,
+				9D1C8C811E851B6A00A2DD90 /* WYBluetoothManager.h */,
+				9D1C8C821E851B6A00A2DD90 /* WYBluetoothManager.m */,
+				9D1C8C841E851FD800A2DD90 /* WYDownloadManager.h */,
+				9D1C8C851E851FD800A2DD90 /* WYDownloadManager.m */,
 				9D7EDF361E741C7B0041F645 /* WYCodeButton.h */,
 				9D7EDF371E741C7B0041F645 /* WYCodeButton.m */,
 				9D7EDF381E741C7B0041F645 /* WYColatingTextFeild.h */,
@@ -485,22 +520,29 @@
 				9D7EDF651E741C7B0041F645 /* UITableView+EmptyPlaceHolder.m in Sources */,
 				9D7EDF6C1E741C7B0041F645 /* WYColatingTextFeild.m in Sources */,
 				9D8067121E7A81F400157730 /* UIBarButtonItem+WYKit.m in Sources */,
+				9D1C8C711E84CE8400A2DD90 /* HomeViewController.m in Sources */,
+				9D1C8C741E84CFD100A2DD90 /* NSString+WYCommonString.m in Sources */,
 				9D8067241E7A877D00157730 /* UITextView+WYUitls.m in Sources */,
 				9D8067021E7A6F7100157730 /* NSMutableString+WYKit.m in Sources */,
+				9D1C8C861E851FD800A2DD90 /* WYDownloadManager.m in Sources */,
 				9D7EDF5F1E741C7B0041F645 /* UIImage+CompressImage.m in Sources */,
+				9D1C8C801E850DC900A2DD90 /* NSAttributedString+WYKit.m in Sources */,
+				9D1C8C771E84F0FF00A2DD90 /* UIWebView+WYJavaScript.m in Sources */,
 				9D7EDF6D1E741C7B0041F645 /* WYColatingTextView.m in Sources */,
 				9D7EDF6E1E741C7B0041F645 /* WYHiddenAlertView.m in Sources */,
 				9D7EDF741E741C7B0041F645 /* WYDBModel.m in Sources */,
 				9D7EDF721E741C7B0041F645 /* WYCache.m in Sources */,
 				9D7EDF691E741C7B0041F645 /* WYAlertTools.m in Sources */,
 				9D7EDF5A1E741C7B0041F645 /* NSString+WYKit.m in Sources */,
+				9D1C8C831E851B6A00A2DD90 /* WYBluetoothManager.m in Sources */,
 				9D7EDF6B1E741C7B0041F645 /* WYCodeButton.m in Sources */,
 				9D7EDEF41E741C0A0041F645 /* main.m in Sources */,
 				9D7EDF701E741C7B0041F645 /* WYVersionManager.m in Sources */,
+				9D1C8C7A1E84F28D00A2DD90 /* UIColor+WYWeb.m in Sources */,
 				9D8067211E7A86C700157730 /* UIImageView+WYFaceAwareFill.m in Sources */,
-				9D7EDF581E741C7B0041F645 /* NSString+CommonString.m in Sources */,
 				9D7EDF711E741C7B0041F645 /* UIImageView+Base64Image.m in Sources */,
 				9D8067091E7A743C00157730 /* NSDate+WYKit.m in Sources */,
+				9D1C8C7D1E84FA4900A2DD90 /* UIViewController+WYKit.m in Sources */,
 				9D80671B1E7A849300157730 /* UIDevice+WYHardward.m in Sources */,
 				9D7EDF731E741C7B0041F645 /* WYDBHelper.m in Sources */,
 				9D80671E1E7A865100157730 /* UILabel+WYContentSize.m in Sources */,

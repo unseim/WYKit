@@ -3,7 +3,7 @@
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
-
+#import "HomeViewController.h"
 #import "ViewController.h"
 @interface ViewController ()
 @end
@@ -11,6 +11,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     /*********************    写在前面的话    *********************/
     /*
@@ -25,13 +26,18 @@
      
      部分类还存在一些Bug，需要广大 iOS 开发者提出宝贵意见， 一起完善这个作品 ...
      
-     
      */
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.navigationController pushViewController:[HomeViewController new] animated:YES];
 }
 
 @end
