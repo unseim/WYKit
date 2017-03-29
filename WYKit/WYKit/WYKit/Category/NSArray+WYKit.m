@@ -15,15 +15,6 @@ WY_RUNTIME_CLASS(NSArray_WYKit)
 
 #pragma mark - 取值
 
-- (instancetype)firstObject
-{
-    if ([self count] > 0) {
-        return [self objectAtIndex:0];
-    } else {
-        return nil;
-    }
-}
-
 - (instancetype)randomObject
 {
     if ([self count] > 0) {

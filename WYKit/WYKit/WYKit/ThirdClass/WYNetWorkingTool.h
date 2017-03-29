@@ -9,15 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <AFHTTPSessionManager.h>
 
-/**
- *  是否开启https SSL 验证
- *
- *  @return YES为开启，NO为关闭
- */
+/** 是否开启https SSL 验证 */
 #define openHttpsSSL YES
-/**
- *  SSL 证书名称，仅支持cer格式。“app.bishe.com.cer”,则填“app.bishe.com”
- */
+
+/** SSL 证书名称，仅支持cer格式。“app.bishe.com.cer”,则填“app.bishe.com” */
 #define certificate @"xiaokaapi.com"
 
 //请求成功的回调block
@@ -35,25 +30,29 @@ typedef void(^downloadFailed)( NSError *error);
 //文件上传下载的进度block
 typedef void (^progress)(NSProgress *progress);
 
+//  网络监测回调block
+typedef void(^netStateBlock)(NSInteger netState);
+
 
 @interface WYNetWorkingTool : AFHTTPSessionManager <NSURLSessionDownloadDelegate>
 
 @property (nonatomic, strong) NSURLSessionDownloadTask *downloadTask;
 
-//  已经下载的数据
+/** 已经下载的数据 */
 @property (nonatomic, strong) NSData *resumeData;
 
-//  续传文件沙盒存储路径
+/** 续传文件沙盒存储路径 */
 @property (nonatomic, copy) NSString *resumeDataPath;
 
-//  自定义session,设置代理
+/** 自定义session,设置代理 */
 @property (nonatomic, strong) NSURLSession *downloadSession;
 
 
-/**
- *  管理者单例
- */
+/** 管理者单例 */
 + (instancetype)sharedManager;
+
+/** 网络监测 */
++ (void)netWorkState:(netStateBlock)block;
 
 
 /**
@@ -65,7 +64,11 @@ typedef void (^progress)(NSProgress *progress);
  @param success 成功回调
  @param failed 失败回调
  */
-+ (void)getWithUrl: (NSString *)url params: (NSDictionary *)params isReadCache: (BOOL)isReadCache success: (responseSuccess)success failed: (responseFailed)failed;
++ (void)getWithUrl:(NSString *)url
+            params:(NSDictionary *)params
+       isReadCache:(BOOL)isReadCache
+           success:(responseSuccess)success
+            failed:(responseFailed)failed;
 
 
 /**
@@ -77,7 +80,11 @@ typedef void (^progress)(NSProgress *progress);
  @param success 成功回调
  @param failed 失败回调
  */
-+ (void)postWithUrl:(NSString *)url params:(NSDictionary *)params isReadCache: (BOOL)isReadCache success:(responseSuccess)success failed:(responseFailed)failed ;
++ (void)postWithUrl:(NSString *)url
+             params:(NSDictionary *)params
+        isReadCache:(BOOL)isReadCache
+            success:(responseSuccess)success
+             failed:(responseFailed)failed ;
 
 
 
@@ -94,17 +101,23 @@ typedef void (^progress)(NSProgress *progress);
  @param success 成功回调
  @param failed 失败回调
  */
-+ (void)uploadWithUrl: (NSString *)url params: (NSDictionary *)params fileData: (NSData *)fileData name: (NSString *)name fileName: (NSString *)fileName mimeType: (NSString *)mimeType progress: (progress)progress success: (responseSuccess)success failed: (responseFailed)failed;
++ (void)uploadWithUrl:(NSString *)url
+               params:(NSDictionary *)params
+             fileData:(NSData *)fileData
+                 name:(NSString *)name
+             fileName:(NSString *)fileName
+             mimeType:(NSString *)mimeType
+             progress:(progress)progress
+              success:(responseSuccess)success
+               failed:(responseFailed)failed;
 
 
 
-//  文件下载
-+ (void)downloadWithUrl: (NSString *)url;
+/** 文件下载 */
++ (void)downloadWithUrl:(NSString *)url;
 
 
-/**
- *  暂停下载
- */
+/** 暂停下载 */
 - (void)pauseDownload;
 
 
@@ -115,7 +128,10 @@ typedef void (^progress)(NSProgress *progress);
  @param success 成功回调
  @param failed 失败回调
  */
-- (void)resumeDownloadprogress: (progress)progress success: (downloadSuccess)success failed: (downloadFailed)failed ;
+- (void)resumeDownloadprogress:(progress)progress
+                       success:(downloadSuccess)success
+                        failed:(downloadFailed)failed ;
+
 
 
 @end

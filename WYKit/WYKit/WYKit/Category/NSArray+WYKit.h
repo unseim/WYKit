@@ -12,9 +12,6 @@
 
 #pragma mark - 取值
 
-/** 获取数组的第一个元素 */
-- (instancetype)firstObject;
-
 /** 随机取数组里的一个元素 */
 - (instancetype)randomObject;
 
