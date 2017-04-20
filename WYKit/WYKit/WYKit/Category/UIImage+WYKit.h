@@ -167,4 +167,7 @@ typedef NS_ENUM(NSUInteger, WYWatermarkDirection) {
                            watermarkSize:(CGSize)watermarkSize
                                 marginXY:(CGPoint)marginXY;
 
+/** UIImage -> Base64图片 */
+- (NSString *)stringWithimageBase64URL:(UIImage *)image;
+
 @end

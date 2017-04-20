@@ -6,8 +6,19 @@
 //  QQ：9137279
 //
 
+/*! 相册 */
+#import <AssetsLibrary/ALAsset.h>
+#import <AssetsLibrary/ALAssetsLibrary.h>
+#import <AssetsLibrary/ALAssetsGroup.h>
+#import <AssetsLibrary/ALAssetRepresentation.h>
+/*! 视频 */
+#import <AVFoundation/AVAsset.h>
+#import <AVFoundation/AVAssetExportSession.h>
+#import <AVFoundation/AVMediaFormat.h>
+
 #import "WYNetWorkingTool.h"
 #import "WYCache.h"
+#import "UIImage+CompressImage.h"
 
 @implementation WYNetWorkingTool
 
@@ -81,7 +92,14 @@
            success:(responseSuccess)success
             failed:(responseFailed)failed
 {
-    [[WYNetWorkingTool sharedManager] GET:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+    if (url == nil)
+    {
+        return;
+    }
+    
+    /*! 检查地址中是否有中文 */
+    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    [[WYNetWorkingTool sharedManager] GET:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          //请求成功的回调
          if (success) {
@@ -115,7 +133,14 @@
             success:(responseSuccess)success
              failed:(responseFailed)failed
 {
-    [[WYNetWorkingTool sharedManager] POST:url parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+    if (url == nil)
+    {
+        return;
+    }
+    
+    /*! 检查地址中是否有中文 */
+    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    [[WYNetWorkingTool sharedManager] POST:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          if (success) {
              success(task,responseObject);
@@ -139,6 +164,86 @@
 }
 
 
+#pragma mark - put请求
++ (void)putWithUrl:(NSString *)url
+            params:(NSDictionary *)params
+       isReadCache:(BOOL)isReadCache
+           success:(responseSuccess)success
+            failed:(responseFailed)failed
+{
+    if (url == nil)
+    {
+        return;
+    }
+    
+    /*! 检查地址中是否有中文 */
+    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    
+    [[WYNetWorkingTool sharedManager] PUT:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //请求成功的回调
+        if (success) {
+            success(task,responseObject);
+        }
+        //请求成功,保存数据
+        [WYCache saveDataCache:responseObject forKey:url];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        id cacheData= nil;
+        //是否读取缓存
+        if (isReadCache) {
+            cacheData = [WYCache readCache:url];
+        }else {
+            cacheData = nil;
+        }
+        
+        if (failed) {
+            failed(task,error,cacheData);
+        }
+    }];
+}
+
+
+#pragma mark - delete请求
++ (void)deleteWithUrl:(NSString *)url
+               params:(NSDictionary *)params
+          isReadCache:(BOOL)isReadCache
+              success:(responseSuccess)success
+               failed:(responseFailed)failed
+{
+    if (url == nil)
+    {
+        return;
+    }
+    
+    /*! 检查地址中是否有中文 */
+    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    
+    [[WYNetWorkingTool sharedManager] DELETE:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //请求成功的回调
+        if (success) {
+            success(task,responseObject);
+        }
+        //请求成功,保存数据
+        [WYCache saveDataCache:responseObject forKey:url];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        id cacheData= nil;
+        //是否读取缓存
+        if (isReadCache) {
+            cacheData = [WYCache readCache:url];
+        }else {
+            cacheData = nil;
+        }
+        
+        if (failed) {
+            failed(task,error,cacheData);
+        }
+    }];
+}
+
+
 #pragma mark - 文件上传
 + (void)uploadWithUrl:(NSString *)url
                params:(NSDictionary *)params
@@ -150,7 +255,15 @@
               success:(responseSuccess)success
                failed:(responseFailed)failed
 {
-    [[WYNetWorkingTool sharedManager] POST:url
+    if (url == nil)
+    {
+        return;
+    }
+    
+    /*! 检查地址中是否有中文 */
+    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    
+    [[WYNetWorkingTool sharedManager] POST:URLString
                                 parameters:params
                  constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
      {
@@ -171,7 +284,150 @@
          }
          
      }];
+}
+
+
+#pragma mark - 多图上传
++ (void)uploadImageWithUrl:(NSString *)url
+                    params:(NSDictionary *)params
+                imageArray:(NSArray *)imageArray
+                  fileName:(NSString *)fileName
+                  progress:(progress)progress
+                   success:(responseSuccess)success
+                    failed:(responseFailed)failed
+{
+    if (url == nil)
+    {
+        return;
+    }
     
+    WYWeak;
+    /*! 检查地址中是否有中文 */
+    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    
+    [[WYNetWorkingTool sharedManager] POST:URLString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        /*! 出于性能考虑,将上传图片进行压缩 */
+        [imageArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            /*! image的压缩方法 */
+            UIImage *resizedImage;
+            /*! 此处是使用原生系统相册 */
+            if([obj isKindOfClass:[ALAsset class]])
+            {
+                // 用ALAsset获取Asset URL  转化为image
+                ALAssetRepresentation *assetRep = [obj defaultRepresentation];
+                
+                CGImageRef imgRef = [assetRep fullResolutionImage];
+                resizedImage = [UIImage imageWithCGImage:imgRef
+                                                   scale:1.0
+                                             orientation:(UIImageOrientation)assetRep.orientation];
+                resizedImage = [weakSelf imageWithImage:resizedImage scaledToSize:resizedImage.size];
+            }
+            else
+            {
+                /*! 此处是使用其他第三方相册，可以自由定制压缩方法 */
+                resizedImage = obj;
+            }
+            
+            /*! 此处压缩方法是jpeg格式是原图大小的0.8倍，要调整大小的话，就在这里调整就行了还是原图等比压缩 */
+            NSData *imgData = nil;
+            if (UIImagePNGRepresentation(resizedImage) == nil) {
+                imgData = UIImageJPEGRepresentation(resizedImage, 0.8);
+            }
+            else {
+                imgData = UIImagePNGRepresentation(resizedImage);
+            }
+            
+            if (imgData != nil)     // 图片数据不为空才传递 fileName
+            {
+                [formData appendPartWithFileData:imgData
+                                            name:[NSString stringWithFormat:@"picflie%ld",(long)idx]
+                                        fileName:fileName
+                                        mimeType:@"image/jpeg"];
+            }
+        }];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        if (progress) {
+            progress(uploadProgress);
+        }
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success) {
+            success(task,responseObject);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failed) {
+            failed(task,error,nil);
+        }
+    }];
+    
+}
+
+
+#pragma mark - 视频上传
++ (void)uploadVideoWithUrl:(NSString *)url
+                    params:(NSDictionary *)params
+                 videoPath:(NSString *)videoPath
+                  progress:(progress)progress
+                   success:(responseSuccess)success
+                    failed:(responseFailed)failed
+{
+    /*! 获得视频资源 */
+    AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:videoPath]  options:nil];
+    
+    /*! 压缩 */
+    
+    //    NSString *const AVAssetExportPreset640x480;
+    //    NSString *const AVAssetExportPreset960x540;
+    //    NSString *const AVAssetExportPreset1280x720;
+    //    NSString *const AVAssetExportPreset1920x1080;
+    //    NSString *const AVAssetExportPreset3840x2160;
+    
+    /*! 创建日期格式化器 */
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
+    
+    /*! 转化后直接写入Library---caches */
+    NSString *videoWritePath = [NSString stringWithFormat:@"output-%@.mp4",[formatter stringFromDate:[NSDate date]]];
+    NSString *outfilePath = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/%@", videoWritePath];
+    
+    AVAssetExportSession *avAssetExport = [[AVAssetExportSession alloc] initWithAsset:avAsset presetName:AVAssetExportPresetMediumQuality];
+    
+    avAssetExport.outputURL = [NSURL fileURLWithPath:outfilePath];
+    avAssetExport.outputFileType =  AVFileTypeMPEG4;
+    
+    [avAssetExport exportAsynchronouslyWithCompletionHandler:^{
+        switch ([avAssetExport status]) {
+            case AVAssetExportSessionStatusCompleted:
+            {
+                [[WYNetWorkingTool sharedManager] POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                    
+                    NSURL *filePathURL2 = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@", outfilePath]];
+                    // 获得沙盒中的视频内容
+                    [formData appendPartWithFileURL:filePathURL2 name:@"video" fileName:outfilePath mimeType:@"application/octet-stream" error:nil];
+                    
+                } progress:^(NSProgress * _Nonnull uploadProgress) {
+                    if (progress) {
+                        progress(uploadProgress);
+                    }
+                } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable responseObject) {
+                    if (success) {
+                        success(task,responseObject);
+                    }
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    if (failed) {
+                        failed(task,error,nil);
+                    }
+                }];
+                break;
+            }
+            default:
+                break;
+        }
+    }];
 }
 
 
@@ -272,22 +528,24 @@ didFinishDownloadingToURL:(NSURL *)location
 
 
 #pragma mark----网络检测
-+ (void)netWorkState:(netStateBlock)block;
++ (void)netWorkState:(WYNetWorkingStateBlock)block;
 {
     AFNetworkReachabilityManager *manager = [AFNetworkReachabilityManager sharedManager];
     // 提示：要监控网络连接状态，必须要先调用单例的startMonitoring方法
     [manager startMonitoring];
     //检测的结果
-    __block typeof(self) bself = self;
+    //    __block typeof(self) bself = self;
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        if (status==0||status==-1) {
+        
+        if (status == 0 || status == -1) {
             //弹出提示框
-            [bself showWarningView];
-            //将netState值传入block中
-            block(status);
-        }else{
-            //将netState值传入block中
-            block(status);
+            //            [bself showWarningView];
+            
+            block(WYNetWorkingNotReachable);    // 没有网络
+        }
+        else{
+            
+            block(WYNetWorkingHave);    //  移动数据 或者 WIFI 网络
         }
     }];
 }
@@ -308,10 +566,44 @@ didFinishDownloadingToURL:(NSURL *)location
 clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        NSLog(@"取消");
+        
     }else{
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
     }
+}
+
+
+#pragma mark - url 中文格式化
++ (NSString *)strUTF8Encoding:(NSString *)str
+{
+    /*! ios9适配的话 打开第一个 */
+    if ([[UIDevice currentDevice] systemVersion].floatValue >= 9.0)
+    {
+        return [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLPathAllowedCharacterSet]];
+    }
+    else
+    {
+        return [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+}
+
+
+#pragma mark - 压缩图片尺寸
+/*! 对图片尺寸进行压缩 */
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize
+{
+    if (newSize.height > 375 / newSize.width * newSize.height)
+    {
+        newSize.height = 375 / newSize.width * newSize.height;
+    }
+    
+    if (newSize.width > 375)
+    {
+        newSize.width = 375;
+    }
+    
+    UIImage *newImage = [UIImage needCenterImage:image size:newSize scale:1.0];
+    return newImage;
 }
 
 @end

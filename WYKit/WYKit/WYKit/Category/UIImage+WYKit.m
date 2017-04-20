@@ -719,4 +719,33 @@ static const void *failBlockKey = &failBlockKey;
     return context;
 }
 
+
+//  UIImage -> Base64图片
+- (NSString *)stringWithimageBase64URL:(UIImage *)image
+{
+    NSData *imageData = nil;
+    NSString *mimeType = nil;
+    
+    if ([self imageHasAlpha: image]) {
+        imageData = UIImagePNGRepresentation(image);
+        mimeType = @"image/png";
+    } else {
+        imageData = UIImageJPEGRepresentation(image, 1.0f);
+        mimeType = @"image/jpeg";
+    }
+    
+    return [NSString stringWithFormat:@"data:%@;base64,%@", mimeType,
+            [imageData base64EncodedStringWithOptions: 0]];
+    
+}
+
+- (BOOL) imageHasAlpha: (UIImage *) image
+{
+    CGImageAlphaInfo alpha = CGImageGetAlphaInfo(image.CGImage);
+    return (alpha == kCGImageAlphaFirst ||
+            alpha == kCGImageAlphaLast ||
+            alpha == kCGImageAlphaPremultipliedFirst ||
+            alpha == kCGImageAlphaPremultipliedLast);
+}
+
 @end

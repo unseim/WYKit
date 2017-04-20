@@ -10,10 +10,12 @@
 #import <AFHTTPSessionManager.h>
 
 /** 是否开启https SSL 验证 */
-#define openHttpsSSL YES
+#define openHttpsSSL NO
 
 /** SSL 证书名称，仅支持cer格式。“app.bishe.com.cer”,则填“app.bishe.com” */
 #define certificate @"xiaokaapi.com"
+
+#define WYWeak  __weak __typeof(self) weakSelf = self
 
 //请求成功的回调block
 typedef void(^responseSuccess)(NSURLSessionDataTask *task, id  responseObject);
@@ -30,9 +32,16 @@ typedef void(^downloadFailed)( NSError *error);
 //文件上传下载的进度block
 typedef void (^progress)(NSProgress *progress);
 
-//  网络监测回调block
-typedef void(^netStateBlock)(NSInteger netState);
 
+//  网络状态
+typedef NS_ENUM(NSUInteger, WYNetWorkingState)
+{
+    WYNetWorkingHave,           //  有网络
+    WYNetWorkingNotReachable    //  没有网络
+};
+
+//  网络监测回调block
+typedef void(^WYNetWorkingStateBlock)(WYNetWorkingState netState);
 
 @interface WYNetWorkingTool : AFHTTPSessionManager <NSURLSessionDownloadDelegate>
 
@@ -52,7 +61,7 @@ typedef void(^netStateBlock)(NSInteger netState);
 + (instancetype)sharedManager;
 
 /** 网络监测 */
-+ (void)netWorkState:(netStateBlock)block;
++ (void)netWorkState:(WYNetWorkingStateBlock)block;
 
 
 /**
@@ -84,7 +93,40 @@ typedef void(^netStateBlock)(NSInteger netState);
              params:(NSDictionary *)params
         isReadCache:(BOOL)isReadCache
             success:(responseSuccess)success
-             failed:(responseFailed)failed ;
+             failed:(responseFailed)failed;
+
+
+
+/**
+ put请求
+ 
+ @param url 请求url
+ @param params 参数
+ @param isReadCache 是否读取缓存
+ @param success 成功回调
+ @param failed 失败回调
+ */
++ (void)putWithUrl:(NSString *)url
+            params:(NSDictionary *)params
+       isReadCache:(BOOL)isReadCache
+           success:(responseSuccess)success
+            failed:(responseFailed)failed;
+
+
+/**
+ delete请求
+ 
+ @param url 请求url
+ @param params 参数
+ @param isReadCache 是否读取缓存
+ @param success 成功回调
+ @param failed 失败回调
+ */
++ (void)deleteWithUrl:(NSString *)url
+               params:(NSDictionary *)params
+          isReadCache:(BOOL)isReadCache
+              success:(responseSuccess)success
+               failed:(responseFailed)failed;
 
 
 
@@ -111,6 +153,43 @@ typedef void(^netStateBlock)(NSInteger netState);
               success:(responseSuccess)success
                failed:(responseFailed)failed;
 
+
+/**
+ 上传图片(多图)
+ 
+ @param params       上传图片预留参数---视具体情况而定 可移除
+ @param imageArray   上传的图片数组
+ @param fileName     上传的图片数组fileName
+ @param url          上传的url
+ @param success      上传成功的回调
+ @param failed       上传失败的回调
+ @param progress     上传进度
+ */
++ (void)uploadImageWithUrl:(NSString *)url
+                    params:(NSDictionary *)params
+                imageArray:(NSArray *)imageArray
+                  fileName:(NSString *)fileName
+                  progress:(progress)progress
+                   success:(responseSuccess)success
+                    failed:(responseFailed)failed;
+
+
+/**
+ 视频上传
+ 
+ @param operations   上传视频预留参数---视具体情况而定 可移除
+ @param videoPath    上传视频的本地沙河路径
+ @param url          上传的url
+ @param success      成功的回调
+ @param failed       失败的回调
+ @param progress     上传的进度
+ */
++ (void)uploadVideoWithUrl:(NSString *)url
+                    params:(NSDictionary *)params
+                 videoPath:(NSString *)videoPath
+                  progress:(progress)progress
+                   success:(responseSuccess)success
+                    failed:(responseFailed)failed;
 
 
 /** 文件下载 */

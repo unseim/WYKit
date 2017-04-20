@@ -16,17 +16,17 @@
 - (void)setImageWithURLString:(NSString *)url
              placeholderImage:(UIImage *)image
 {
-    if ([[url substringWithRange:NSMakeRange(0, 3)] isEqualToString:@"http"] ) {
-        
+    
+    if ([url isEqualToString:@""] || ![[url substringWithRange:NSMakeRange(0, 10)] isEqualToString:@"data:image"]) {
         /*
-        [self setImageWithURL:[NSURL URLWithString:url] placeholder:image options:YYWebImageOptionIgnoreFailedURL completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
-            
-            //  图片加载完要做的事情
-            
+         [self setImageWithURL:[NSURL URLWithString:url] placeholder:image options:YYWebImageOptionIgnoreFailedURL completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
          
-            
-        }];
-        */
+         //  图片加载完要做的事情
+         
+         
+         
+         }];
+         */
         
         [self setImageWithURL:[NSURL URLWithString:url] placeholder:image];
         
@@ -43,35 +43,5 @@
     
 }
 
-
-
-
-//  UIImage -> Base64图片
-- (NSString *)stringWithimageBase64URL:(UIImage *)image
-{
-    NSData *imageData = nil;
-    NSString *mimeType = nil;
-    
-    if ([self imageHasAlpha: image]) {
-        imageData = UIImagePNGRepresentation(image);
-        mimeType = @"image/png";
-    } else {
-        imageData = UIImageJPEGRepresentation(image, 1.0f);
-        mimeType = @"image/jpeg";
-    }
-    
-    return [NSString stringWithFormat:@"data:%@;base64,%@", mimeType,
-            [imageData base64EncodedStringWithOptions: 0]];
-    
-}
-
-- (BOOL) imageHasAlpha: (UIImage *) image
-{
-    CGImageAlphaInfo alpha = CGImageGetAlphaInfo(image.CGImage);
-    return (alpha == kCGImageAlphaFirst ||
-            alpha == kCGImageAlphaLast ||
-            alpha == kCGImageAlphaPremultipliedFirst ||
-            alpha == kCGImageAlphaPremultipliedLast);
-}
 
 @end
