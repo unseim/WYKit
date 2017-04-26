@@ -20,6 +20,8 @@
 #import "WYCache.h"
 #import "UIImage+CompressImage.h"
 
+
+static WYNetWorkingTool *instance;
 @implementation WYNetWorkingTool
 
 #pragma mark - https验证
@@ -46,26 +48,63 @@
 }
 
 
-#pragma mark - 单例
-+ (instancetype)sharedManager
+#pragma mark - 取消所有的网络请求
++ (void)cancelAllNetWorking
+{
+    
+    [instance.tasks makeObjectsPerformSelector:@selector(cancel)];
+    
+    //    [[WYNetWorkingTool sharedJSONManager].tasks makeObjectsPerformSelector:@selector(cancel)];
+    //    [[WYNetWorkingTool sharedHTTPManager].tasks makeObjectsPerformSelector:@selector(cancel)];
+}
+
+
+#pragma mark - JSON请求单例
++ (instancetype)sharedJSONManager
 {
     static dispatch_once_t onceToken;
-    static WYNetWorkingTool *instance;
     dispatch_once(&onceToken, ^{
-        NSURL *baseUrl = [NSURL URLWithString:@""];
-        instance = [[WYNetWorkingTool alloc] initWithBaseURL:baseUrl];
+        instance = [WYNetWorkingTool manager];
+        //  请求超时时间
+        instance.requestSerializer.timeoutInterval = 10;
+        //  打开状态栏等待菊花
+        [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+        //  返回类型
+        instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", @"image/*", nil];
+        //  设置请求体和返回内容
+        instance.responseSerializer = [AFJSONResponseSerializer serializer];
+        instance.requestSerializer = [AFJSONRequestSerializer serializer];
+        
         //  https ssl 验证。
         if(openHttpsSSL)
         {
             [self customSecurityPolicy];
         }
-        instance.responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/json",
-                                                                                   @"text/html",
-                                                                                   @"text/json",
-                                                                                   @"text/plain",
-                                                                                   @"text/javascript",
-                                                                                   @"text/xml",
-                                                                                   @"image/*"]];
+    });
+    return instance;
+}
+
+#pragma mark - HTTP请求单列
++ (instancetype)sharedHTTPManager
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [WYNetWorkingTool manager];
+        //  请求超时时间
+        instance.requestSerializer.timeoutInterval = 10;
+        //  打开状态栏等待菊花
+        [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+        //  返回类型
+        instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", @"image/*", nil];
+        //  设置请求体和返回内容
+        instance.responseSerializer = [AFHTTPResponseSerializer serializer];
+        instance.requestSerializer = [AFHTTPRequestSerializer serializer];
+        
+        //  https ssl 验证。
+        if(openHttpsSSL)
+        {
+            [self customSecurityPolicy];
+        }
     });
     return instance;
 }
@@ -86,20 +125,28 @@
 
 
 #pragma mark - get请求
-+ (void)getWithUrl:(NSString *)url
-            params:(NSDictionary *)params
-       isReadCache:(BOOL)isReadCache
-           success:(responseSuccess)success
-            failed:(responseFailed)failed
++ (void)getWithRuquest:(RequestManagerType)request
+                   Url:(NSString *)url
+                params:(NSDictionary *)params
+           isReadCache:(BOOL)isReadCache
+               success:(responseSuccess)success
+                failed:(responseFailed)failed
 {
     if (url == nil)
     {
         return;
     }
     
+    if (request == 0) {
+        instance = [WYNetWorkingTool sharedJSONManager];
+    }
+    else {
+        instance = [WYNetWorkingTool sharedHTTPManager];
+    }
+    
     /*! 检查地址中是否有中文 */
     NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
-    [[WYNetWorkingTool sharedManager] GET:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+    [instance GET:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          //请求成功的回调
          if (success) {
@@ -127,20 +174,28 @@
 
 
 #pragma mark - post请求
-+ (void)postWithUrl:(NSString *)url
-             params:(NSDictionary *)params
-        isReadCache:(BOOL)isReadCache
-            success:(responseSuccess)success
-             failed:(responseFailed)failed
++ (void)postWithRuquest:(RequestManagerType)request
+                    Url:(NSString *)url
+                 params:(NSDictionary *)params
+            isReadCache:(BOOL)isReadCache
+                success:(responseSuccess)success
+                 failed:(responseFailed)failed
 {
     if (url == nil)
     {
         return;
     }
     
+    if (request == 0) {
+        instance = [WYNetWorkingTool sharedJSONManager];
+    }
+    else {
+        instance = [WYNetWorkingTool sharedHTTPManager];
+    }
+    
     /*! 检查地址中是否有中文 */
     NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
-    [[WYNetWorkingTool sharedManager] POST:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+    [instance POST:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          if (success) {
              success(task,responseObject);
@@ -164,22 +219,31 @@
 }
 
 
+
 #pragma mark - put请求
-+ (void)putWithUrl:(NSString *)url
-            params:(NSDictionary *)params
-       isReadCache:(BOOL)isReadCache
-           success:(responseSuccess)success
-            failed:(responseFailed)failed
++ (void)putWithRuquest:(RequestManagerType)request
+                   Url:(NSString *)url
+                params:(NSDictionary *)params
+           isReadCache:(BOOL)isReadCache
+               success:(responseSuccess)success
+                failed:(responseFailed)failed
 {
     if (url == nil)
     {
         return;
     }
     
+    if (request == 0) {
+        instance = [WYNetWorkingTool sharedJSONManager];
+    }
+    else {
+        instance = [WYNetWorkingTool sharedHTTPManager];
+    }
+    
     /*! 检查地址中是否有中文 */
     NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
     
-    [[WYNetWorkingTool sharedManager] PUT:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [instance PUT:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         //请求成功的回调
         if (success) {
@@ -205,21 +269,29 @@
 
 
 #pragma mark - delete请求
-+ (void)deleteWithUrl:(NSString *)url
-               params:(NSDictionary *)params
-          isReadCache:(BOOL)isReadCache
-              success:(responseSuccess)success
-               failed:(responseFailed)failed
++ (void)deleteWithRuquest:(RequestManagerType)request
+                      Url:(NSString *)url
+                   params:(NSDictionary *)params
+              isReadCache:(BOOL)isReadCache
+                  success:(responseSuccess)success
+                   failed:(responseFailed)failed
 {
     if (url == nil)
     {
         return;
     }
     
+    if (request == 0) {
+        instance = [WYNetWorkingTool sharedJSONManager];
+    }
+    else {
+        instance = [WYNetWorkingTool sharedHTTPManager];
+    }
+    
     /*! 检查地址中是否有中文 */
     NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
     
-    [[WYNetWorkingTool sharedManager] DELETE:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [instance DELETE:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         //请求成功的回调
         if (success) {
@@ -245,27 +317,35 @@
 
 
 #pragma mark - 文件上传
-+ (void)uploadWithUrl:(NSString *)url
-               params:(NSDictionary *)params
-             fileData:(NSData *)fileData
-                 name:(NSString *)name
-             fileName:(NSString *)fileName
-             mimeType:(NSString *)mimeType
-             progress:(progress)progress
-              success:(responseSuccess)success
-               failed:(responseFailed)failed
++ (void)uploadWithRuquest:(RequestManagerType)request
+                      Url:(NSString *)url
+                   params:(NSDictionary *)params
+                 fileData:(NSData *)fileData
+                     name:(NSString *)name
+                 fileName:(NSString *)fileName
+                 mimeType:(NSString *)mimeType
+                 progress:(progress)progress
+                  success:(responseSuccess)success
+                   failed:(responseFailed)failed
 {
     if (url == nil)
     {
         return;
     }
     
+    if (request == 0) {
+        instance = [WYNetWorkingTool sharedJSONManager];
+    }
+    else {
+        instance = [WYNetWorkingTool sharedHTTPManager];
+    }
+    
     /*! 检查地址中是否有中文 */
     NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
     
-    [[WYNetWorkingTool sharedManager] POST:URLString
-                                parameters:params
-                 constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
+    [instance POST:URLString
+        parameters:params
+constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
      {
          [formData appendPartWithFileData:fileData name:name fileName:fileName mimeType:mimeType];
      } progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -288,24 +368,32 @@
 
 
 #pragma mark - 多图上传
-+ (void)uploadImageWithUrl:(NSString *)url
-                    params:(NSDictionary *)params
-                imageArray:(NSArray *)imageArray
-                  fileName:(NSString *)fileName
-                  progress:(progress)progress
-                   success:(responseSuccess)success
-                    failed:(responseFailed)failed
++ (void)uploadImageWithRuquest:(RequestManagerType)request
+                           Url:(NSString *)url
+                        params:(NSDictionary *)params
+                    imageArray:(NSArray *)imageArray
+                      fileName:(NSString *)fileName
+                      progress:(progress)progress
+                       success:(responseSuccess)success
+                        failed:(responseFailed)failed
 {
     if (url == nil)
     {
         return;
     }
     
+    if (request == 0) {
+        instance = [WYNetWorkingTool sharedJSONManager];
+    }
+    else {
+        instance = [WYNetWorkingTool sharedHTTPManager];
+    }
+    
     WYWeak;
     /*! 检查地址中是否有中文 */
     NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
     
-    [[WYNetWorkingTool sharedManager] POST:URLString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [instance POST:URLString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
         /*! 出于性能考虑,将上传图片进行压缩 */
         [imageArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -366,13 +454,21 @@
 
 
 #pragma mark - 视频上传
-+ (void)uploadVideoWithUrl:(NSString *)url
-                    params:(NSDictionary *)params
-                 videoPath:(NSString *)videoPath
-                  progress:(progress)progress
-                   success:(responseSuccess)success
-                    failed:(responseFailed)failed
++ (void)uploadVideoWithRuquest:(RequestManagerType)request
+                           Url:(NSString *)url
+                        params:(NSDictionary *)params
+                     videoPath:(NSString *)videoPath
+                      progress:(progress)progress
+                       success:(responseSuccess)success
+                        failed:(responseFailed)failed
 {
+    if (request == 0) {
+        instance = [WYNetWorkingTool sharedJSONManager];
+    }
+    else {
+        instance = [WYNetWorkingTool sharedHTTPManager];
+    }
+    
     /*! 获得视频资源 */
     AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:videoPath]  options:nil];
     
@@ -403,7 +499,7 @@
         switch ([avAssetExport status]) {
             case AVAssetExportSessionStatusCompleted:
             {
-                [[WYNetWorkingTool sharedManager] POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                [instance POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
                     
                     NSURL *filePathURL2 = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@", outfilePath]];
                     // 获得沙盒中的视频内容
@@ -434,14 +530,15 @@
 #pragma mark - 文件下载 支持断点下载
 + (void)downloadWithUrl:(NSString *)url
 {
+    
     // 1. URL
     NSURL *URL = [NSURL URLWithString:url];
     
     // 2. 发起下载任务
-    [WYNetWorkingTool sharedManager].downloadTask = [[WYNetWorkingTool sharedManager].downloadSession downloadTaskWithURL:URL];
+    [WYNetWorkingTool sharedJSONManager].downloadTask = [[WYNetWorkingTool sharedJSONManager].downloadSession downloadTaskWithURL:URL];
     
     // 3. 启动下载任务
-    [[WYNetWorkingTool sharedManager].downloadTask resume];
+    [[WYNetWorkingTool sharedJSONManager].downloadTask resume];
     
 }
 

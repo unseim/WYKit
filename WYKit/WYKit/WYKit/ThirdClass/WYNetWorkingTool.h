@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFHTTPSessionManager.h>
+#import "AFNetworkActivityIndicatorManager.h"
 
 /** 是否开启https SSL 验证 */
 #define openHttpsSSL NO
@@ -40,6 +41,13 @@ typedef NS_ENUM(NSUInteger, WYNetWorkingState)
     WYNetWorkingNotReachable    //  没有网络
 };
 
+//  请求体和返回体格式
+typedef NS_ENUM(NSUInteger, RequestManagerType)
+{
+    JSONRequestManager,     //  JSON请求
+    HTTPRequestManager      //  HTTP请求
+};
+
 //  网络监测回调block
 typedef void(^WYNetWorkingStateBlock)(WYNetWorkingState netState);
 
@@ -56,9 +64,8 @@ typedef void(^WYNetWorkingStateBlock)(WYNetWorkingState netState);
 /** 自定义session,设置代理 */
 @property (nonatomic, strong) NSURLSession *downloadSession;
 
-
-/** 管理者单例 */
-+ (instancetype)sharedManager;
+/** 取消所有的网络请求 */
++ (void)cancelAllNetWorking;
 
 /** 网络监测 */
 + (void)netWorkState:(WYNetWorkingStateBlock)block;
@@ -66,18 +73,19 @@ typedef void(^WYNetWorkingStateBlock)(WYNetWorkingState netState);
 
 /**
  get请求
- 
+ @param request 请求体类型
  @param url 请求url
  @param params 参数
  @param isReadCache 是否读取缓存
  @param success 成功回调
  @param failed 失败回调
  */
-+ (void)getWithUrl:(NSString *)url
-            params:(NSDictionary *)params
-       isReadCache:(BOOL)isReadCache
-           success:(responseSuccess)success
-            failed:(responseFailed)failed;
++ (void)getWithRuquest:(RequestManagerType)request
+                   Url:(NSString *)url
+                params:(NSDictionary *)params
+           isReadCache:(BOOL)isReadCache
+               success:(responseSuccess)success
+                failed:(responseFailed)failed;
 
 
 /**
@@ -89,11 +97,12 @@ typedef void(^WYNetWorkingStateBlock)(WYNetWorkingState netState);
  @param success 成功回调
  @param failed 失败回调
  */
-+ (void)postWithUrl:(NSString *)url
-             params:(NSDictionary *)params
-        isReadCache:(BOOL)isReadCache
-            success:(responseSuccess)success
-             failed:(responseFailed)failed;
++ (void)postWithRuquest:(RequestManagerType)request
+                    Url:(NSString *)url
+                 params:(NSDictionary *)params
+            isReadCache:(BOOL)isReadCache
+                success:(responseSuccess)success
+                 failed:(responseFailed)failed;
 
 
 
@@ -106,11 +115,12 @@ typedef void(^WYNetWorkingStateBlock)(WYNetWorkingState netState);
  @param success 成功回调
  @param failed 失败回调
  */
-+ (void)putWithUrl:(NSString *)url
-            params:(NSDictionary *)params
-       isReadCache:(BOOL)isReadCache
-           success:(responseSuccess)success
-            failed:(responseFailed)failed;
++ (void)putWithRuquest:(RequestManagerType)request
+                   Url:(NSString *)url
+                params:(NSDictionary *)params
+           isReadCache:(BOOL)isReadCache
+               success:(responseSuccess)success
+                failed:(responseFailed)failed;
 
 
 /**
@@ -122,11 +132,12 @@ typedef void(^WYNetWorkingStateBlock)(WYNetWorkingState netState);
  @param success 成功回调
  @param failed 失败回调
  */
-+ (void)deleteWithUrl:(NSString *)url
-               params:(NSDictionary *)params
-          isReadCache:(BOOL)isReadCache
-              success:(responseSuccess)success
-               failed:(responseFailed)failed;
++ (void)deleteWithRuquest:(RequestManagerType)request
+                      Url:(NSString *)url
+                   params:(NSDictionary *)params
+              isReadCache:(BOOL)isReadCache
+                  success:(responseSuccess)success
+                   failed:(responseFailed)failed;
 
 
 
@@ -143,15 +154,16 @@ typedef void(^WYNetWorkingStateBlock)(WYNetWorkingState netState);
  @param success 成功回调
  @param failed 失败回调
  */
-+ (void)uploadWithUrl:(NSString *)url
-               params:(NSDictionary *)params
-             fileData:(NSData *)fileData
-                 name:(NSString *)name
-             fileName:(NSString *)fileName
-             mimeType:(NSString *)mimeType
-             progress:(progress)progress
-              success:(responseSuccess)success
-               failed:(responseFailed)failed;
++ (void)uploadWithRuquest:(RequestManagerType)request
+                      Url:(NSString *)url
+                   params:(NSDictionary *)params
+                 fileData:(NSData *)fileData
+                     name:(NSString *)name
+                 fileName:(NSString *)fileName
+                 mimeType:(NSString *)mimeType
+                 progress:(progress)progress
+                  success:(responseSuccess)success
+                   failed:(responseFailed)failed;
 
 
 /**
@@ -165,13 +177,14 @@ typedef void(^WYNetWorkingStateBlock)(WYNetWorkingState netState);
  @param failed       上传失败的回调
  @param progress     上传进度
  */
-+ (void)uploadImageWithUrl:(NSString *)url
-                    params:(NSDictionary *)params
-                imageArray:(NSArray *)imageArray
-                  fileName:(NSString *)fileName
-                  progress:(progress)progress
-                   success:(responseSuccess)success
-                    failed:(responseFailed)failed;
++ (void)uploadImageWithRuquest:(RequestManagerType)request
+                           Url:(NSString *)url
+                        params:(NSDictionary *)params
+                    imageArray:(NSArray *)imageArray
+                      fileName:(NSString *)fileName
+                      progress:(progress)progress
+                       success:(responseSuccess)success
+                        failed:(responseFailed)failed;
 
 
 /**
@@ -184,12 +197,13 @@ typedef void(^WYNetWorkingStateBlock)(WYNetWorkingState netState);
  @param failed       失败的回调
  @param progress     上传的进度
  */
-+ (void)uploadVideoWithUrl:(NSString *)url
-                    params:(NSDictionary *)params
-                 videoPath:(NSString *)videoPath
-                  progress:(progress)progress
-                   success:(responseSuccess)success
-                    failed:(responseFailed)failed;
++ (void)uploadVideoWithRuquest:(RequestManagerType)request
+                           Url:(NSString *)url
+                        params:(NSDictionary *)params
+                     videoPath:(NSString *)videoPath
+                      progress:(progress)progress
+                       success:(responseSuccess)success
+                        failed:(responseFailed)failed;
 
 
 /** 文件下载 */
