@@ -15,6 +15,10 @@
 
 #import "UIButton+WYKit.h"
 
+#import "UIButton+WYDrag.h"
+
+#import "UIButton+WYCountdown.h"
+
 #import "UIView+WYKit.h"
 
 #import "UIBarButtonItem+WYKit.h"
@@ -57,6 +61,5 @@
 
 #import "UITableView+WYFoldTableView.h"
 
-#import "UIFont+WYAdaptiveSize.h"
 
 #endif /* WYCategory_h */

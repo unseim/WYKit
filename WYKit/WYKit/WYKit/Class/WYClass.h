@@ -23,9 +23,6 @@
 /** 自定义提示框 */
 #import "WYHiddenAlertView.h"
 
-/** 限制TextView */
-#import "WYColatingTextView.h"
-
 /** 获取授权 */
 #import "WYAuthorizationTool.h"
 
