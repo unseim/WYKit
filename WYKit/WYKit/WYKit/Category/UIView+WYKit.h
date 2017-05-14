@@ -27,7 +27,8 @@
 @property (nonatomic,assign)CGFloat Sw;
 
 
-
+/** 判断一个控件是否真正显示在主窗口 */
+- (BOOL)isShowingOnKeyWindow;
 
 /** 根据图片URL获取图片尺寸 */
 + (CGSize)getImageSizeWithURL:(id)imageURL;

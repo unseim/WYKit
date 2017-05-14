@@ -13,7 +13,7 @@
 /** 获取canvas用的颜色字符串 */
 - (NSString *)canvasColorString
 {
-    CGFloat *arrRGBA = [self jk_getRGB];
+    CGFloat *arrRGBA = [self getRGB];
     int r = arrRGBA[0] * 255;
     int g = arrRGBA[1] * 255;
     int b = arrRGBA[2] * 255;
@@ -24,7 +24,7 @@
 /** 获取网页颜色字串 */
 - (NSString *)webColorString
 {
-    CGFloat *arrRGBA = [self jk_getRGB];
+    CGFloat *arrRGBA = [self getRGB];
     int r = arrRGBA[0] * 255;
     int g = arrRGBA[1] * 255;
     int b = arrRGBA[2] * 255;
@@ -32,7 +32,8 @@
     return webColor;
 }
 
-- (CGFloat *) jk_getRGB{
+- (CGFloat *)getRGB
+{
     UIColor * uiColor = self;
     CGColorRef cgColor = [uiColor CGColor];
     int numComponents = (int)CGColorGetNumberOfComponents(cgColor);

@@ -55,4 +55,8 @@
 
 #import "NSAttributedString+WYKit.h"
 
+#import "UITableView+WYFoldTableView.h"
+
+#import "UIFont+WYAdaptiveSize.h"
+
 #endif /* WYCategory_h */
