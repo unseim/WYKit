@@ -29,6 +29,12 @@
 
 #import "UIImageView+WYFaceAwareFill.h"
 
+#import "UIImageView+WYCornerRadius.h"
+
+#import "UIImage+WYRadius.h"
+
+#import "UIView+WYRadius.h"
+
 #import "NSString+WYKit.h"
 
 #import "UIDevice+WYHardward.h"
@@ -49,6 +55,8 @@
 
 #import "NSArray+WYKit.h"
 
+#import "NSObject+WYSize.h"
+
 #import "NSFileManager+WYKit.h"
 
 #import "UIWebView+WYJavaScript.h"
@@ -61,5 +69,8 @@
 
 #import "UITableView+WYFoldTableView.h"
 
+#import "UINavigationController+WYPopGesture.h"
+
+#import "UILabel+WYAttributeTextTapAction.h"
 
 #endif /* WYCategory_h */

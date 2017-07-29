@@ -17,18 +17,13 @@
              placeholderImage:(UIImage *)image
 {
     
-    if ([url isEqualToString:@""] || ![[url substringWithRange:NSMakeRange(0, 10)] isEqualToString:@"data:image"]) {
-        /*
-         [self setImageWithURL:[NSURL URLWithString:url] placeholder:image options:YYWebImageOptionIgnoreFailedURL completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
-         
-         //  图片加载完要做的事情
-         
-         
-         
-         }];
-         */
+    if ([url isEqualToString:@""] || ![[url substringWithRange:NSMakeRange(0, 10)] isEqualToString:@"data:image"])
+    {
         
-        [self setImageWithURL:[NSURL URLWithString:url] placeholder:image];
+        //  处理链接中的空格
+        NSString *URL = [url stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        
+        [self setImageWithURL:[NSURL URLWithString:URL] placeholder:image];
         
         
     } else {

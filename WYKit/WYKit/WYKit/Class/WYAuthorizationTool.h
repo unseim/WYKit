@@ -71,9 +71,6 @@ typedef NS_ENUM(NSUInteger, WYAuthorityNotificationStatus)
 /** 请求备忘录权限 */
 + (void)requestMemorandumAuthorization:(void (^)(WYAuthorizationStatus status))callback;
 
-/** 请求定位权限 */
-+ (void)requestPositioningAuthorization:(void (^)(WYAuthorizationStatus status))callback;
-
 /** 请求麦克风权限 */
 + (void)requestMicrophoneAuthorization:(void (^)(WYAuthorizationStatus status))callback;
 

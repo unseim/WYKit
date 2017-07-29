@@ -10,6 +10,15 @@
 
 @implementation UIColor (WYWeb)
 
+/** 随机颜色 */
++ (instancetype)randomColor
+{
+    CGFloat red = arc4random_uniform(255) / 255.0;
+    CGFloat green = arc4random_uniform(255) / 255.0;
+    CGFloat blue = arc4random_uniform(255) / 255.0;
+    return [self colorWithRed:red green:green blue:blue alpha:1.0];
+}
+
 /** 获取canvas用的颜色字符串 */
 - (NSString *)canvasColorString
 {

@@ -25,7 +25,7 @@
 
 #define IOS7 [[[UIDevice currentDevice]systemVersion] floatValue] < 8.0
 
-@interface WYAuthorizationTool ()<CLLocationManagerDelegate>
+@interface WYAuthorizationTool ()
 
 @end
 
@@ -246,43 +246,6 @@
     }
 }
 
-
-#pragma mark - 定位
-+ (void)requestPositioningAuthorization:(void (^)(WYAuthorizationStatus))callback
-{
-    
-    BOOL isLocation = [CLLocationManager locationServicesEnabled];  //是否开启定位服务
-    if (!isLocation) {
-        NSLog(@"用户未开启定位");
-        
-        
-        return ;
-    }
-    CLAuthorizationStatus locationStatus = [CLLocationManager authorizationStatus];
-    switch (locationStatus) {
-        case kCLAuthorizationStatusNotDetermined: {
-            NSLog(@"未询问用户是否授权");
-            CLLocationManager *_locationManager = [[CLLocationManager alloc] init];
-            [_locationManager requestAlwaysAuthorization]; 
-        }
-            break;
-        case kCLAuthorizationStatusRestricted:
-            NSLog(@"未授权，例如家长控制");
-            break;
-        case kCLAuthorizationStatusDenied:
-            NSLog(@"未授权，用户拒绝造成的");
-            break;
-        case kCLAuthorizationStatusAuthorizedAlways:
-            NSLog(@"同意授权一直获取定位信息");
-            break;
-        case kCLAuthorizationStatusAuthorizedWhenInUse:
-            NSLog(@"同意授权在使用时获取定位信息");
-            break;
-            
-        default:
-            break;
-    }
-}
 
 #pragma mark - 麦克风
 + (void)requestMicrophoneAuthorization:(void (^)(WYAuthorizationStatus status))callback

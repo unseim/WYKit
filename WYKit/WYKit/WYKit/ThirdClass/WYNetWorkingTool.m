@@ -62,50 +62,46 @@ static WYNetWorkingTool *instance;
 #pragma mark - JSON请求单例
 + (instancetype)sharedJSONManager
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [WYNetWorkingTool manager];
-        //  请求超时时间
-        instance.requestSerializer.timeoutInterval = 10;
-        //  打开状态栏等待菊花
-        [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-        //  返回类型
-        instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", @"image/*", nil];
-        //  设置请求体和返回内容
-        instance.responseSerializer = [AFJSONResponseSerializer serializer];
-        instance.requestSerializer = [AFJSONRequestSerializer serializer];
-        
-        //  https ssl 验证。
-        if(openHttpsSSL)
-        {
-            [self customSecurityPolicy];
-        }
-    });
+    instance = [WYNetWorkingTool manager];
+    //  请求超时时间
+    instance.requestSerializer.timeoutInterval = 10;
+    //  打开状态栏等待菊花
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    //  返回类型
+    instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", @"image/*", nil];
+    //  设置请求体和返回内容
+    instance.responseSerializer = [AFJSONResponseSerializer serializer];
+    instance.requestSerializer = [AFJSONRequestSerializer serializer];
+    
+    //  https ssl 验证。
+    if(openHttpsSSL)
+    {
+        [self customSecurityPolicy];
+    }
+    
     return instance;
 }
 
 #pragma mark - HTTP请求单列
 + (instancetype)sharedHTTPManager
 {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [WYNetWorkingTool manager];
-        //  请求超时时间
-        instance.requestSerializer.timeoutInterval = 10;
-        //  打开状态栏等待菊花
-        [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-        //  返回类型
-        instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", @"image/*", nil];
-        //  设置请求体和返回内容
-        instance.responseSerializer = [AFHTTPResponseSerializer serializer];
-        instance.requestSerializer = [AFHTTPRequestSerializer serializer];
-        
-        //  https ssl 验证。
-        if(openHttpsSSL)
-        {
-            [self customSecurityPolicy];
-        }
-    });
+    instance = [WYNetWorkingTool manager];
+    //  请求超时时间
+    instance.requestSerializer.timeoutInterval = 10;
+    //  打开状态栏等待菊花
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    //  返回类型
+    instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", @"image/*", nil];
+    //  设置请求体和返回内容
+    instance.responseSerializer = [AFHTTPResponseSerializer serializer];
+    instance.requestSerializer = [AFHTTPRequestSerializer serializer];
+    
+    //  https ssl 验证。
+    if(openHttpsSSL)
+    {
+        [self customSecurityPolicy];
+    }
+    
     return instance;
 }
 
@@ -137,6 +133,7 @@ static WYNetWorkingTool *instance;
         return;
     }
     
+    
     if (request == 0) {
         instance = [WYNetWorkingTool sharedJSONManager];
     }
@@ -144,8 +141,9 @@ static WYNetWorkingTool *instance;
         instance = [WYNetWorkingTool sharedHTTPManager];
     }
     
-    /*! 检查地址中是否有中文 */
-    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    /*! 处理地址中的中文 */
+    NSString *URLString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)url, (CFStringRef)@"!NULL,'()*+,-./:;=?@_~%#[]", NULL, kCFStringEncodingUTF8));
+    
     [instance GET:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          //请求成功的回调
@@ -193,8 +191,9 @@ static WYNetWorkingTool *instance;
         instance = [WYNetWorkingTool sharedHTTPManager];
     }
     
-    /*! 检查地址中是否有中文 */
-    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    /*! 处理地址中的中文 */
+    NSString *URLString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)url, (CFStringRef)@"!NULL,'()*+,-./:;=?@_~%#[]", NULL, kCFStringEncodingUTF8));
+    
     [instance POST:URLString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
      {
          if (success) {
@@ -233,6 +232,7 @@ static WYNetWorkingTool *instance;
         return;
     }
     
+    
     if (request == 0) {
         instance = [WYNetWorkingTool sharedJSONManager];
     }
@@ -240,8 +240,8 @@ static WYNetWorkingTool *instance;
         instance = [WYNetWorkingTool sharedHTTPManager];
     }
     
-    /*! 检查地址中是否有中文 */
-    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    /*! 处理地址中的中文 */
+    NSString *URLString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)url, (CFStringRef)@"!NULL,'()*+,-./:;=?@_~%#[]", NULL, kCFStringEncodingUTF8));
     
     [instance PUT:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -288,8 +288,8 @@ static WYNetWorkingTool *instance;
         instance = [WYNetWorkingTool sharedHTTPManager];
     }
     
-    /*! 检查地址中是否有中文 */
-    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    /*! 处理地址中的中文 */
+    NSString *URLString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)url, (CFStringRef)@"!NULL,'()*+,-./:;=?@_~%#[]", NULL, kCFStringEncodingUTF8));
     
     [instance DELETE:URLString parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -340,8 +340,8 @@ static WYNetWorkingTool *instance;
         instance = [WYNetWorkingTool sharedHTTPManager];
     }
     
-    /*! 检查地址中是否有中文 */
-    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    /*! 处理地址中的中文 */
+    NSString *URLString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)url, (CFStringRef)@"!NULL,'()*+,-./:;=?@_~%#[]", NULL, kCFStringEncodingUTF8));
     
     [instance POST:URLString
         parameters:params
@@ -390,8 +390,8 @@ constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
     }
     
     WYWeak;
-    /*! 检查地址中是否有中文 */
-    NSString *URLString = [NSURL URLWithString:url] ? url : [self strUTF8Encoding:url];
+    /*! 处理地址中的中文 */
+    NSString *URLString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)url, (CFStringRef)@"!NULL,'()*+,-./:;=?@_~%#[]", NULL, kCFStringEncodingUTF8));
     
     [instance POST:URLString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
@@ -631,17 +631,15 @@ didFinishDownloadingToURL:(NSURL *)location
     // 提示：要监控网络连接状态，必须要先调用单例的startMonitoring方法
     [manager startMonitoring];
     //检测的结果
-    //    __block typeof(self) bself = self;
+//    __block typeof(self) bself = self;
     [manager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         
         if (status == 0 || status == -1) {
             //弹出提示框
-            //            [bself showWarningView];
-            
+//            [bself showWarningView];
             block(WYNetWorkingNotReachable);    // 没有网络
         }
         else{
-            
             block(WYNetWorkingHave);    //  移动数据 或者 WIFI 网络
         }
     }];

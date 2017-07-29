@@ -7,8 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
+@protocol BackButtonHandlerProtocol <NSObject>
+@optional
+- (BOOL)navigationShouldPopOnBackButton;
+
+@end
+
+
+
+
 typedef void (^WYBackButtonHandler)(UIViewController *vc);
-@interface UIViewController (WYKit)
+
+@interface UIViewController (WYKit) <BackButtonHandlerProtocol>
 
 /** 返回按钮回调 */
 - (void)backButtonTouched:(WYBackButtonHandler)backButtonHandler;

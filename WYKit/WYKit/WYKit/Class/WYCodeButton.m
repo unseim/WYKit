@@ -166,7 +166,7 @@
  *
  *  @return 是否是深色BOOL值
  */
--(BOOL)isDarkColor:(UIColor *)color{
+- (BOOL)isDarkColor:(UIColor *)color{
     const CGFloat *components = CGColorGetComponents(color.CGColor);
     double g = components[0] * 255 * 0.299 + components[1] * 255 * 0.587 + components[2] * 255 * 0.114;
     if (g < 192) {

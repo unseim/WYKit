@@ -120,4 +120,12 @@
 /** 获取设备联网IP地址 */
 + (NSString *)getIPAddress;
 
+/** 删除字符串中的数字 */
++ (NSString *)stringDeleteNumber:(NSString *)str;
+
+/** 数字如果前面有0，保留去掉0之后的数据 */
++ (NSString*)getTheCorrectNum:(NSString*)tempString;
+
+
+
 @end

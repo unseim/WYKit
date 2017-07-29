@@ -10,6 +10,9 @@
 
 @interface UIColor (WYWeb)
 
+/** 随即颜色 */
++ (instancetype)randomColor;
+
 /** 获取canvas用的颜色字符串 */
 - (NSString *)canvasColorString;
 

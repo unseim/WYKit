@@ -31,14 +31,14 @@ static YYCache *_dataCache;
 //  读取缓存
 + (id)readCache:(NSString *)key
 {
-    return  [_dataCache objectForKey:key];
+    return [_dataCache objectForKey:key];
 }
 
 //  获取缓存总大小
 + (void)getAllCacheSize
 {
     unsigned long long diskCache = [_dataCache.diskCache totalCost];
-    NSLog(@"%llu",diskCache);
+    NSLog(@"%llu",diskCache / 1024);
 }
 
 //  删除指定缓存

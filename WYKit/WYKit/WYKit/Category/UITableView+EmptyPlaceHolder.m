@@ -26,9 +26,4 @@
 }
 
 
-- (void) tableViewWillDisplayNeccessaryView:(UIView *) view
-{
-    
-}
-
 @end

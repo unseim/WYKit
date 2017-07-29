@@ -66,7 +66,7 @@ CGPoint beginPoint;
     self.center = CGPointMake(self.center.x + offsetX, self.center.y + offsetY);
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (self.highlighted) {
         [self sendActionsForControlEvents:UIControlEventTouchUpInside];

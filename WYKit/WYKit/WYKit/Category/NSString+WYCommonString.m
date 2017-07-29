@@ -175,7 +175,7 @@
      15         * 中国联通：China Unicom
      16         * 130,131,132,152,155,156,185,186
      17         */
-    NSString * CU = @"^((13[0-2])|(145)|(15[5-6])|(176)|(18[5,6]))\\d{8}|(1709)\\d{7}$";
+    NSString * CU = @"^((13[0-2])|(145)|(15[5-6])|(17[0,6])|(18[5,6]))\\d{8}|(1709)\\d{7}$";
     /**
      * 中国电信：China Telecom
      * 133,1349,153,180,189,177,173,181(增加)
@@ -763,5 +763,35 @@
     NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
     return [emailTest evaluateWithObject:self];
 }
+
+//  删除字符串中的数字
++ (NSString *)stringDeleteNumber:(NSString *)str
+{
+    NSMutableString *str1 = [NSMutableString stringWithString:str];
+    for (int i = 0; i < str1.length; i++) {
+        unichar c = [str1 characterAtIndex:i];
+        NSRange range = NSMakeRange(i, 1);
+        if ( c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' || c == '6' || c == '7' || c == '8' || c == '9') { //此处可以是任何字符
+            [str1 deleteCharactersInRange:range];
+            --i;
+        }
+    }
+    NSString *newstr = [NSString stringWithString:str1];
+    return newstr;
+}
+
+
+// 数字如果前面有0，保留去掉0之后的数据
++ (NSString*)getTheCorrectNum:(NSString*)tempString
+{
+    while ([tempString hasPrefix:@"0"])
+    {
+        tempString = [tempString substringFromIndex:1];
+    }
+    return tempString;
+}
+
+
+
 
 @end

@@ -285,6 +285,22 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
     return ([self isEarlierThanDate:[NSDate date]]);
 }
 
++ (int)compareWithAnotherDay:(NSString *)anotherDay
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateTime = [formatter stringFromDate:[NSDate date]];
+    NSDate *dateA = [formatter dateFromString:dateTime];
+    NSDate *dateB = [formatter dateFromString:anotherDay];
+    NSComparisonResult result = [dateA compare:dateB];
+    if (result == NSOrderedDescending) {
+        return 1;   //已过指定时间日期
+    }
+    else if (result == NSOrderedAscending) {
+        return -1;  //未过指定时间日期
+    }
+    return 0;   //时间相等
+}
 
 #pragma mark - 日期规则
 

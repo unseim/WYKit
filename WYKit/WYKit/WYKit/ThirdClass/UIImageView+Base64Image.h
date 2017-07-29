@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImageView (Base64Image)
+
 /**
  *  根据服务器返回的图片是 Base64图片还是 正常的Url加载网络图片
  *

@@ -64,28 +64,28 @@
 /** 5/5/15, 10:48 AM */
 - (NSString *)shortString;
 
-/**10:48 AM */
+/** 10:48 AM */
 - (NSString *)shortTimeString;
 
-/**5/5/15 */
+/** 5/5/15 */
 - (NSString *)shortDateString;
 
 /** May 5, 2015, 10:35:23 AM */
 - (NSString *)mediumString;
 
-/**10:35:23 AM */
+/** 10:35:23 AM */
 - (NSString *)mediumTimeString;
 
-/**May 5, 2015 */
+/** May 5, 2015 */
 - (NSString *)mediumDateString;
 
 /** May 5, 2015 at 10:35:23 AM GMT+8 */
 - (NSString *)longString;
 
-/**May 5, 2015 */
+/** May 5, 2015 */
 - (NSString *)longTimeString;
 
-/**10:35:23 AM GMT+8*/
+/** 10:35:23 AM GMT+8 */
 - (NSString *)longDateString;
 
 
@@ -145,12 +145,14 @@
 /** 判断是不是比指定日期晚 */
 - (BOOL)isLaterThanDate:(NSDate *)aDate;
 
-
 /** 判断一个日期是不是在将来 */
 - (BOOL)isInFuture;
 
 /** 判断一个日期是不是在过去 */
 - (BOOL)isInPast;
+
+/** 判断一个指定的时间是否已经过了当前时间 */
++ (int)compareWithAnotherDay:(NSString *)anotherDay;
 
 #pragma mark - 日期规则
 

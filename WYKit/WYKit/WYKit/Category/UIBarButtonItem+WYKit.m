@@ -41,7 +41,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:highImage] forState:UIControlStateHighlighted];
-    [button sizeToFit];
+//    [button sizeToFit];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     return [[self alloc] initWithCustomView:button];
 }
@@ -92,6 +92,7 @@
     [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
     [button setFrame:CGRectMake(0, 0, 35, 20)];
     button.titleLabel.font = [UIFont systemFontOfSize:17.0f];
+    [button sizeToFit];
     [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     return [[self alloc] initWithCustomView:button];
@@ -108,9 +109,11 @@
     [button setTitleColor:nomal forState:UIControlStateNormal];
     [button setTitleColor:heightcolor forState:UIControlStateHighlighted];
     [button setFrame:CGRectMake(0, 0, 35, 20)];
+    [button sizeToFit];
     button.titleLabel.font = [UIFont systemFontOfSize:17.0f];
     [button setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [button sizeToFit];
     return [[self alloc] initWithCustomView:button];
 }
 

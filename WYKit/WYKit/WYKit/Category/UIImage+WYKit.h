@@ -34,6 +34,23 @@ typedef NS_ENUM(NSUInteger, WYWatermarkDirection) {
  */
 + (UIImage *)boxblurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
 
+
+/**
+ *  本地图片高斯模糊效果处理
+ *
+ *  @param image  图片
+ *  @param blur   虚化程度
+ *
+ *  @return 虚化后的UIImage
+ */
++ (UIImage *)coreBlurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
+
+
+
+/** 生成一张毛玻璃图片 */
+- (UIImage *)blur:(UIImage*)theImage;
+
+
 /**
  *  自由拉伸一张图片
  *
@@ -113,7 +130,8 @@ typedef NS_ENUM(NSUInteger, WYWatermarkDirection) {
  *  @param completeBlock 保存成功回调
  *  @param failBlock     保存失败回调
  */
-- (void)savedPhotoAlbum:(void(^)())completeBlock failBlock:(void(^)())failBlock;
+- (void)savedPhotoAlbum:(void(^)())completeBlock
+              failBlock:(void(^)())failBlock;
 
 
 
