@@ -58,10 +58,10 @@
 - (void)showsVerticalScrollIndicator:(BOOL)hidden;
 
 /** 网页透明 */
--(void)makeTransparent;
+- (void)makeTransparent;
 
 /** 网页透明移除+阴影 */
--(void)makeTransparentAndRemoveShadow;
+- (void)makeTransparentAndRemoveShadow;
 
 
 #pragma mark 删除

@@ -9,4 +9,6 @@ pod 'YYKit'
 
 pod 'FMDB'
 
+pod 'Masonry'
+
 end

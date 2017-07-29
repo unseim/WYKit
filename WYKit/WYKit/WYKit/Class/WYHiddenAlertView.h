@@ -16,7 +16,7 @@
  *  @param message 文字
  *  @param time    时间
  */
-+(void)showMessage:(NSString *)message time:(NSTimeInterval)time;
++ (void)showMessage:(NSString *)message time:(NSTimeInterval)time;
 
 /**
  *  距离屏幕上方150
@@ -24,7 +24,7 @@
  *  @param message 文字
  *  @param time    时间
  */
-+(void)showMessage2:(NSString *)message time:(NSTimeInterval)time;
++ (void)showMessage2:(NSString *)message time:(NSTimeInterval)time;
 
 /**
  *  屏幕中心
@@ -32,7 +32,7 @@
  *  @param message 文字
  *  @param time    时间
  */
-+(void)showMessage3:(NSString *)message time:(NSTimeInterval)time;
++ (void)showMessage3:(NSString *)message time:(NSTimeInterval)time;
 
 /**
  *  自定义提示框

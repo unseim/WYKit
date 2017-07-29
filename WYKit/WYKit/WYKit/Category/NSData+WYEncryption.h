@@ -27,7 +27,6 @@
 /** Base64解密 + AES解密 */
 - (NSString *)dataBase64AndAESWithEncodedString:(NSString *)string keyData:(NSData *)keyData;
 
-
 /** 创建一个密匙(Data类的密匙) */
 - (NSData *)ctreatAKeyData;
 

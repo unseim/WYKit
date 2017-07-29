@@ -31,7 +31,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.backgroundColor = mColor;
                 [weakSelf setTitle:title forState:UIControlStateNormal];
-//                weakSelf.userInteractionEnabled = YES;
                 weakSelf.enabled = YES;
             });
         } else {
@@ -41,7 +40,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 weakSelf.backgroundColor = color;
                 [weakSelf setTitle:[NSString stringWithFormat:@"(%@) %@",timeStr,subTitle] forState:UIControlStateNormal];
-//                weakSelf.userInteractionEnabled = NO;
                 weakSelf.enabled = NO;
             });
             timeOut--;

@@ -76,14 +76,14 @@ WY_RUNTIME_CLASS(NSMutableArray_WYKit)
 
 #pragma mark - 安全操作
 
--(void)addObj:(id)i
+- (void)addObj:(id)i
 {
     if (i!=nil) {
         [self addObject:i];
     }
 }
 
--(void)addString:(NSString*)i
+- (void)addString:(NSString*)i
 {
     if (i!=nil) {
         [self addObject:i];

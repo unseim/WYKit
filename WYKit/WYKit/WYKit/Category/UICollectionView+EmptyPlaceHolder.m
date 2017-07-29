@@ -10,7 +10,8 @@
 
 @implementation UICollectionView (EmptyPlaceHolder)
 
-- (void) collectionViewDisplayView:(UIView *)displayView ifNecessaryForRowCount:(NSUInteger)rowCount
+- (void) collectionViewDisplayView:(UIView *)displayView
+            ifNecessaryForRowCount:(NSUInteger)rowCount
 {
     if (rowCount == 0) {
         self.backgroundView = displayView;

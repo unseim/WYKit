@@ -38,5 +38,11 @@
 /** 文件下载 */
 #import "WYDownloadManager.h"
 
+/** 全局侧滑返回上一个界面 */
+#import "WYTransition.h"
+
+/** 仿微信 微博弹窗 */
+#import "WYAlertSheet.h"
+
 
 #endif /* WYClass_h */

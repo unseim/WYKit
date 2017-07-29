@@ -11,7 +11,7 @@
 
 //  日志打印
 #ifdef DEBUG
-#define  NSLog(format,...) printf("\n[%s] %s [第%d行] %s\n", __TIME__,__FUNCTION__,__LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
+#define  NSLog(format,...) printf("\n[%s]  %s\n", __TIME__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
 #else
 #define NSLog(...)
 #endif

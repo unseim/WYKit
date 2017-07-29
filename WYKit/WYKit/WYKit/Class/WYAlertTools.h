@@ -126,7 +126,7 @@ destructiveButtonTitle:(NSString *)destructiveBtn
  *  @param otherBtnStyleArray   按钮样式数组（普通/特殊），alertView默认为普通样式
  
  ***注意***
- UIAlertActionStyleCancel/JXTAlertActionStyleCancel最多只能有一个，否则崩溃
+ UIAlertActionStyleCancel/WYAlertActionStyleCancel最多只能有一个，否则崩溃
  Log:
  'UIAlertController can only have one action with a style of UIAlertActionStyleCancel'
  */
@@ -162,7 +162,7 @@ destructiveButtonTitle:(NSString *)destructiveBtn
  iOS8以后，actionSheet设置有效
  
  ***注意3***
- UIAlertActionStyleCancel/JXTAlertActionStyleCancel最多只能有一个，否则崩溃
+ UIAlertActionStyleCancel/WYAlertActionStyleCancel最多只能有一个，否则崩溃
  Log:
  'UIAlertController can only have one action with a style of UIAlertActionStyleCancel'
  */

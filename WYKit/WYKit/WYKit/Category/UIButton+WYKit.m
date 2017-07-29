@@ -11,7 +11,8 @@
 @implementation UIButton (WYKit)
 
 // 设置Button文字和图片的方向和距离
-- (void)setWithtype:(WYImageAlignment)type titleAndimageRange:(CGFloat)range {
+- (void)setImagePosition:(WYImageAlignment)postion titlesPacingRange:(CGFloat)range
+{
     CGFloat space = range;
     
     CGFloat titleW = CGRectGetWidth(self.titleLabel.bounds);//titleLabel的宽度
@@ -25,7 +26,7 @@
     CGFloat titleCenterX = btnCenterX + imageW/2;//titleLabel中心点X的坐标（以按钮左上角为原点的坐标系）
     
     
-    switch (type)
+    switch (postion)
     {
         case WYImageAlignmentTop:
         {

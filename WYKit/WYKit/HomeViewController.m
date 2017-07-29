@@ -1,5 +1,4 @@
-//
-//  HomeViewController.m
+//  WYKit
 //  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
@@ -9,6 +8,7 @@
 @interface HomeViewController ()
 
 @end
+
 @implementation HomeViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -20,9 +20,7 @@
     [self.view addSubview:bu];
     [bu addTarget:self action:@selector(Mothed:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self backButtonTouched:^(UIViewController *vc) {
-        NSLog(@"不返回");
-    }];
+    
     
     
 }

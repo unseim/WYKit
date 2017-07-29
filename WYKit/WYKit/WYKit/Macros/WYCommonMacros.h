@@ -84,6 +84,8 @@
 /** 相对5.5寸屏幕高的比例进行屏幕适配 */
 #define KRealHeight6P(value)     (long)((value)/736.0f * [UIScreen mainScreen].bounds.size.height)
 
+/** 字体适配 */
+#define KFontSize(size)          (long)((KScreenWidth / 375.0f) > 1 ? size * 1.075 : size)
 
 /** 十六进制颜色 */
 #define KRGB16HEX(rgbValue)     [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]

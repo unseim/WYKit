@@ -1,12 +1,14 @@
 platform :ios, ‘8.0’
 target ‘WYKit’ do
-
-# WYKit 中所用到的第三方库
-
-pod ‘AFNetworking’
-
-pod 'YYKit'
-
-pod 'FMDB'
-
+    
+    # WYKit 中所用到的第三方库
+    
+    pod ‘AFNetworking’
+    
+    pod 'YYKit'
+    
+    pod 'FMDB'
+    
+    pod 'Masonry'
+    
 end

@@ -131,26 +131,13 @@
 /** email 转换为 913******@qq.com 形式 */
 - (NSString * _Nonnull)emailChangeToPrivacy;
 
-/**
- *  计算字符串宽度
- *
- *  @param width 字符串的宽度
- *  @param font  字体大小
- *
- *  @return 字符串的尺寸
- */
-- (CGSize)heightWithWidth:(CGFloat)width andFont:(CGFloat)font;
+/** 计算字符串宽度 */
+- (CGSize)heightWithWidth:(CGFloat)width
+                  andFont:(CGFloat)font;
 
-/**
- *  计算字符串高度 （多行）
- *
- *  @param height 字符串的高度
- *  @param font  字体大小
- *
- *  @return 字符串的尺寸
- */
-- (CGSize)widthWithHeight:(CGFloat)height andFont:(CGFloat)font;
-
+/** 计算字符串高度 （多行）*/
+- (CGSize)widthWithHeight:(CGFloat)height
+                  andFont:(CGFloat)font;
 
 
 

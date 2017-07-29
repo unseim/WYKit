@@ -11,6 +11,8 @@
 @interface UITextView (WYUitls)
 
 /** 设置行距及字体大小 */
-- (void)setText:(NSString*)text fontSize:(CGFloat)size lineSpacing:(CGFloat)lineSpacing;
+- (void)setText:(NSString*)text
+       fontSize:(CGFloat)size
+    lineSpacing:(CGFloat)lineSpacing;
 
 @end

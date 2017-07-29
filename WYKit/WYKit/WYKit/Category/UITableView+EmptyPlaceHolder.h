@@ -11,9 +11,8 @@
 @interface UITableView (EmptyPlaceHolder)
 
 /** 没有数据的时候TableView显示的View */
-- (void)tableViewDisplayView:(UIView *)displayView ifNecessaryForRowCount:(NSUInteger)rowCount;
+- (void)tableViewDisplayView:(UIView *)displayView
+      ifNecessaryForRowCount:(NSUInteger)rowCount;
 
-
-- (void)tableViewWillDisplayNeccessaryView:(UIView *) view;
 
 @end

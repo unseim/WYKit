@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, WYImageAlignment)
  *  @param type     图片所在的方向(上、下、左、右)
  *  @param range    图片和文字的距离
  */
-- (void)setWithtype:(WYImageAlignment)type titleAndimageRange:(CGFloat)range;
+- (void)setImagePosition:(WYImageAlignment)postion titlesPacingRange:(CGFloat)range;
 
 
 /**

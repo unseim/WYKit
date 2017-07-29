@@ -31,7 +31,7 @@
     return self;
 }
 
--(void)setIsWordLimit:(BOOL)isWordLimit
+- (void)setIsWordLimit:(BOOL)isWordLimit
 {
     if (isWordLimit == YES) {
         ///字数改变
@@ -42,7 +42,7 @@
     }
 }
 
--(void)textFiledEditChanged:(NSNotification *)obj{
+- (void)textFiledEditChanged:(NSNotification *)obj{
     UITextField *textField = self.field;
     
     NSInteger length_cn = 0;
@@ -96,12 +96,12 @@
 }
 
 
--(void)setCnInt:(NSInteger)cnInt
+- (void)setCnInt:(NSInteger)cnInt
 {
     _cnInt = cnInt;
 }
 
--(void)setEnInt:(NSInteger)enInt
+- (void)setEnInt:(NSInteger)enInt
 {
     _enInt = enInt;
 }
@@ -266,7 +266,7 @@
      15         * 中国联通：China Unicom
      16         * 130,131,132,152,155,156,185,186
      17         */
-    NSString * CU = @"^((13[0-2])|(145)|(15[5-6])|(176)|(18[5,6]))\\d{8}|(1709)\\d{7}$";
+    NSString * CU = @"^((13[0-2])|(145)|(15[5-6])|(17[0,6])|(18[5,6]))\\d{8}|(1709)\\d{7}$";
     /**
      * 中国电信：China Telecom
      * 133,1349,153,180,189,177,173,181(增加)

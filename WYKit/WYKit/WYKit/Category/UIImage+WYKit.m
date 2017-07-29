@@ -25,7 +25,8 @@ static const void *failBlockKey = &failBlockKey;
 @implementation UIImage (WYKit)
 
 //  图片压缩
-- (UIImage*)imageByScalingAndCroppingForSize:(CGSize)targetSize {
+- (UIImage*)imageByScalingAndCroppingForSize:(CGSize)targetSize
+{
     UIImage *sourceImage = self;
     UIImage *newImage = nil;
     CGSize imageSize = sourceImage.size;
@@ -123,8 +124,47 @@ static const void *failBlockKey = &failBlockKey;
     return returnImage;
 }
 
+// 高斯模糊效果
++ (UIImage *)coreBlurImage:(UIImage *)image withBlurNumber:(CGFloat)blur
+{
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *inputImage= [CIImage imageWithCGImage:image.CGImage];
+    //设置filter
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:inputImage forKey:kCIInputImageKey]; [filter setValue:@(blur) forKey: @"inputRadius"];
+    //模糊图片
+    CIImage *result=[filter valueForKey:kCIOutputImageKey];
+    CGImageRef outImage=[context createCGImage:result fromRect:[result extent]];
+    UIImage *blurImage=[UIImage imageWithCGImage:outImage];
+    CGImageRelease(outImage);
+    return blurImage;
+}
+
+
+
+//  生成一张毛玻璃图片
+- (UIImage*)blur:(UIImage*)theImage
+{
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *inputImage = [CIImage imageWithCGImage:theImage.CGImage];
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:inputImage forKey:kCIInputImageKey];
+    [filter setValue:[NSNumber numberWithFloat:15.0f] forKey:@"inputRadius"];
+    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+    
+    CGImageRef cgImage = [context createCGImage:result fromRect:[inputImage extent]];
+    
+    UIImage *returnImage = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    
+    return returnImage;
+}
+
+
 //  自由拉伸一张图片
-+ (UIImage *)resizedImageWithName:(NSString *)name left:(CGFloat)left top:(CGFloat)top {
++ (UIImage *)resizedImageWithName:(NSString *)name left:(CGFloat)left top:(CGFloat)top
+{
     UIImage *image = [UIImage imageNamed:name];
     return [image stretchableImageWithLeftCapWidth:image.size.width * left topCapHeight:image.size.height * top];
 }
@@ -142,7 +182,8 @@ static const void *failBlockKey = &failBlockKey;
 
 
 //  根据图片和颜色返回一张加深颜色以后的图片
-+ (UIImage *)colorizeImage:(UIImage *)baseImage withColor:(UIColor *)theColor {
++ (UIImage *)colorizeImage:(UIImage *)baseImage withColor:(UIColor *)theColor
+{
     
     UIGraphicsBeginImageContext(CGSizeMake(baseImage.size.width*2, baseImage.size.height*2));
     
@@ -173,7 +214,8 @@ static const void *failBlockKey = &failBlockKey;
 
 
 //  自由改变Image的大小
-- (UIImage *)cropImageWithSize:(CGSize)size {
+- (UIImage *)cropImageWithSize:(CGSize)size
+{
     
     float scale = self.size.width/self.size.height;
     CGRect rect = CGRectMake(0, 0, 0, 0);
@@ -467,22 +509,22 @@ static const void *failBlockKey = &failBlockKey;
 }
 
 // ********** 模拟成员变量 ********** //
--(void (^)())failBlock
+- (void (^)())failBlock
 {
     return objc_getAssociatedObject(self, failBlockKey);
 }
 
--(void)setFailBlock:(void (^)())failBlock
+- (void)setFailBlock:(void (^)())failBlock
 {
     objc_setAssociatedObject(self, failBlockKey, failBlock, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
--(void (^)())completeBlock
+- (void (^)())completeBlock
 {
     return objc_getAssociatedObject(self, completeBlockKey);
 }
 
--(void)setCompleteBlock:(void (^)())completeBlock
+- (void)setCompleteBlock:(void (^)())completeBlock
 {
     objc_setAssociatedObject(self, completeBlockKey, completeBlock, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -675,7 +717,8 @@ static const void *failBlockKey = &failBlockKey;
 /**
  *  根据CGImageRef来创建一个ARGBBitmapContext
  */
-- (CGContextRef)ARGBBitmapContextFromImage:(CGImageRef) inImage {
+- (CGContextRef)ARGBBitmapContextFromImage:(CGImageRef) inImage
+{
     CGContextRef    context = NULL;
     CGColorSpaceRef colorSpace;
     void *          bitmapData;
