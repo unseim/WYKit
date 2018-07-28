@@ -1,7 +1,7 @@
 //
 //  UIButton+WYCountdown.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -12,7 +12,6 @@
 
 /**
  *  倒计时按钮
- *
  *  @param timeLine 倒计时总时间
  *  @param title    还没倒计时的title
  *  @param subTitle 倒计时中的子名字，如时、分

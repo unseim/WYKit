@@ -1,7 +1,7 @@
 //
 //  NSString+WYCommonString.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -39,6 +39,12 @@
 
 /** 判断是否为手机号码 */
 + (BOOL)isValidPhoneWithString:(NSString *)phoneString;
+
+/** 把手机号第4-7位变成星号 */
++ (NSString *)phoneNumToAsterisk:(NSString*)phoneNum;
+
+/** 把手机号第4-11位变成星号 */
++ (NSString *)idCardToAsterisk:(NSString *)idCardNum;
 
 /** 判断字符串是否包含空格 */
 + (BOOL)isBlank:(NSString *)str;
@@ -126,6 +132,13 @@
 /** 数字如果前面有0，保留去掉0之后的数据 */
 + (NSString*)getTheCorrectNum:(NSString*)tempString;
 
+/** 拼接字符串 */
++ (NSString *)addString:(NSString *)str;
 
+/** 获取当前时间戳 */
++ (NSString *)currentTimeStr;
+
+/** UIimage装base64的字符串 */
++ (NSString*)UIImageToBase64Str:(UIImage*)image;
 
 @end

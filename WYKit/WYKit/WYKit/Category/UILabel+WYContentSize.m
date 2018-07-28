@@ -1,7 +1,7 @@
 //
 //  UILabel+WYContentSize.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -30,6 +30,8 @@
     CGSize size = [self.text boundingRectWithSize:CGSizeMake(self.bounds.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : self.font} context:nil].size;
     return (size.height > self.frame.size.height);
 }
+
+
 
 //  设置行距 字间距
 - (void)setText:(NSString*)text

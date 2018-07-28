@@ -1,79 +1,142 @@
 //
 //  UIView+WYRadius.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
 #import "UIView+WYRadius.h"
 #import <objc/runtime.h>
 
-static NSOperationQueue *wy_operationQueue;
-static char wy_operationKey;
-
+static NSOperationQueue *operationQueue;
+static char operationKey;
 @implementation UIView (RoundedCorner)
 
-- (void)setImageWithCornerRadius:(CGFloat)radius image:(UIImage *)image {
-    [self setImageWithCornerRadius:radius image:image borderColor:nil borderWidth:0 backgroundColor:nil contentMode:UIViewContentModeScaleAspectFill];
+
+/** 设置圆角 */
+- (void)setCornerRadius:(CGFloat)radius
+{
+    [self setWYRadius:WYRadiusMake(radius, radius, radius, radius)
+                image:nil
+          borderColor:nil
+          borderWidth:0
+      backgroundColor:nil
+          contentMode:UIViewContentModeScaleAspectFill];
 }
 
-- (void)setImageWithWYRadius:(WYRadius)radius image:(UIImage *)image {
-    [self setImageWithWYRadius:radius image:image borderColor:nil borderWidth:0 backgroundColor:nil contentMode:UIViewContentModeScaleAspectFill];
+/** 设置圆角 */
+- (void)setWYRadius:(WYRadius)radius
+{
+    [self setWYRadius:radius
+                image:nil
+          borderColor:nil
+          borderWidth:0
+      backgroundColor:self.backgroundColor
+          contentMode:UIViewContentModeScaleAspectFill];
 }
 
-- (void)setImageWithCornerRadius:(CGFloat)radius image:(UIImage *)image contentMode:(UIViewContentMode)contentMode {
-    [self setImageWithCornerRadius:radius image:image borderColor:nil borderWidth:0 backgroundColor:nil contentMode:contentMode];
+/** 设置边框 */
+- (void)setBorderColor:(UIColor *)borderColor
+           borderWidth:(CGFloat)borderWidth
+{
+    [self setWYRadius:WYRadiusMake(0, 0, 0, 0)
+                image:nil
+          borderColor:borderColor
+          borderWidth:borderWidth
+      backgroundColor:self.backgroundColor
+          contentMode:UIViewContentModeScaleAspectFill];
 }
 
-- (void)setImageWithWYRadius:(WYRadius)radius image:(UIImage *)image contentMode:(UIViewContentMode)contentMode {
-    [self setImageWithWYRadius:radius image:image borderColor:nil borderWidth:0 backgroundColor:nil contentMode:contentMode];
+
+/**设置圆角边框*/
+- (void)setCornerRadius:(CGFloat)radius
+            borderColor:(UIColor *)borderColor
+            borderWidth:(CGFloat)borderWidth
+{
+    [self setWYRadius:WYRadiusMake(radius, radius, radius, radius)
+                image:nil
+          borderColor:borderColor
+          borderWidth:borderWidth
+      backgroundColor:self.backgroundColor
+          contentMode:UIViewContentModeScaleAspectFill];
 }
 
-- (void)setImageWithCornerRadius:(CGFloat)radius borderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth backgroundColor:(UIColor *)backgroundColor {
-    [self setImageWithCornerRadius:radius image:nil borderColor:borderColor borderWidth:borderWidth backgroundColor:backgroundColor contentMode:UIViewContentModeScaleAspectFill];
+/** 设置圆角边框 */
+- (void)setWYRadius:(WYRadius)radius
+        borderColor:(UIColor *)borderColor
+        borderWidth:(CGFloat)borderWidth
+{
+    [self setWYRadius:radius
+                image:nil
+          borderColor:borderColor
+          borderWidth:borderWidth
+      backgroundColor:self.backgroundColor
+          contentMode:UIViewContentModeScaleAspectFill];
 }
 
-- (void)setImageWithWYRadius:(WYRadius)radius borderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth backgroundColor:(UIColor *)backgroundColor {
-    [self setImageWithWYRadius:radius image:nil borderColor:borderColor borderWidth:borderWidth backgroundColor:backgroundColor contentMode:UIViewContentModeScaleAspectFill];
+
+
+
++ (void)load
+{
+    operationQueue = [[NSOperationQueue alloc] init];
 }
 
-- (void)setImageWithCornerRadius:(CGFloat)radius image:(UIImage *)image borderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth backgroundColor:(UIColor *)backgroundColor contentMode:(UIViewContentMode)contentMode {
-    [self setImageWithWYRadius:WYRadiusMake(radius, radius, radius, radius) image:image borderColor:borderColor borderWidth:borderWidth backgroundColor:backgroundColor contentMode:contentMode];
-}
-
-+ (void)load {
-    wy_operationQueue = [[NSOperationQueue alloc] init];
-}
-
-- (NSOperation *)wy_getOperation {
-    id operation = objc_getAssociatedObject(self, &wy_operationKey);
+- (NSOperation *)getOperation
+{
+    id operation = objc_getAssociatedObject(self, &operationKey);
     return operation;
 }
 
-- (void)wy_setImageWithOperation:(NSOperation *)operation {
-    objc_setAssociatedObject(self, &wy_operationKey, operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setCornerRadiusWithOperation:(NSOperation *)operation {
+    objc_setAssociatedObject(self, &operationKey, operation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)wy_cancelOperation {
-    NSOperation *operation = [self wy_getOperation];
+- (void)cancelOperation
+{
+    NSOperation *operation = [self getOperation];
     [operation cancel];
-    [self wy_setImageWithOperation:nil];
+    [self setCornerRadiusWithOperation:nil];
 }
 
-- (void)setImageWithWYRadius:(WYRadius)radius image:(UIImage *)image borderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth backgroundColor:(UIColor *)backgroundColor contentMode:(UIViewContentMode)contentMode {
-    [self wy_cancelOperation];
+- (void)setWYRadius:(WYRadius)radius
+              image:(UIImage *)image
+        borderColor:(UIColor *)borderColor
+        borderWidth:(CGFloat)borderWidth
+    backgroundColor:(UIColor *)backgroundColor
+        contentMode:(UIViewContentMode)contentMode
+{
+    [self cancelOperation];
     
-    [self setImageWithWYRadius:radius image:image borderColor:borderColor borderWidth:borderWidth backgroundColor:backgroundColor contentMode:contentMode size:CGSizeZero forState:UIControlStateNormal completion:nil];
+    [self setWYRadius:radius
+                image:image
+          borderColor:borderColor
+          borderWidth:borderWidth
+      backgroundColor:backgroundColor
+          contentMode:contentMode
+                 size:CGSizeZero
+             forState:UIControlStateNormal
+           completion:nil];
 }
 
-- (void)setImageWithWYRadius:(WYRadius)radius image:(UIImage *)image borderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth backgroundColor:(UIColor *)backgroundColor contentMode:(UIViewContentMode)contentMode size:(CGSize)size forState:(UIControlState)state completion:(WYRoundedCornerCompletionBlock)completion {
+
+- (void)setWYRadius:(WYRadius)radius
+              image:(UIImage *)image
+        borderColor:(UIColor *)borderColor
+        borderWidth:(CGFloat)borderWidth
+    backgroundColor:(UIColor *)backgroundColor
+        contentMode:(UIViewContentMode)contentMode
+               size:(CGSize)size
+           forState:(UIControlState)state
+         completion:(WYRoundedCornerCompletionBlock)completion
+{
     
     __block CGSize _size = size;
     
     __weak typeof(self) weakSelf = self;
     NSBlockOperation *blockOperation = [NSBlockOperation blockOperationWithBlock:^{
         
-        if ([[weakSelf wy_getOperation] isCancelled]) return;
+        if ([[weakSelf getOperation] isCancelled]) return;
         
         if (CGSizeEqualToSize(_size, CGSizeZero)) {
             dispatch_sync(dispatch_get_main_queue(), ^{
@@ -85,7 +148,7 @@ static char wy_operationKey;
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             __strong typeof(weakSelf) self = weakSelf;
-            if ([[self wy_getOperation] isCancelled]) return;
+            if ([[self getOperation] isCancelled]) return;
             self.frame = CGRectMake(pixel(self.frame.origin.x), pixel(self.frame.origin.y), pixelSize.width, pixelSize.height);
             if ([self isKindOfClass:[UIImageView class]]) {
                 ((UIImageView *)self).image = currentImage;
@@ -96,13 +159,16 @@ static char wy_operationKey;
             } else {
                 self.layer.contents = (__bridge id _Nullable)(currentImage.CGImage);
             }
+            self.layer.masksToBounds = YES;
+            self.clipsToBounds = YES;
             if (completion) completion(currentImage);
         }];
     }];
     
-    [self wy_setImageWithOperation:blockOperation];
-    [wy_operationQueue addOperation:blockOperation];
+    [self setCornerRadiusWithOperation:blockOperation];
+    [operationQueue addOperation:blockOperation];
 }
+
 
 static inline CGFloat pixel(CGFloat num) {
     CGFloat unit = 1.0 / [UIScreen mainScreen].scale;

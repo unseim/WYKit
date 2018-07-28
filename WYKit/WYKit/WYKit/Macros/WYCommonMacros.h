@@ -1,7 +1,7 @@
 //
 //  WYCommonMacros.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -14,6 +14,11 @@
 #define isSimulatorEquipment TARGET_IPHONE_SIMULATOR
 #endif
 
+/** 判断当前设备是否是iPhone */
+#define isiPhone (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+
+/** 判断当前设备是否是iPad */
+#define isiPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
 /** 判断是否是4.0寸的设备 */
 #define isPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
@@ -34,8 +39,20 @@
 /** 当前系统版本 */
 #define IOS_SYSTEM_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 
-/** iOS 及更高版本 */
+/** iOS7 及更高版本 */
 #define iOS7 (IOS_SYSTEM_VERSION >= 7.0)
+
+/** iOS8 及更高版本 */
+#define iOS8 (IOS_SYSTEM_VERSION >= 8.0)
+
+/** iOS9 及更高版本 */
+#define iOS9 (IOS_SYSTEM_VERSION >= 9.0)
+
+/** iOS10 及更高版本 */
+#define iOS10 (IOS_SYSTEM_VERSION >= 10.0)
+
+/** iOS11 及更高版本 */
+#define iOS11 (IOS_SYSTEM_VERSION >= 11.0)
 
 
 /// 常用文件路径
@@ -47,7 +64,7 @@
 /** 弱引用 */
 #define WYWeakSelf      __weak typeof(self)     weakSelf   =  self;
 
-/** Block引用 */
+/** Block 引用 */
 #define WYBlockSelf     __block typeof(self)    blockSelf  =  self;
 
 /** 强引用 */
@@ -61,28 +78,47 @@
 #define KViewHeight              self.frame.size.height
 
 /** 整个屏幕宽 */
-#define KScreenWidth             [UIScreen mainScreen].bounds.size.width
+#define KScreenWidth             ((([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait) || ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)) ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)
 
 /** 整个屏幕高 */
-#define KScreenHeight            [UIScreen mainScreen].bounds.size.height
+#define KScreenHeight            ((([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait) || ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
+
+/** 是否是iPhoneX */
+#define iPhoneX                  (isPhone && KScreenHeight == 812)
+
+/** 导航栏高度 */
+#define KNaviHeight              (iPhoneX ? 88 : 64)
+
+/** TabBar高度 */
+#define KTabBarHeight            (iPhoneX ? 83 : 49)
+
+/** iPhoneX 底部多余的高度 */
+#define KBottomHeight            (iPhoneX ? 34 : 0)
+
+/** iPhoneX 顶部刘海多余的高度 */
+#define KTopHeight               (iPhoneX ? 24 : 0)
+
+/** 针对iPhoneX 高度作出的约束规范 */
+#define KRealHeight              (long)(KScreenHeight > 736 ? 736 : KScreenHeight)
 
 /** 相对4.0寸屏幕宽的自动布局 */
 #define KRealWidth5(value)       (long)((value)/320.0f * [UIScreen mainScreen].bounds.size.width)
 
 /** 相对4.0寸屏幕高的比例进行屏幕适配 */
-#define KRealHeight5(value)      (long)((value)/568.0f * [UIScreen mainScreen].bounds.size.height)
+#define KRealHeight5(value)      (long)((value)/568.0f * KRealHeight)
 
 /** 相对4.7寸屏幕宽的比例进行屏幕适配 */
 #define KRealWidth6(value)       (long)((value)/375.0f * [UIScreen mainScreen].bounds.size.width)
 
 /** 相对4.7寸屏幕高的比例进行屏幕适配 */
-#define KRealHeight6(value)      (long)((value)/667.0f * [UIScreen mainScreen].bounds.size.height)
+#define KRealHeight6(value)      (long)((value)/667.0f * KRealHeight)
 
 /** 相对5.5寸屏幕宽的比例进行屏幕适配 */
 #define KRealWidth6P(value)      (long)((value)/414.0f * [UIScreen mainScreen].bounds.size.width)
 
 /** 相对5.5寸屏幕高的比例进行屏幕适配 */
-#define KRealHeight6P(value)     (long)((value)/736.0f * [UIScreen mainScreen].bounds.size.height)
+#define KRealHeight6P(value)     (long)((value)/736.0f * KRealHeight)
+
 
 /** 字体适配 */
 #define KFontSize(size)          (long)((KScreenWidth / 375.0f) > 1 ? size * 1.075 : size)
@@ -116,7 +152,11 @@
 #define KFileManager            [NSFileManager defaultManager]
 
 /** UIApplication */
+#define KApplication            [UIApplication sharedApplication]
+
+/** UIApplicationDelegate */
 #define KApplicationDelegate    [[UIApplication sharedApplication] delegate]
+
 
 
 /** 加载 Bundle 里面的图片 */

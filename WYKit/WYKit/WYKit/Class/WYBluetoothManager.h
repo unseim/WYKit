@@ -1,7 +1,7 @@
 //
 //  WYBluetoothManager.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-typedef NS_ENUM(NSUInteger, BLESTATUE)
-{
+typedef NS_ENUM(NSUInteger, BLESTATUE) {
+    
     BLESTATUE_UNKNOW = 0,     //未知
     BLESTATUE_RESETTING,      //重置中
     BLESTATUE_UNSUPPORT,      //不支持

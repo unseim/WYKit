@@ -1,7 +1,7 @@
 //
 //  UIImageView+WYCornerRadius.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -12,13 +12,12 @@
 const char kProcessedImage;
 
 @interface UIImageView ()
-@property (assign, nonatomic) CGFloat wyRadius;
-@property (assign, nonatomic) UIRectCorner roundingCorners;
-@property (assign, nonatomic) CGFloat wyBorderWidth;
-@property (strong, nonatomic) UIColor *wyBorderColor;
-@property (assign, nonatomic) BOOL wyHadAddObserver;
-@property (assign, nonatomic) BOOL wyIsRounding;
-
+@property (nonatomic, assign) CGFloat wyRadius;
+@property (nonatomic, assign) UIRectCorner roundingCorners;
+@property (nonatomic, assign) CGFloat wyBorderWidth;
+@property (nonatomic, strong) UIColor *wyBorderColor;
+@property (nonatomic, assign) BOOL wyHadAddObserver;
+@property (nonatomic, assign) BOOL wyIsRounding;
 @end
 
 

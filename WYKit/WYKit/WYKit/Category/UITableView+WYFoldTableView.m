@@ -1,7 +1,7 @@
 //
 //  UITableView+WYFoldTableView.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -113,17 +113,6 @@ static const char WWFoldStateKey = '\0';
         method_exchangeImplementations(orig, new);
     }else{
         NSLog(@"swizz instance method failed: %s", sel_getName(methodOrig));
-    }
-}
-
-+ (void)swizzClassMethod:(SEL)methodOrig withMethod:(SEL)methodNew
-{
-    Method orig = class_getClassMethod(self, methodOrig);
-    Method new = class_getClassMethod(self, methodNew);
-    if(orig && new){
-        method_exchangeImplementations(orig, new);
-    }else{
-        NSLog(@"swizz class method failed: %s", sel_getName(methodOrig));
     }
 }
 

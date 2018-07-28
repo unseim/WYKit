@@ -1,7 +1,7 @@
 //
 //  WYCategory.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -11,11 +11,11 @@
 
 #import "UITextView+WYUitls.h"
 
+#import "UITextView+WYKit.h"
+
 #import "NSString+WYCommonString.h"
 
 #import "UIButton+WYKit.h"
-
-#import "UIButton+WYDrag.h"
 
 #import "UIButton+WYCountdown.h"
 
@@ -41,10 +41,6 @@
 
 #import "NSString+Hash.h"
 
-#import "UITableView+EmptyPlaceHolder.h"
-
-#import "UICollectionView+EmptyPlaceHolder.h"
-
 #import "NSData+WYEncryption.h"
 
 #import "NSMutableArray+WYKit.h"
@@ -69,8 +65,15 @@
 
 #import "UITableView+WYFoldTableView.h"
 
-#import "UINavigationController+WYPopGesture.h"
-
 #import "UILabel+WYAttributeTextTapAction.h"
+
+#import "UIImage+WaterMark.h"
+
+#import "UITableViewCell+Reusable.h"
+
+#import "UIImage+RemoteSize.h"
+
+#import "UICollectionView+DynamicCacheHeightLayoutCell.h"
+
 
 #endif /* WYCategory_h */

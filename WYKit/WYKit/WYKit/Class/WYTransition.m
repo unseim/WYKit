@@ -1,7 +1,7 @@
 //
-//  NSArray+WYKit.h
+//  WYTransition.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -13,7 +13,7 @@
 //设置一个默认的全局使用的type，默认是普通拖返模式
 static WYTransitionGestureRecognizerType __WYTransitionGestureRecognizerType = WYTransitionGestureRecognizerTypePan;
 
-#pragma mark - 交换方法
+#pragma mark - hook大法
 //静态就交换静态，实例方法就交换实例方法
 void __WYTransition_Swizzle(Class c, SEL origSEL, SEL newSEL)
 {
@@ -94,19 +94,19 @@ void __WYTransition_Swizzle(Class c, SEL origSEL, SEL newSEL)
 @end
 
 #pragma mark - UIView category implementation
-NSString * const kWYTransition_UIView_DisableTransition = @"__WYTransition_UIView_DisableTransition";
+NSString * const kWYTransition_UIView_DisableWYTransition = @"__WYTransition_UIView_DisableWYTransition";
 @implementation UIView(__WYTransition)
 
-- (BOOL)disableTransition
+- (BOOL)disableWYTransition
 {
-    return [objc_getAssociatedObject(self, &kWYTransition_UIView_DisableTransition) boolValue];
+    return [objc_getAssociatedObject(self, &kWYTransition_UIView_DisableWYTransition) boolValue];
 }
 
-- (void)setDisableTransition:(BOOL)disableTransition
+- (void)setDisableWYTransition:(BOOL)disableWYTransition
 {
-    [self willChangeValueForKey:kWYTransition_UIView_DisableTransition];
-    objc_setAssociatedObject(self, &kWYTransition_UIView_DisableTransition, @(disableTransition), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self didChangeValueForKey:kWYTransition_UIView_DisableTransition];
+    [self willChangeValueForKey:kWYTransition_UIView_DisableWYTransition];
+    objc_setAssociatedObject(self, &kWYTransition_UIView_DisableWYTransition, @(disableWYTransition), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self didChangeValueForKey:kWYTransition_UIView_DisableWYTransition];
 }
 
 @end
@@ -222,21 +222,21 @@ NSString * const k__WYTransition_GestureRecognizer = @"__WYTransition_GestureRec
     }
     
     UIView* view = recognizer.view;
-    if (view.disableTransition) {
+    if (view.disableWYTransition) {
         return NO;
     }
     CGPoint loc = [recognizer locationInView:view];
     UIView* subview = [view hitTest:loc withEvent:nil];
     UIView *superView = subview;
     while (superView!=view) {
-        if (superView.disableTransition) { //这个view忽略了拖返
+        if (superView.disableWYTransition) { //这个view忽略了拖返
             return NO;
         }
         superView = superView.superview;
     }
     
     //普通拖曳模式，如果开始方向不对即不启用
-    if (__WYTransitionGestureRecognizerType == WYTransitionGestureRecognizerTypePan){
+    if (__WYTransitionGestureRecognizerType==WYTransitionGestureRecognizerTypePan){
         CGPoint velocity = [recognizer velocityInView:navVC.view];
         if(velocity.x<=0) {
             //NSLog(@"不是右滑的");
@@ -257,10 +257,10 @@ NSString * const k__WYTransition_GestureRecognizer = @"__WYTransition_GestureRec
 }
 @end
 
-@implementation UINavigationController(DisableTransition)
+@implementation UINavigationController(DisableWYTransition)
 
 #pragma mark - outcall
-- (void)enabledTransition:(BOOL)enabled
+- (void)enabledWYTransition:(BOOL)enabled
 {
     self.__WYTransition_panGestureRecognizer.enabled = enabled;
 }
@@ -269,7 +269,7 @@ NSString * const k__WYTransition_GestureRecognizer = @"__WYTransition_GestureRec
 
 @implementation WYTransition
 
-+ (void)validatePanPackWithTransitionGestureRecognizerType:(WYTransitionGestureRecognizerType)type
++ (void)validatePanPackWithWYTransitionGestureRecognizerType:(WYTransitionGestureRecognizerType)type
 {
     //IOS7以下不可用
     if ([[[UIDevice currentDevice] systemVersion]floatValue]<7.0) {
@@ -319,3 +319,5 @@ NSString * const k__WYTransition_GestureRecognizer = @"__WYTransition_GestureRec
 }
 
 @end
+
+

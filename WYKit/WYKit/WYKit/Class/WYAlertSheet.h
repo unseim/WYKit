@@ -1,24 +1,42 @@
 //
 //  WYAlertSheet.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
 
 #import <UIKit/UIKit.h>
 
-@interface WYAlertSheet : UIView
+typedef void(^WYButtonBlock)(NSInteger index, BOOL cancle);
 
-/** 点击回调 */
-@property (nonatomic, copy) void (^clickAlertSheet)(NSInteger clickIndex);
+@interface WYAlertSheet : UIViewController
 
-/** 初始化弹窗 */
-- (instancetype)initWithtitleArr:(NSArray *)titleArr;
+/* 此处借用了系统的title属性作为WYAlertController的提醒标题 */
+/* 重置按钮的高度 */ // 默认为5.5inch:55、 4.7inch:53、 4.0inch:50
+@property (nonatomic, assign) CGFloat rowHeight;
 
-/** 显示弹窗 */
-- (void)show;
+/** 构造方法（必须实现的方法） */
++ (_Nonnull instancetype)alertControllerWithArray:(nonnull NSArray <NSString *> *)confirmArray;
 
+/** 执行点击事件的block（必须实现的方法） */
+- (void)addConfirmButtonAction:(nullable WYButtonBlock)block;
+
+/** 设置第index行的按钮的颜色（可选实现的方法） 默认：[UIColor colorWithWhite:0.2 alpha:1.0] */
+- (void)setColor:(nonnull UIColor *)color withIndex:(NSInteger)index;
+
+/** 设置第index行的按钮的字体（可选实现的方法） 默认：17 */
+- (void)setFont:(nonnull UIFont *)font withIndex:(NSInteger)index;
+
+/**
+ 重置取消按钮的文字内容和颜色字体（可选实现的方法）
+ @param title 默认：取消
+ @param font  默认：17
+ @param color 默认：[UIColor colorWithWhite:0.2 alpha:1.0]
+ */
+- (void)setCancleButtonTitle:(nonnull NSString *)title
+                        font:(nonnull UIFont *)font
+                       color:(nonnull UIColor *)color;
 
 
 @end

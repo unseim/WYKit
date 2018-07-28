@@ -1,7 +1,7 @@
 //
 //  UILabel+WYAttributeTextTapAction.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -326,7 +326,7 @@
         NSRange range = NSRangeFromString([[self.effectDic allKeys] firstObject]);
         
         if (status) {
-            [subAtt addAttribute:NSBackgroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0, subAtt.string.length)];
+//            [subAtt addAttribute:NSBackgroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0, subAtt.string.length)];
             
             [attStr replaceCharactersInRange:range withAttributedString:subAtt];
         }else {

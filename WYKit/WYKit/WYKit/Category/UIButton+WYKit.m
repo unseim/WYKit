@@ -1,7 +1,7 @@
 //
 //  UIButton+WYKit.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -59,13 +59,13 @@
 
 
 //  设置带图片的button （带方法）
-+ (instancetype)setButtonWithTitletext:title
-                       nomaltitleColor:(UIColor *)nomalColor
-                 HighlightedtitleColor:(UIColor *)hiehlightedColor
-                            nomalImage:(NSString *)nomalImg
-                      HiehlightedImage:(NSString *)hiehlightedImg
-                       AndButtonTarget:(id)target
-                         buttonSelectd:(SEL)seleted
++ (instancetype)buttonWithTitletext:title
+                    nomalTitleColor:(UIColor *)nomalColor
+              highlightedTitleColor:(UIColor *)hiehlightedColor
+                         nomalImage:(NSString *)nomalImg
+                   hiehlightedImage:(NSString *)hiehlightedImg
+                             target:(id)target
+                             action:(SEL)action
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:title forState:UIControlStateNormal];
@@ -73,16 +73,16 @@
     [button setTitleColor:hiehlightedColor forState:UIControlStateHighlighted];
     [button setImage:[UIImage imageNamed:nomalImg] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:hiehlightedImg] forState:UIControlStateHighlighted];
-    [button addTarget:target action:seleted forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     return button;
 }
 
 //  设置带图片的button （不带方法）
-+ (instancetype)setButtonWithTitletext:(NSString *)title
-                       nomaltitleColor:(UIColor *)nomalColor
-                 HighlightedtitleColor:(UIColor *)hiehlightedColor
-                            nomalImage:(NSString *)nomalImg
-                      HiehlightedImage:(NSString *)hiehlightedImg
++ (instancetype)buttonWithTitletext:(NSString *)title
+                    nomalTitleColor:(UIColor *)nomalColor
+              highlightedTitleColor:(UIColor *)hiehlightedColor
+                         nomalImage:(NSString *)nomalImg
+                   hiehlightedImage:(NSString *)hiehlightedImg
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:title forState:UIControlStateNormal];
@@ -95,8 +95,8 @@
 }
 
 // 只有图片的button
-+ (instancetype)setButtonWithnomalImage:(NSString *)nomalImg
-                       HiehlightedImage:(NSString *)hiehlightedImg
++ (instancetype)buttonWithnomalImage:(NSString *)nomalImg
+                    hiehlightedImage:(NSString *)hiehlightedImg
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:nomalImg] forState:UIControlStateNormal];
@@ -106,8 +106,8 @@
 }
 
 // 带图片按下状态的button
-+ (instancetype)setButtonWithnomalImage:(NSString *)nomalImg
-                          SelectedImage:(NSString *)selectedImg
++ (instancetype)buttonWithnomalImage:(NSString *)nomalImg
+                       selectedImage:(NSString *)selectedImg
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:nomalImg] forState:UIControlStateNormal];
@@ -117,46 +117,46 @@
 }
 
 // 带图片文字按下状态的button
-+ (instancetype)setButtonWithTitle:(NSString *)title
-                        nomalImage:(NSString *)nomalImg
-                     SelectedImage:(NSString *)selectedImg
-                   AndButtonTarget:(id)target
-                     buttonSelectd:(SEL)seleted
++ (instancetype)buttonWithTitle:(NSString *)title
+                     nomalImage:(NSString *)nomalImg
+                  selectedImage:(NSString *)selectedImg
+                         target:(id)target
+                         action:(SEL)action
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:title forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:nomalImg] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:selectedImg] forState:UIControlStateSelected];
-    [button addTarget:target action:seleted forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     button.clipsToBounds = YES;
     return button;
 }
 
 // 带图片文字高亮状态的button
-+ (instancetype)setButtonWithTitle:(NSString *)title
-                        nomalImage:(NSString *)nomalImg
-                       HeightImage:(NSString *)heightImg
-                   AndButtonTarget:(id)target
-                     buttonSelectd:(SEL)seleted
++ (instancetype)buttonWithTitle:(NSString *)title
+                     nomalImage:(NSString *)nomalImg
+                    HeightImage:(NSString *)heightImg
+                         target:(id)target
+                         action:(SEL)action
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:title forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:nomalImg] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:heightImg] forState:UIControlStateHighlighted];
-    [button addTarget:target action:seleted forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     button.clipsToBounds = YES;
     return button;
 }
 
 
 //  带背景的button
-+ (instancetype)setButtonWithTitletext:(NSString *)title
-                       nomaltitleColor:(UIColor *)nomalColor
-                 HighlightedtitleColor:(UIColor *)hiehlightedColor
-                    nomalBackGroundImg:(NSString *)nomalImg
-                  HiehlightedGroundImg:(NSString *)hiehlightedImg
-                       AndButtonTarget:(id)target
-                         buttonSelectd:(SEL)seleted
++ (instancetype)buttonWithTitletext:(NSString *)title
+                    nomalTitleColor:(UIColor *)nomalColor
+              highlightedTitleColor:(UIColor *)hiehlightedColor
+                 nomalBackGroundImg:(NSString *)nomalImg
+               hiehlightedGroundImg:(NSString *)hiehlightedImg
+                             target:(id)target
+                             action:(SEL)action
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:title forState:UIControlStateNormal];
@@ -164,7 +164,7 @@
     [button setTitleColor:hiehlightedColor forState:UIControlStateHighlighted];
     [button setBackgroundImage:[UIImage imageNamed:nomalImg] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageNamed:hiehlightedImg] forState:UIControlStateHighlighted];
-    [button addTarget:target action:seleted forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     button.clipsToBounds = YES;
     return button;
 }

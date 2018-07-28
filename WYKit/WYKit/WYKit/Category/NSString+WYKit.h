@@ -1,7 +1,7 @@
 //
 //  NSString+WYKit.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -65,6 +65,22 @@
 - (nullable NSString *)urlEncode;
 
 #pragma mark - *****  日期时间处理 类
+
+/** 时间转字符串【YYYY-MM-dd HH:mm:ss】 */
++ (nullable NSString *)stringWithDate:(nullable NSDate *)date;
+
+/** 获取今天的日期 YYYY年MM月dd日 */
++ (nullable NSString *)getTodayDate;
+
+/** 获取今年的年份 YYYY */
++ (nullable NSString *)getYearDate;
+
+/** 获取今天日期的日 dd */
++ (nullable NSString *)getDayDate;
+
+/** 获取这个月的月份 MM */
++ (nullable NSString *)getMonthDate;
+
 /** 获得系统当前日期和时间 */
 + (nullable NSString *)time_getCurrentDateAndTime;
 
@@ -131,14 +147,19 @@
 /** email 转换为 913******@qq.com 形式 */
 - (NSString * _Nonnull)emailChangeToPrivacy;
 
-/** 计算字符串宽度 */
-- (CGSize)heightWithWidth:(CGFloat)width
-                  andFont:(CGFloat)font;
+/** 计算文本高度 */
+- (CGFloat)heightWithFont:(UIFont * _Nonnull)font
+                 andWidth:(CGFloat)width;
 
-/** 计算字符串高度 （多行）*/
-- (CGSize)widthWithHeight:(CGFloat)height
-                  andFont:(CGFloat)font;
+/** 计算文本宽度 */
+- (CGFloat)widthWithFont:(UIFont * _Nonnull)font;
 
+/** 查找字符串中相同的某个字符的所有下标位置 */
++ (NSMutableArray *_Nonnull)getRangeStr:(NSString *_Nonnull)text
+                       findText:(NSString *_Nonnull)findText;
 
+/** 跟据文字计算宽和高 */
+- (CGSize)sizeWithFontSize:(CGFloat)fontSize
+                   maxSize:(CGSize)maxSize;
 
 @end

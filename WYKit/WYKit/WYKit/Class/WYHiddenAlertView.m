@@ -1,7 +1,7 @@
 //
 //  WYHiddenAlertView.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -40,6 +40,7 @@
     }];
     
 }
+
 
 + (void)showMessage2:(NSString *)message time:(NSTimeInterval)time
 {

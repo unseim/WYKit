@@ -1,13 +1,14 @@
 //
 //  UIImage+WYKit.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
 
 #import "UIImage+WYKit.h"
 #import <Accelerate/Accelerate.h>
+#import "WYCategoryMacro.h"
 
 WY_RUNTIME_CLASS(UIImage_WYKit)
 
@@ -16,9 +17,9 @@ static const void *failBlockKey = &failBlockKey;
 
 @interface UIImage ()
 
-@property (nonatomic,copy) void(^completeBlock)();
+@property (nonatomic,copy) void(^completeBlock)(void);
 
-@property (nonatomic,copy) void(^failBlock)();
+@property (nonatomic,copy) void(^failBlock)(void);
 
 @end
 
@@ -490,7 +491,7 @@ static const void *failBlockKey = &failBlockKey;
 }
 
 //  将图片保存到相册
-- (void)savedPhotoAlbum:(void (^)())completeBlock failBlock:(void (^)())failBlock
+- (void)savedPhotoAlbum:(void (^)(void))completeBlock failBlock:(void (^)(void))failBlock
 {
     UIImageWriteToSavedPhotosAlbum(self, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
     self.completeBlock = completeBlock;
@@ -509,22 +510,22 @@ static const void *failBlockKey = &failBlockKey;
 }
 
 // ********** 模拟成员变量 ********** //
-- (void (^)())failBlock
+- (void (^)(void))failBlock
 {
     return objc_getAssociatedObject(self, failBlockKey);
 }
 
-- (void)setFailBlock:(void (^)())failBlock
+- (void)setFailBlock:(void (^)(void))failBlock
 {
     objc_setAssociatedObject(self, failBlockKey, failBlock, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void (^)())completeBlock
+- (void (^)(void))completeBlock
 {
     return objc_getAssociatedObject(self, completeBlockKey);
 }
 
-- (void)setCompleteBlock:(void (^)())completeBlock
+- (void)setCompleteBlock:(void (^)(void))completeBlock
 {
     objc_setAssociatedObject(self, completeBlockKey, completeBlock, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -791,4 +792,77 @@ static const void *failBlockKey = &failBlockKey;
             alpha == kCGImageAlphaPremultipliedLast);
 }
 
+#pragma mark --------生成阴影
++ (UIImage *)creatShadowImageWithOriginalImage:(UIImage *)image
+                              andShadowOffset:(CGSize)offset
+                                 andBlurWidth:(CGFloat)blurWidth
+                                     andAlpha:(CGFloat)Alpha
+                                     andColor:(UIColor *)Color
+{
+    CGFloat Scale = 2;
+    
+    CGFloat width  = (image.size.width+offset.width+blurWidth*4)*Scale;
+    CGFloat height = (image.size.height+offset.height+blurWidth*4)*Scale;
+    if(offset.width<0){
+        width  = (image.size.width-offset.width+blurWidth*4)*Scale;
+    }
+    if(offset.height<0){
+        height = (image.size.height-offset.height+blurWidth*4)*Scale;
+    }
+    
+    UIView *RootBackView = [[UIView alloc]initWithFrame:CGRectMake(0,0,
+                                                                   width,
+                                                                   height)];
+    RootBackView.backgroundColor = [UIColor clearColor];
+    
+    UIImageView *ImageView = [[UIImageView alloc]initWithFrame:CGRectMake(blurWidth*2*Scale,
+                                                                          blurWidth*2*Scale,
+                                                                          image.size.width*Scale,
+                                                                          image.size.height*Scale)];
+    if(offset.width<0){
+        ImageView.frame = CGRectMake((blurWidth*2-offset.width)*Scale,
+                                     ImageView.frame.origin.y,
+                                     ImageView.frame.size.width,
+                                     ImageView.frame.size.height);
+    }
+    if(offset.height<0){
+        ImageView.frame = CGRectMake(ImageView.frame.origin.x,
+                                     (blurWidth*2-offset.height)*Scale,
+                                     ImageView.frame.size.width,
+                                     ImageView.frame.size.height);
+    }
+    ImageView.backgroundColor = [UIColor clearColor];
+    ImageView.layer.shadowOffset = CGSizeMake(offset.width*Scale, offset.height*Scale);
+    ImageView.layer.shadowRadius = blurWidth*Scale;
+    ImageView.layer.shadowOpacity = Alpha;
+    ImageView.layer.shadowColor  = Color.CGColor;
+    ImageView.image = image;
+    
+    [RootBackView addSubview:ImageView];
+    
+    //ImageView.transform = CGAffineTransformMakeRotation(3.1415926*0.25);
+    //ImageView.transform = CGAffineTransformMakeScale(2, 2);
+    
+    UIImage *newImage = [self imageWithUIView:RootBackView];
+    
+    return newImage;
+}
+
+#pragma mark --------UIView转图片，提前渲染
+
++ (UIImage *)imageWithUIView:(UIView *)view
+{
+    //UIGraphicsBeginImageContext(view.bounds.size);
+    UIGraphicsBeginImageContext(CGSizeMake(view.bounds.size.width, view.bounds.size.height));
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    [view.layer renderInContext:ctx];
+    
+    UIImage* tImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return tImage;
+}
 @end

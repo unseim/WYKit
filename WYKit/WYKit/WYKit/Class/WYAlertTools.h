@@ -1,7 +1,7 @@
 //
 //  WYAlertTools.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -22,11 +22,12 @@
 typedef void (^CallWYckBlock)(NSInteger btnIndex);
 
 /** 按钮样式，不用系统的是为了版本适配 */
-typedef NS_ENUM(NSInteger, WYAlertActionStyle)
-{
+typedef NS_ENUM(NSInteger, WYAlertActionStyle) {
+    
     WYAlertActionStyleDefault = 0,
     WYAlertActionStyleCancel,
     WYAlertActionStyleDestructive
+    
 };
 
 

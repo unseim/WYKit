@@ -1,13 +1,13 @@
 //
 //  WYBluetoothManager.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
 
 #import "WYBluetoothManager.h"
-#define SCANCUTDOWNTIME 60.0f //查找蓝牙设备超时
+#define SCANCUTDOWNTIME 45.0f //查找蓝牙设备超时时间
 
 @interface WYBluetoothManager ()
 <CBCentralManagerDelegate,CBPeripheralDelegate>

@@ -1,7 +1,7 @@
 //
 //  WYAuthorizationTool.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -16,8 +16,6 @@
 //  日历 备忘录
 #import <EventKit/EventKit.h>
 #import <EventKit/EKEventStore.h>
-//  定位
-#import <CoreLocation/CLLocationManager.h>
 //  麦克风
 #import <AVFoundation/AVFoundation.h>
 //  健康
@@ -25,11 +23,18 @@
 
 #define IOS7 [[[UIDevice currentDevice]systemVersion] floatValue] < 8.0
 
-@interface WYAuthorizationTool ()
+@interface WYAuthorizationTool () <CLLocationManagerDelegate>
 
 @end
 
 @implementation WYAuthorizationTool
+
++ (WYAuthorizationTool *)authorizationTool
+{
+   WYAuthorizationTool *tool = [[WYAuthorizationTool alloc] init];
+    return tool;
+}
+
 
 #pragma mark - 跳转权限设置
 + (void)requetSettingForAuth
@@ -130,7 +135,6 @@
         [self executeCallback:callback status:WYAuthorizationStatusRestricted];
     }
 }
-
 
 #pragma mark - 日历权限
 + (void)requestCalendarAuthorization:(void (^)(WYAuthorizationStatus))callback

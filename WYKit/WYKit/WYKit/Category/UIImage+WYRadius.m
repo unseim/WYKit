@@ -1,7 +1,7 @@
 //
 //  UIImage+WYRadius.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -13,14 +13,28 @@
 - (UIImage *)setRadius:(CGFloat)radius
                   size:(CGSize)size
 {
-    return [UIImage setWYRadius:WYRadiusMake(radius, radius, radius, radius) image:self size:size borderColor:nil borderWidth:0 backgroundColor:nil withContentMode:UIViewContentModeScaleToFill];
+    return [UIImage setWYRadius:WYRadiusMake(radius, radius, radius, radius)
+                          image:self
+                           size:size
+                    borderColor:nil
+                    borderWidth:0
+                backgroundColor:nil
+                withContentMode:UIViewContentModeScaleToFill
+            ];
 }
 
 - (UIImage *)setRadius:(CGFloat)radius
                   size:(CGSize)size
            contentMode:(UIViewContentMode)contentMode
 {
-        return [UIImage setWYRadius:WYRadiusMake(radius, radius, radius, radius) image:self size:size borderColor:nil borderWidth:0 backgroundColor:nil withContentMode:contentMode];
+        return [UIImage setWYRadius:WYRadiusMake(radius, radius, radius, radius)
+                              image:self
+                               size:size
+                        borderColor:nil
+                        borderWidth:0
+                    backgroundColor:nil
+                    withContentMode:contentMode
+                ];
 }
 
 + (UIImage *)setRadius:(CGFloat)radius
@@ -29,7 +43,14 @@
            borderWidth:(CGFloat)borderWidth
        backgroundColor:(UIColor *)backgroundColor
 {
-    return [UIImage setWYRadius:WYRadiusMake(radius, radius, radius, radius) image:nil size:size borderColor:borderColor borderWidth:borderWidth backgroundColor:backgroundColor withContentMode:UIViewContentModeScaleToFill];
+    return [UIImage setWYRadius:WYRadiusMake(radius, radius, radius, radius)
+                          image:nil
+                           size:size
+                    borderColor:borderColor
+                    borderWidth:borderWidth
+                backgroundColor:backgroundColor
+                withContentMode:UIViewContentModeScaleToFill
+            ];
 }
 
 + (UIImage *)setWYRadius:(WYRadius)radius

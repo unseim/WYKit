@@ -1,7 +1,7 @@
 //
 //  UIViewController+WYKit.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -10,9 +10,11 @@
 #import <objc/runtime.h>
 
 static const void *WYBackButtonHandlerKey = &WYBackButtonHandlerKey;
+
 @implementation UIViewController (WYKit)
+
 //  获取当前正在显示的ViewController
-+ (UIViewController*)currentViewController
++ (UIViewController*)getCurrentViewController
 {
     UIViewController *viewController = [UIApplication sharedApplication].keyWindow.rootViewController;
     return [UIViewController findBestViewController:viewController];
@@ -120,7 +122,6 @@ static const void *WYBackButtonHandlerKey = &WYBackButtonHandlerKey;
             [self popViewControllerAnimated:YES];
         });
     } else {
-        // Workaround for iOS7.1. Thanks to @boliva - http://stackoverflow.com/posts/comments/34452906
         for(UIView *subview in [navigationBar subviews]) {
             if(0. < subview.alpha && subview.alpha < 1.) {
                 [UIView animateWithDuration:.25 animations:^{

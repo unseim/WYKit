@@ -1,7 +1,7 @@
 //
 //  NSString+WYCommonString.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -175,12 +175,12 @@
      15         * 中国联通：China Unicom
      16         * 130,131,132,152,155,156,185,186
      17         */
-    NSString * CU = @"^((13[0-2])|(145)|(15[5-6])|(17[0,6])|(18[5,6]))\\d{8}|(1709)\\d{7}$";
+    NSString * CU = @"^((13[0-2])|(145)|(15[5-6])|(17[0,6])|(16[6])|(18[5,6]))\\d{8}|(1709)\\d{7}$";
     /**
      * 中国电信：China Telecom
      * 133,1349,153,180,189,177,173,181(增加)
      */
-    NSString * CT = @"^((133)|(153)|(17[7,3])|(18[0,1,9]))\\d{8}$";
+    NSString * CT = @"^((133)|(153)|(17[7,3])|(19[8,9])|(18[0,1,9]))\\d{8}$";
     /**
      25         * 大陆地区固话及小灵通
      26         * 区号：010,020,021,022,023,024,025,027,028,029
@@ -207,6 +207,23 @@
     }
 }
 
+//  把手机号第4-7位变成星号
++ (NSString *)phoneNumToAsterisk:(NSString*)phoneNum
+{
+    if (![NSString isValidPhoneWithString:phoneNum]) {
+        return phoneNum;
+    }
+    return [phoneNum stringByReplacingCharactersInRange:NSMakeRange(3,4) withString:@"****"];
+}
+
+//  把手机号第4-11位变成星号
++ (NSString*)idCardToAsterisk:(NSString *)idCardNum
+{
+    if (![NSString isValidPhoneWithString:idCardNum]) {
+        return idCardNum;
+    }
+    return [idCardNum stringByReplacingCharactersInRange:NSMakeRange(3, 8) withString:@"********"];
+}
 
 //  判断字符串是否包含空格
 + (BOOL)isBlank:(NSString *)str
@@ -791,7 +808,29 @@
     return tempString;
 }
 
+// 拼接字符串
++ (NSString *)addString:(NSString *)str
+{
+    return [NSString stringWithFormat:@"%@",str];
+}
 
 
+
+// 获取当前时间戳
++ (NSString *)currentTimeStr
+{
+    NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];//获取当前时间0秒后的时间
+    NSTimeInterval time=[date timeIntervalSince1970];// *1000 是精确到毫秒，不乘就是精确到秒
+    NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
+    return timeString;
+}
+
+//  图片转Base64格式
++ (NSString*)UIImageToBase64Str:(UIImage*)image
+{
+    NSData *data = UIImageJPEGRepresentation(image, 1.0f);
+    NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    return encodedImageStr;
+}
 
 @end

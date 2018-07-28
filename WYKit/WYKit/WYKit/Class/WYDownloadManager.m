@@ -1,7 +1,7 @@
 //
 //  WYDownloadManager.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -64,13 +64,13 @@ static NSString * const WYDowndloadManagerDefaultIdentifier = @"si-downloadmanag
 }
 
 /** 下载状态 */
-@property (assign, nonatomic) WYDownloadState state;
+@property (nonatomic, assign) WYDownloadState state;
 /** 这次写入的数量 */
-@property (assign, nonatomic) NSInteger bytesWritten;
+@property (nonatomic, assign) NSInteger bytesWritten;
 /** 已下载的数量 */
-@property (assign, nonatomic) NSInteger totalBytesWritten;
+@property (nonatomic, assign) NSInteger totalBytesWritten;
 /** 文件的总大小 */
-@property (assign, nonatomic) NSInteger totalBytesExpectedToWrite;
+@property (nonatomic, assign) NSInteger totalBytesExpectedToWrite;
 /** 文件名 */
 @property (copy, nonatomic) NSString *filename;
 /** 文件路径 */
@@ -78,7 +78,7 @@ static NSString * const WYDowndloadManagerDefaultIdentifier = @"si-downloadmanag
 /** 文件url */
 @property (copy, nonatomic) NSString *url;
 /** 下载的错误信息 */
-@property (strong, nonatomic) NSError *error;
+@property (nonatomic, strong) NSError *error;
 
 
 /** 存放所有的进度回调 */
@@ -86,9 +86,9 @@ static NSString * const WYDowndloadManagerDefaultIdentifier = @"si-downloadmanag
 /** 存放所有的完毕回调 */
 @property (copy, nonatomic) WYDownloadStateChangeBlock stateChangeBlock;
 /** 任务 */
-@property (strong, nonatomic) NSURLSessionDataTask *task;
+@property (nonatomic, strong) NSURLSessionDataTask *task;
 /** 文件流 */
-@property (strong, nonatomic) NSOutputStream *stream;
+@property (nonatomic, strong) NSOutputStream *stream;
 
 @end
 
@@ -293,9 +293,9 @@ static NSString * const WYDowndloadManagerDefaultIdentifier = @"si-downloadmanag
 
 @interface WYDownloadManager () <NSURLSessionDataDelegate>
 /** session */
-@property (strong, nonatomic) NSURLSession *session;
+@property (nonatomic, strong) NSURLSession *session;
 /** 存放所有文件的下载信息 */
-@property (strong, nonatomic) NSMutableArray *downloadInfoArray;
+@property (nonatomic, strong) NSMutableArray *downloadInfoArray;
 /** 是否正在批量处理 */
 @property (assign, nonatomic, getter=isBatching) BOOL batching;
 

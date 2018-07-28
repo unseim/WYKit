@@ -1,7 +1,7 @@
 //
 //  WYDownloadManager.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -16,14 +16,16 @@ extern NSString *const WYDownloadStateDidChangeNotification;
 extern NSString *const WYDownloadInfoKey;
 
 /** 下载状态 */
-typedef NS_ENUM(NSInteger, WYDownloadState)
-{
+typedef NS_ENUM(NSInteger, WYDownloadState) {
+    
     WYDownloadStateNone = 0,     // 闲置状态（除后面几种状态以外的其他状态）
     WYDownloadStateWillResume,   // 即将下载（等待下载）
     WYDownloadStateResumed,      // 下载中
     WYDownloadStateSuspened,     // 暂停中
     WYDownloadStateCompleted     // 已经完全下载完毕
+    
 } NS_ENUM_AVAILABLE_IOS(2_0);
+
 
 /**
  *  跟踪下载进度的Block回调
@@ -66,9 +68,9 @@ typedef void (^WYDownloadStateChangeBlock)(WYDownloadState state, NSString *file
 @interface WYDownloadManager : NSObject
 
 /** 回调的队列 */
-@property (strong, nonatomic) NSOperationQueue *queue;
+@property (nonatomic, strong) NSOperationQueue *queue;
 /** 最大同时下载数 */
-@property (assign, nonatomic) int maxDownloadingCount;
+@property (nonatomic, assign) int maxDownloadingCount;
 
 + (instancetype)defaultManager;
 + (instancetype)manager;

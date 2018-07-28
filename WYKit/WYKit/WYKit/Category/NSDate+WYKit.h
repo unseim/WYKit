@@ -1,7 +1,7 @@
 //
 //  NSDate+WYKit.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -59,7 +59,8 @@
  *  @param timeStyle 时间格式 时分秒
  *  @return 得到最终的字符串
  */
-- (NSString *)stringWithDateStyle:(NSDateFormatterStyle)dateStyle timeStyle:(NSDateFormatterStyle)timeStyle;
+- (NSString *)stringWithDateStyle:(NSDateFormatterStyle)dateStyle
+                        timeStyle:(NSDateFormatterStyle)timeStyle;
 
 /** 5/5/15, 10:48 AM */
 - (NSString *)shortString;

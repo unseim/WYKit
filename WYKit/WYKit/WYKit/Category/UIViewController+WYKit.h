@@ -1,7 +1,7 @@
 //
 //  UIViewController+WYKit.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -11,6 +11,8 @@
 
 @protocol BackButtonHandlerProtocol <NSObject>
 @optional
+
+/** 截取返回事件 */
 - (BOOL)navigationShouldPopOnBackButton;
 
 @end
@@ -26,6 +28,6 @@ typedef void (^WYBackButtonHandler)(UIViewController *vc);
 - (void)backButtonTouched:(WYBackButtonHandler)backButtonHandler;
 
 /** 获取当前正在显示的ViewController */
-+ (UIViewController*) currentViewController;
++ (UIViewController*)getCurrentViewController;
 
 @end

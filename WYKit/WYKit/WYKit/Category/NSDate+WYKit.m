@@ -1,7 +1,7 @@
 //
 //  NSDate+WYKit.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -36,9 +36,10 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
 
 + (NSDate *)convertDateToLocalTime:(NSDate *)forDate
 {
-    NSTimeZone *nowTimeZone = [NSTimeZone localTimeZone];
-    NSInteger timeOffset = [nowTimeZone secondsFromGMTForDate:forDate];
-    return [forDate dateByAddingTimeInterval:timeOffset];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate:forDate];
+    NSDate *localeDate = [forDate dateByAddingTimeInterval:interval];
+    return localeDate;
 }
 
 #pragma mark - 相对日期
@@ -70,30 +71,30 @@ static const unsigned componentFlags = (NSCalendarUnitYear| NSCalendarUnitMonth 
 
 + (NSDate *)dateWithHoursFromNow:(NSInteger)dHours
 {
-    NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSinceReferenceDate] + D_HOUR * dHours;
-    NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
-    return [self convertDateToLocalTime:newDate];
+    NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSince1970] + D_HOUR * dHours;
+    NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:aTimeInterval];
+    return newDate;
 }
 
 + (NSDate *)dateWithHoursBeforeNow:(NSInteger)dHours
 {
-    NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSinceReferenceDate] - D_HOUR * dHours;
-    NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
-    return [self convertDateToLocalTime:newDate];
+    NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSince1970] - D_HOUR * dHours;
+    NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:aTimeInterval];
+    return newDate;
 }
 
 + (NSDate *)dateWithMinutesFromNow:(NSInteger)dMinutes
 {
-    NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSinceReferenceDate] + D_MINUTE * dMinutes;
-    NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
-    return [self convertDateToLocalTime:newDate];
+    NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSince1970] + D_MINUTE * dMinutes;
+    NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:aTimeInterval];
+    return newDate;
 }
 
 + (NSDate *)dateWithMinutesBeforeNow:(NSInteger)dMinutes
 {
-    NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSinceReferenceDate] - D_MINUTE * dMinutes;
-    NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
-    return [self convertDateToLocalTime:newDate];
+    NSTimeInterval aTimeInterval = [[NSDate date] timeIntervalSince1970] - D_MINUTE * dMinutes;
+    NSDate *newDate = [NSDate dateWithTimeIntervalSince1970:aTimeInterval];
+    return newDate;
 }
 
 #pragma mark - 日期转字符串

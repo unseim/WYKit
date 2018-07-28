@@ -1,16 +1,14 @@
 //
 //  UIImage+WYKit.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
 
 #import <UIKit/UIKit.h>
 
-/**
- *  水印方向
- */
+/** 水印方向 */
 typedef NS_ENUM(NSUInteger, WYWatermarkDirection) {
     WYWatermarkDirectionTopLeft,        // 左上
     WYWatermarkDirectionTopRight,       // 右上
@@ -130,8 +128,8 @@ typedef NS_ENUM(NSUInteger, WYWatermarkDirection) {
  *  @param completeBlock 保存成功回调
  *  @param failBlock     保存失败回调
  */
-- (void)savedPhotoAlbum:(void(^)())completeBlock
-              failBlock:(void(^)())failBlock;
+- (void)savedPhotoAlbum:(void(^)(void))completeBlock
+              failBlock:(void(^)(void))failBlock;
 
 
 
@@ -175,7 +173,7 @@ typedef NS_ENUM(NSUInteger, WYWatermarkDirection) {
  *
  *  @param watermarkImage 图片水印
  *  @param direction      水印在图中的位置
- *  @param waterSize      水印大小
+ *  @param watermarkSize      水印大小
  *  @param marginXY       间距
  *
  *  @return 有水印的图片
@@ -184,6 +182,37 @@ typedef NS_ENUM(NSUInteger, WYWatermarkDirection) {
                                direction:(WYWatermarkDirection)direction
                            watermarkSize:(CGSize)watermarkSize
                                 marginXY:(CGPoint)marginXY;
+
+/**
+ *  生成带阴影的图片
+ *
+ *  @param image     原图
+ *  @param offset    横纵方向的偏移
+ *  @param blurWidth 模糊程度
+ *  @param Alpha     阴影透明度
+ *  @param Color     阴影颜色
+ *
+ *  @return 新生成的图片
+ */
++ (UIImage *)creatShadowImageWithOriginalImage:(UIImage *)image
+                              andShadowOffset:(CGSize)offset
+                                 andBlurWidth:(CGFloat)blurWidth
+                                     andAlpha:(CGFloat)Alpha
+                                     andColor:(UIColor *)Color;
+
+/**
+ *  把UIView渲染成图片
+ 注：由于ios的编程像素和实际显示像素不同，在X2和X3的retina屏幕设备上，使用此方法生成的图片大小将会被还原成1倍像素，
+ 从而导致再次显示到UIImageView上显示时，清晰度下降。所以使用此方法前，请先将要转换的UIview及它的所有SubView
+ 的frame里的坐标和大小都根据需要X2或X3。
+ *
+ *  @param view 想渲染的UIView
+ *
+ *  @return 渲染出的图片
+ */
++(UIImage *)imageWithUIView:(UIView *)view;
+
+
 
 /** UIImage -> Base64图片 */
 - (NSString *)stringWithimageBase64URL:(UIImage *)image;

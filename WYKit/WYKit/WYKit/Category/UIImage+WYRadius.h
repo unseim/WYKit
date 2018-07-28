@@ -1,7 +1,7 @@
 //
 //  UIImage+WYRadius.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -32,24 +32,24 @@ static inline NSString * NSStringFromWYRadius(WYRadius radius) {
 @interface UIImage (RoundedCorner)
 
 - (UIImage *)setRadius:(CGFloat)radius
-                     size:(CGSize)size;
+                  size:(CGSize)size;
 
 - (UIImage *)setRadius:(CGFloat)radius
-                     size:(CGSize)size
-              contentMode:(UIViewContentMode)contentMode;
+                  size:(CGSize)size
+           contentMode:(UIViewContentMode)contentMode;
 
 + (UIImage *)setRadius:(CGFloat)radius
-                     size:(CGSize)size
-              borderColor:(UIColor *)borderColor
-              borderWidth:(CGFloat)borderWidth
-          backgroundColor:(UIColor *)backgroundColor;
+                  size:(CGSize)size
+           borderColor:(UIColor *)borderColor
+           borderWidth:(CGFloat)borderWidth
+       backgroundColor:(UIColor *)backgroundColor;
 
 + (UIImage *)setWYRadius:(WYRadius)radius
-                      image:(UIImage *)image
-                       size:(CGSize)size
-                borderColor:(UIColor *)borderColor
-                borderWidth:(CGFloat)borderWidth
-            backgroundColor:(UIColor *)backgroundColor
-            withContentMode:(UIViewContentMode)contentMode;
+                   image:(UIImage *)image
+                    size:(CGSize)size
+             borderColor:(UIColor *)borderColor
+             borderWidth:(CGFloat)borderWidth
+         backgroundColor:(UIColor *)backgroundColor
+         withContentMode:(UIViewContentMode)contentMode;
 
 @end

@@ -1,7 +1,7 @@
 //
 //  UIView+WYKit.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -10,21 +10,21 @@
 
 @interface UIView (WYKit)
 
-@property (nonatomic,assign) CGFloat cornerRad;
+@property (nonatomic, assign) CGFloat cornerRad;
 
-@property (nonatomic,assign)CGFloat Cy;
+@property (nonatomic, assign) CGFloat Cy;
 
-@property (nonatomic,assign)CGFloat Cx;
+@property (nonatomic, assign) CGFloat Cx;
 
-@property (nonatomic,assign)CGFloat X;
+@property (nonatomic, assign) CGFloat X;
 
-@property (nonatomic,assign)CGFloat Y;
+@property (nonatomic,assign) CGFloat Y;
 
-@property (nonatomic,assign)CGFloat Sh;
+@property (nonatomic, assign) CGFloat Sh;
 
-@property (nonatomic,assign)CGSize size;
+@property (nonatomic, assign) CGSize size;
 
-@property (nonatomic,assign)CGFloat Sw;
+@property (nonatomic, assign) CGFloat Sw;
 
 
 /** 判断一个控件是否真正显示在主窗口 */

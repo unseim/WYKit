@@ -1,7 +1,7 @@
 //
 //  WYColatingTextFeild.h
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -10,7 +10,8 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, WYColatingTextfeildType) {
-    WYColatingTextFeildAny,                     //  不做任何处理
+    
+    WYColatingTextFeildAny  = 0,                //  不做任何处理
     WYColatingTextFeildOnlyPhoneNumber,         //  只允许输入11位电话号码
     WYColatingTextFeildOnlyNumber,              //  只允许输入数字
     WYColatingTextFeildOnlyDecimal,             //  只允许输入小数
@@ -20,22 +21,25 @@ typedef NS_ENUM(NSUInteger, WYColatingTextfeildType) {
     WYColatingTextFeildOnlyCustom,              //  只允许输入自定义的内容
     WYColatingTextFeildNOEmojiAndSpace,         //  禁止输入表情和空格
     WYColatingTextFeildNOSpace                  //  禁止输入空格
+    
 };
 
 
-@interface WYColatingTextFeild : NSObject <UITextFieldDelegate>
+@interface WYColatingTextFeild : UITextField
 
-/** 格式类型 */
-@property (assign, nonatomic) WYColatingTextfeildType textFeildType;
+/** 初始化方式 */
+- (instancetype)initWithTextFeildType:(WYColatingTextfeildType)textFeildType;
++ (instancetype)textFeildWithTextFeildType:(WYColatingTextfeildType)textFeildType;
+
 
 /** 限制长度 */
-@property (assign, nonatomic) NSUInteger limitedLength;
+@property (nonatomic, assign) NSUInteger limitedLength;
 
 /** 允许的字符集 */
-@property (copy, nonatomic) NSString *characterSet;
+@property (nonatomic, copy) NSString *characterSet;
 
 /** 小数位 */
-@property (assign, nonatomic) NSUInteger decimalPlace;
+@property (nonatomic, assign) NSUInteger decimalPlace;
 
 /** 字数限制  中文2个字节   英文1个字节 */
 @property (nonatomic ,assign) BOOL isWordLimit;
@@ -46,11 +50,7 @@ typedef NS_ENUM(NSUInteger, WYColatingTextfeildType) {
 /** 英文enInt默认24个字 */
 @property (nonatomic ,assign) NSInteger enInt;
 
-/** 初始化方法 */
-- (instancetype)initWithTextField:(UITextField *)textField controller:(UIViewController *)viewController;
 
-/** 判断是否为手机号 */
-- (BOOL)isValidPhone;
 
 @end
 

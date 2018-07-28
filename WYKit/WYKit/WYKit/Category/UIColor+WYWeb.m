@@ -1,7 +1,7 @@
 //
 //  UIColor+WYWeb.m
 //  WYKit
-//  简书地址：http://www.jianshu.com/u/8f8143fbe7e4
+//  博客地址：https://www.wncblog.top
 //  GitHub地址：https://github.com/unseim
 //  QQ：9137279
 //
@@ -11,15 +11,14 @@
 @implementation UIColor (WYWeb)
 
 /** 随机颜色 */
-+ (instancetype)randomColor
-{
++ (instancetype)randomColor {
     CGFloat red = arc4random_uniform(255) / 255.0;
     CGFloat green = arc4random_uniform(255) / 255.0;
     CGFloat blue = arc4random_uniform(255) / 255.0;
     return [self colorWithRed:red green:green blue:blue alpha:1.0];
 }
 
-/** 获取canvas用的颜色字符串 */
+/** 获取 canvas 用的颜色字符串 */
 - (NSString *)canvasColorString
 {
     CGFloat *arrRGBA = [self getRGB];
