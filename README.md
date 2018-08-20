@@ -17,7 +17,7 @@ WYThirdClass | 常用三方框架二次封装总头文件
 手动将 `WYKit` 文件夹拖入到工程里面，推荐引入 PCH 文件中，全局调用。
 
 ```
-import "WYNetwork.h"
+import "WYKit.h"
 ```
 
 ## 部分功能展示
